@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pit">
+	<resultMap type="DisciplinaIbatis" id="resultDisciplinaIbatis">
+		<id property="codigo" column="cod_disciplina"/>
+		<result property="descripcion" column="desc_disciplina"/>
+		<result property="fecRegistro" column="fec_registro"/>
+		<result property="estado" column="estado"/>
+	</resultMap>
+	<select id="listaDisciplinas" statementType="CALLABLE" resultMap="resultDisciplinaIbatis">
+		call sp_listaDisciplinas()
+	</select>
+	<select id="buscaDisciplina" statementType="CALLABLE" resultMap="resultDisciplinaIbatis">
+		call sp_buscaDisciplina( #{codigo} )
+	</select>
+	<insert id="regDisciplina" statementType="CALLABLE" parameterType="DisciplinaIbatis">
+		call sp_regDisciplina( #{descripcion} )
+	</insert>
+	<update id="uptDisciplina" statementType="CALLABLE" parameterType="DisciplinaIbatis">
+		call sp_uptDisciplina( #{codigo}, #{descripcion} )
+	</update>
+	<update id="disableDisciplina" statementType="CALLABLE">
+		call sp_disableDisciplina( #{codigo} )
+	</update>
+	<update id="enableDisciplina" statementType="CALLABLE">
+		call sp_enableDisciplina( #{codigo} )
+	</update>
+	<delete id="deleteDisciplina" statementType="CALLABLE">
+		call sp_deleteDisciplina( #{codigo} )
+	</delete>
+</mapper>
+
+
+
+
+
+
+
+

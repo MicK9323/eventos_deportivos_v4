@@ -1,0 +1,88 @@
+body{
+	background-image: url('../img/fondo2.jpg');
+	background-repeat: repeat-y;
+	padding-top: 70px;
+}
+
+footer{
+  position: absolute;
+  bottom: 0;
+	padding: 10px;
+  width: 100%;
+  height: auto;
+  color: white;
+}
+
+.buscar{
+	height: 420px;
+	overflow-y: scroll;
+	margin-bottom: 50px;
+}
+
+.remove{
+	font-size: 24px;
+	color: #f06619;
+	cursor: pointer;
+}
+
+.remove:hover{
+	font-size: 24px;
+	color: #C80909;
+}
+
+.editar{
+	font-size: 24px;
+	color: #19cf88;
+	cursor: pointer;
+}
+
+.editar:hover{
+	font-size: 24px;
+	color: #0955c8;
+}
+
+.enlace-ico{
+	margin-left: 3%;
+	color: #343333;
+	cursor: pointer;
+}
+
+.enlace-ico:hover{
+	margin-left: 3%;
+	color: #CE260A;
+}
+
+/*--------------------*/
+/*MODALIDADES*/
+.ventana-modal{
+	height: 500px;
+	overflow-y: scroll;
+}
+
+tr : hover{
+	cursor: pointer;
+}
+
+/*REGISTRO DE EVENTOS*/
+#btnAddEvento{
+	margin-left: -15px;
+	margin-bottom: 20px;
+	cursor: pointer;
+	opacity: 0.8;
+}
+
+.titulo{
+	background-color: #000000;
+	opacity: 0.8;
+	border-radius: 16px;
+	color: #fff;
+}
+
+.mb5{
+	margin-bottom: 5px;
+}
+
+.caja{
+	margin-right: 5px;
+	border-right: 1px dashed #262424;
+}

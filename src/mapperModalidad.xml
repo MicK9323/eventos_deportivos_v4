@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pit">
+	<resultMap type="ModalidadIbatis" id="resultModalidadIbatis">
+		<id property="codigo" column="cod_modalidad"/>
+		<result property="descripcion" column="desc_modalidad"/>
+		<result property="codDisciplina" column="cod_disciplina"/>
+		<result property="nomDisciplina" column="desc_disciplina"/>
+		<result property="codCategoria" column="cod_categoria"/>
+		<result property="nomCategoria" column="desc_categoria"/>
+		<result property="tipo" column="tipo"/>
+		<result property="fecRegistro" column="fec_registro"/>
+		<result property="estado" column="estado"/>
+	</resultMap>
+	<select id="listaModalidades" statementType="CALLABLE" resultMap="resultModalidadIbatis">
+		call sp_listaModalidades()
+	</select>
+	<select id="buscaModalidad" statementType="CALLABLE" resultMap="resultModalidadIbatis">
+		call sp_buscaModalidad( #{codigo} )
+	</select>
+	<insert id="regModalidad" statementType="CALLABLE" parameterType="ModalidadIbatis">
+		call sp_regModalidad( #{descripcion}, #{codDisciplina}, #{codCategoria}, #{tipo} )
+	</insert>
+	<update id="uptModalidad" statementType="CALLABLE" parameterType="ModalidadIbatis">
+		call sp_uptModalidad( #{codigo}, #{descripcion}, #{codDisciplina}, #{codCategoria}, #{tipo} )
+	</update>
+	<delete id="deleteModalidad" statementType="CALLABLE">
+		call sp_deleteModalidad( #{codigo} )
+	</delete>
+</mapper>

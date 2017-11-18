@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<typeAliases>
+		<typeAlias type="beans.DisciplinaDTO" alias="DisciplinaIbatis"/>
+		<typeAlias type="beans.CategoriaDTO" alias="CategoriaIbatis"/>
+		<typeAlias type="beans.ModalidadDTO" alias="ModalidadIbatis"/>
+		<typeAlias type="beans.EventoDTO" alias="EventoIbatis"/>
+		<typeAlias type="beans.DetEventoDTO" alias="DetEventoIbatis"/>
+		<typeAlias type="beans.AdminDTO" alias="AdminIbatis"/>
+		<typeAlias type="beans.SedeDTO" alias="SedeIbatis"/>
+	</typeAliases>
+	<environments default="development">
+		<environment id="development">
+			<transactionManager type="JDBC"/>
+			<dataSource type="UNPOOLED">
+				<property name="driver" value="com.mysql.jdbc.Driver"/>
+				<property name="url" value="jdbc:mysql://localhost:3306/bd_eventos_deportivos_v7"/>
+				<property name="username" value="root"/>
+				<property name="password" value="mysql"/>
+			</dataSource>
+		</environment>
+	</environments>
+	<mappers>
+		<mapper resource="mapperDisciplina.xml"/>
+		<mapper resource="mapperCategoria.xml"/>
+		<mapper resource="mapperModalidad.xml"/>
+		<mapper resource="mapperAdmin.xml"/>
+		<mapper resource="mapperEvento.xml"/>
+		<mapper resource="mapperSede.xml"/>
+	</mappers>
+</configuration>
+
+

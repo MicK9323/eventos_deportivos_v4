@@ -1,0 +1,42 @@
+body{
+	background-image: url('../img/fondo1.jpg');
+	background-repeat: repeat-y;
+	padding-top: 70px;
+}
+
+.bloqueado{
+	font-size: 24px;
+	color: #ad2020;
+	cursor: pointer;
+}
+
+.remove{
+	font-size: 24px;
+	color: #353434;
+	cursor: pointer;
+}
+
+.remove:hover{
+	font-size: 24px;
+	color: #C80909;
+}
+
+.f20{
+	font-size: 20px;
+}
+
+.enlace-ico{
+	margin-left: 3%;
+	color: #343333;
+	cursor: pointer;
+}
+
+.enlace-ico:hover{
+	margin-left: 3%;
+	color: #CE260A;
+}
+
+.login-label{
+	font-size: 18px;
+	color: #535455;
+}

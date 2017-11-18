@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pit">
+	<resultMap type="CategoriaIbatis" id="resultCategoriaIbatis">
+		<id property="codigo" column="cod_categoria"/>
+		<result property="descripcion" column="desc_categoria"/>
+		<result property="edadMin" column="edad_min"/>
+		<result property="edadMax" column="edad_max"/>
+		<result property="fecRegistro" column="fec_registro"/>
+		<result property="estado" column="estado"/>
+	</resultMap>
+	<select id="listaCategorias" statementType="CALLABLE" resultMap="resultCategoriaIbatis">
+		call sp_listaCategorias()
+	</select>
+	<select id="buscaCategoria" statementType="CALLABLE" resultMap="resultCategoriaIbatis">
+		call sp_buscaCategoria( #{codigo} )
+	</select>
+	<insert id="regCategoria" statementType="CALLABLE" parameterType="CategoriaIbatis">
+		call sp_regCategoria( #{descripcion}, #{edadMin}, #{edadMax} )
+	</insert>
+	<update id="uptCategoria" statementType="CALLABLE" parameterType="CategoriaIbatis">
+		call sp_uptCategoria( #{codigo}, #{descripcion}, #{edadMin}, #{edadMax} )
+	</update>
+	<update id="disableCategoria" statementType="CALLABLE">
+		call sp_disableCategoria( #{codigo} )
+	</update>
+	<update id="enableCategoria" statementType="CALLABLE">
+		call sp_enableCategoria( #{codigo} )
+	</update>
+	<delete id="deleteCategoria" statementType="CALLABLE">
+		call sp_deleteCategoria( #{codigo} )
+	</delete>
+</mapper>
+
+
+
+
+
+
+
+

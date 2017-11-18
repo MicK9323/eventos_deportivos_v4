@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pit">
+	<!-- MAP PARA EVENTO SIN CADENA DE SEDES PARTICIPANTES -->
+	<resultMap type="EventoIbatis" id="mapEventoIbatis">
+		<id property="cod_evento" column="cod_evento"/>
+		<result property="desc_evento" column="desc_evento"/>
+		<result property="inicio_inscripcion" column="inicio_inscripcion"/>
+		<result property="fin_inscripcion" column="fin_inscripcion"/>
+		<result property="inicio_evento" column="inicio_evento"/>
+		<result property="fin_evento" column="fin_evento"/>
+		<result property="estado" column="estado"/>
+		<result property="nom_estado" column="desc_estado"/>
+	</resultMap>
+	
+	<resultMap type="DetEventoIbatis" id="mapDetEventoIbatis">
+		<id property="cod_evento" column="cod_evento" />
+		<id property="cod_modalidad" column="cod_modalidad"/>
+		<id property="cod_sede" column="cod_sede" />
+		<result property="nomEvento" column="desc_evento"/>
+		<result property="nomModalidad" column="desc_modalidad"/>
+		<result property="nomSede" column="nom_Sede"/>
+		<result property="fec_inicio" column="fec_inicio"/>
+		<result property="fec_fin" column="fec_fin"/>
+		<result property="cantIntegrantes" column="cantIntegrantes"/>
+		<result property="cantMujeres" column="cantMujeres"/>
+		<result property="cantVarones" column="cantVarones"/>
+		<result property="maxEquipos" column="maxEquipos"/>
+		<result property="disponibles" column="disponibles"/>
+		<result property="estado" column="estado"/>
+		<result property="nomEstado" column="desc_estado"/>
+	</resultMap>
+	
+	<select id="listaEventos" statementType="CALLABLE" resultMap="mapEventoIbatis">
+		call sp_listaEventos()
+	</select>
+	<select id="buscarEvento" statementType="CALLABLE" resultMap="mapEventoIbatis">
+		call sp_buscarEvento( #{cod_evento} )
+	</select>
+	<insert id="regEvento" statementType="CALLABLE" parameterType="EventoIbatis">
+		call sp_regEvento( #{desc_evento}, #{inicio_inscripcion}, #{fin_inscripcion}, #{inicio_evento}, #{fin_evento}, #{cod_evento, mode=OUT} )
+	</insert>
+	<update id="uptEvento" statementType="CALLABLE" parameterType="EventoIbatis">
+		call sp_uptEvento( #{cod_evento}, #{desc_evento}, #{inicio_inscripcion}, #{fin_inscripcion}, #{inicio_evento}, #{fin_evento} )
+	</update>
+	<delete id="deleteEvento" statementType="CALLABLE">
+		call sp_deleteEvento( #{cod_evento} )
+	</delete>
+	
+	<select id="detalleEventoxSede" statementType="CALLABLE" resultMap="mapDetEventoIbatis">
+		call sp_detalleEventoxSede( #{cod_evento}, #{cod_sede} )
+	</select>
+	<select id="buscarDetalleEvento" statementType="CALLABLE" resultMap="mapDetEventoIbatis">
+		call sp_buscarDetalleEvento( #{cod_evento} )
+	</select>
+	<insert id="regDetalleEvento" statementType="CALLABLE" parameterType="DetEventoIbatis">
+		call sp_regDetalleEvento( #{cod_evento}, #{cod_modalidad}, #{cod_sede}, #{fec_inicio}, #{fec_fin}, 
+									#{cantIntegrantes}, #{cantVarones}, #{cantMujeres}, #{maxEquipos} )
+	</insert>
+	<delete id="deleteDetEvento" statementType="CALLABLE">
+		call sp_deleteDetEvento( #{cod_evento}, #{cod_modalidad}, #{cod_sede} )
+	</delete>
+	
+</mapper>
