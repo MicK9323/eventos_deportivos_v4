@@ -9,7 +9,7 @@ public class Conexion {
 		Connection cn = null;
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			cn = DriverManager.getConnection("jdbc:mysql://127.0.0.1/bd_eventos_deportivos_v7","root","mysql");
+			cn = DriverManager.getConnection("jdbc:mysql://69.167.175.221/mcaproye_pit_2017?noAccessToProcedureBodies=true","mcaproye_root","(pit)!2017");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

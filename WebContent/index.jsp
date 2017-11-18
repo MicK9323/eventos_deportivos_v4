@@ -12,9 +12,9 @@
 <link rel="stylesheet" type="text/css" href="css/main.css">
 </head>
 <body>
-	
-	<jsp:include page="menu.jsp"/> 
-	
+
+	<jsp:include page="menu.jsp"/>
+
 	<%-- <nav class="navbar navbar-default navbar-fixed-top">
 		<div class="container-fluid">
 			<div class="navbar-header">
@@ -23,9 +23,9 @@
 			<ul class="nav navbar-nav">
 				<s:iterator value="#session.opcionesInscripcion">
 					<li><a href="${pageContext.request.contextPath}/<s:property value="ruta"/>"><s:property value="nomEnlace"/></a></li>
-				</s:iterator>  			
+				</s:iterator>
 			</ul>
-			
+
 			<ul class="nav navbar-nav navbar-right">
 				<li> </li>
 				<li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Cambiar Contraseña</a></li>
@@ -33,7 +33,7 @@
 			</ul>
 		</div>
 	</nav> --%>
-	
+
 	<script type="text/javascript" src="js/jquery.js"></script>
 	<script type="text/javascript" src="js/bootstrap.min.js"></script>
 </body>

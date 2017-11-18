@@ -17,9 +17,9 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 			<transactionManager type="JDBC"/>
 			<dataSource type="UNPOOLED">
 				<property name="driver" value="com.mysql.jdbc.Driver"/>
-				<property name="url" value="jdbc:mysql://localhost:3306/bd_eventos_deportivos_v7"/>
-				<property name="username" value="root"/>
-				<property name="password" value="mysql"/>
+				<property name="url" value="jdbc:mysql://69.167.175.221:3306/mcaproye_pit_2017?noAccessToProcedureBodies=true"/>
+				<property name="username" value="mcaproye_root"/>
+				<property name="password" value="(pit)!2017"/>
 			</dataSource>
 		</environment>
 	</environments>
