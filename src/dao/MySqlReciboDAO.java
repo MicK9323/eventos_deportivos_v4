@@ -6,8 +6,8 @@ public class MySqlReciboDAO implements reciboDAO {
 
 	@Override
 	public String registrarPago(String numFicha, Double monto) {
-		// TODO Auto-generated method stub
-		return null;
+		String cadena = "";
+		return cadena;
 	}
 
 	@Override
