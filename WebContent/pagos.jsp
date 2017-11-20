@@ -19,9 +19,9 @@
 	<jsp:include page="menuAdmin.jsp"/>
 
 
-	<div class="container">
+	<div class="container-fluid">
 		<div class="row">
-			<div class="col-md-5">
+			<div class="col-md-3">
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<h4>DATOS DE PAGO</h4>
@@ -34,57 +34,47 @@
 							<input type="hidden" id="opcion" value=<s:property value='idOpcion'/>>
 							<!-- DESCRIPCION -->
 							<div class="form-group">
-							  <div class="col-md-4">
+							  <div class="col-md-6">
 								<input type="text" class="form-control" placeholder="Num. Ficha">
 							  </div>
-								<div class="col-md-2">
+								<div class="col-md-3">
 									<div class="btn btn-primary">Buscar <span class="glyphicon glyphicon-search"></span></div>
 								</div>
 							</div>
 							<hr>
 							<!-- MONTO A PAGAR -->
 							<div class="form-group">
-								<div class="col-md-4">
+								<div class="col-md-7">
 									<label class="control-label">Monto a Pagar: </label>
 								</div>
-							  <div class="col-md-4">
-							  	<s:textfield readonly="true" cssClass="form-control" name="monto" />
+							  <div class="col-md-5">
+							  	<s:textfield readonly="true" cssClass="form-control" name="monto" id="monto" />
 							  </div>
 							</div>
 							<!-- MONTO PAGADO -->
 							<div class="form-group">
-								<div class="col-md-4">
+								<div class="col-md-7">
 									<label class="control-label">Pagado: </label>
 								</div>
-							  <div class="col-md-4">
-							  	<s:textfield  name="categoria.edadMax" cssClass="form-control" placeholder="Pagado" />
+							  <div class="col-md-5">
+							  	<s:textfield  name="pagado" cssClass="form-control" placeholder="Pagado" />
 							  </div>
 							</div>
 							<div class="col-md-12 text-center">
 								<!-- <button class="btn btn-primary" type="button" id="btnNuevo">Registrar Nuevo</button> -->
-								<button class="btn btn-success" type="button" id="btnGuardar"></button>
-								<button class="btn btn-warning" type="button" id="btnReset">Cancelar</button>
+								<button class="btn btn-success" type="button" id="btnPagar">Pagar</button>
+								<button class="btn btn-warning" type="button" id="btnCancelar">Cancelar</button>
 							</div>
 						</form>
 					</div>
 				</div>
 			</div>
-			<div class="col-md-7">
+			<div class="col-md-9">
 				<div class="panel panel-primary">
 					<div class="panel-heading">
 						<div class="row">
 							<div class="col-md-5" align="left">
 								<h5><strong>INFORMACION DE FICHA</strong></h5>
-							</div>
-							<div class="col-md-7" align="right">
-								<!-- BOTON BUSCAR -->
-								<%-- <div class="col-md-12">
-									<div class="input-group">
-										<span class="input-group-addon">Buscar</span>
-										<input type="text" id="buscador" class="form-control" placeholder="Buscar Categoria">
-									</div>
-								</div> --%>
-								<!-- BOTON BUSCAR -->
 							</div>
 						</div>
 					</div>
@@ -93,87 +83,8 @@
 						<s:if test="listaCategoria.empty">
  							<div class="alert alert-danger" role="alert"> <strong>No existe la ficha ingresada!</strong></div>
 						</s:if>
-						<div class="row">
-							<div class="col-md-12">
-								<div class="col-md-2">
-									<label class="control-label">Ficha N°: </label>
-								</div>
-								<div class="col-md-4">
-									<s:label cssClass="control-label" name="numFicha" id="numFicha" value="XXXXX" />
-								</div>
-							</div>
+						
 						</div>
-						<div class="row">
-							<div class="col-md-12">
-								<div class="col-md-2">
-									<label class="control-label">Fec. Registro: </label>
-								</div>
-								<div class="col-md-4">
-									<s:label cssClass="control-label" name="fecRegistro" id="fecRegistro" value="xx/xx/xxxx" />
-								</div>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-md-12">
-								<div class="col-md-2">
-									<label class="control-label">Evento: </label>
-								</div>
-								<div class="col-md-4">
-									<s:label cssClass="control-label" name="nomEvento" id="nomEvento" value="Evento Consultado" />
-								</div>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-md-12">
-								<div class="col-md-2">
-									<label class="control-label">Modalidad: </label>
-								</div>
-								<div class="col-md-4">
-									<s:label cssClass="control-label" name="nomModalidad" id="nomModalidad" value="Modalidad" />
-								</div>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-md-12">
-								<div class="col-md-2">
-									<label class="control-label">Inicio: </label>
-								</div>
-								<div class="col-md-4">
-									<s:label cssClass="control-label" name="fecInicio" id="fecInicio" value="xx/xx/xxxx" />
-								</div>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-md-12">
-								<div class="col-md-2">
-									<label class="control-label">Cierre: </label>
-								</div>
-								<div class="col-md-4">
-									<s:label cssClass="control-label" name="fecFin" id="fecFin" value="xx/xx/xxxx" />
-								</div>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-md-12">
-								<div class="col-md-2">
-									<label class="control-label">Equipo: </label>
-								</div>
-								<div class="col-md-4">
-									<s:label cssClass="control-label" name="nomEquipo" id="nomEquipo" value="LOS NYUPI" />
-								</div>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-md-12">
-								<div class="col-md-2">
-									<label class="control-label">Código: </label>
-								</div>
-								<div class="col-md-4">
-									<s:label cssClass="control-label" name="codEquipo" id="codEquipo" value="E0012" />
-								</div>
-							</div>
-						</div>	
-					</div>
 				</div>
 			</div>
 		</div>
@@ -182,11 +93,11 @@
 	<div class="clearfix"></div>
 
 	<%@ include file="footer.jsp" %>
-
+	<script src="https://checkout.culqi.com/v2"></script>
 	<script type="text/javascript" src="js/jquery.js"></script>
 	<script type="text/javascript" src="js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="js/bootstrapValidator.min.js"></script>
 	<script type="text/javascript" src="js/alertify/alertify.min.js"></script>
-	<script type="text/javascript" src="js/categoria.js"></script>
+	<script type="text/javascript" src="js/pagos.js"></script>
 </body>
 </html>

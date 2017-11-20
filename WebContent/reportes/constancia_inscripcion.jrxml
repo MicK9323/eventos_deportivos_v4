@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="constancia_inscripcion" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="8623437b-f83a-42f2-a89e-b1ac18412e93">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="54"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["F:\\Reportes\\"]]></defaultValueExpression>
+	</parameter>
+	<field name="cod_ficha" class="java.lang.String"/>
+	<field name="fec_inscripcion" class="java.lang.String"/>
+	<field name="desc_evento" class="java.lang.String"/>
+	<field name="desc_modalidad" class="java.lang.String"/>
+	<field name="fec_inicio" class="java.lang.String"/>
+	<field name="fec_fin" class="java.lang.String"/>
+	<field name="nom_equipo" class="java.lang.String"/>
+	<field name="cod_equipo" class="java.lang.String"/>
+	<field name="delegado" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="101" splitType="Stretch">
+			<staticText>
+				<reportElement x="94" y="0" width="363" height="42" forecolor="#1874B0" uuid="d1e3c936-74e9-420d-835f-8fda3741f05f"/>
+				<textElement>
+					<font size="30" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[EVENTOS DEPORTIVOS]]></text>
+			</staticText>
+			<image>
+				<reportElement x="457" y="1" width="97" height="100" uuid="815d36b5-0817-4ae8-ac5d-d7ce1391b1ac"/>
+				<imageExpression><![CDATA["F:\\Reportes\\logo.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="122" y="55" width="302" height="32" forecolor="#333333" uuid="308201f7-2629-4f9f-be97-80bf6a76fb8f"/>
+				<textElement>
+					<font size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Constancia de Inscripción]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="165" splitType="Stretch">
+			<staticText>
+				<reportElement x="337" y="34" width="100" height="20" uuid="ea86ff86-3a1e-4b24-a078-a68297166cf3"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cod. Equipo:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="337" y="8" width="100" height="20" uuid="e82a07bf-4847-42e0-a19b-cb9ea111c87b"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[N° Ficha:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="9" width="100" height="20" uuid="6c3a5079-9a8c-4647-8c53-43e304758ea4"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Evento:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="62" width="100" height="20" uuid="ce232715-d230-42b4-90c8-ca0c6c3ba8dd"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Inicio:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="35" width="100" height="20" uuid="a2414a4d-4561-4288-9e55-81900982eb0c"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Modalidad:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="87" width="100" height="20" uuid="095bae77-dc6f-4c62-ae40-7db836ec03dd"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cierre:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="337" y="60" width="100" height="20" uuid="bee8b5ab-b434-4551-8698-d78157567741"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fec. Inscripción:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="112" width="100" height="20" uuid="6a91de36-a6d1-42e5-965c-991a58c9c785"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Equipo:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="137" width="100" height="20" uuid="ffe2d259-f3f2-47fd-b1de-8ebbd4cf2427"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Delegado:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="455" y="8" width="71" height="20" uuid="7203b8ab-de99-42ba-a875-91a089c97ba5"/>
+				<textFieldExpression><![CDATA[$F{cod_ficha}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="456" y="60" width="94" height="20" uuid="36c23973-c223-4efb-8ceb-be279215dcda"/>
+				<textFieldExpression><![CDATA[$F{fec_inscripcion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="456" y="34" width="94" height="20" uuid="c09bc3c0-c096-4567-8dc1-aaf280fca00e"/>
+				<textFieldExpression><![CDATA[$F{cod_equipo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="122" y="9" width="100" height="20" uuid="b2f38ed2-ccc7-4c03-aba1-2beb11941c02"/>
+				<textFieldExpression><![CDATA[$F{desc_evento}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="122" y="34" width="100" height="20" uuid="0bd3222e-d4d5-4b43-8f07-c387c85677d0"/>
+				<textFieldExpression><![CDATA[$F{desc_modalidad}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="122" y="62" width="100" height="20" uuid="ce47c06c-f814-4375-96d7-3afc35a5874e"/>
+				<textFieldExpression><![CDATA[$F{fec_inicio}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="122" y="87" width="100" height="20" uuid="2561923b-10e7-4e1a-be2b-91fb0724b4f7"/>
+				<textFieldExpression><![CDATA[$F{fec_fin}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="122" y="112" width="100" height="20" uuid="d681cfab-1906-425a-91ae-1be423f62c2a"/>
+				<textFieldExpression><![CDATA[$F{nom_equipo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="122" y="137" width="100" height="20" uuid="905a3f9a-3a1e-4837-8263-0a591f6c459a"/>
+				<textFieldExpression><![CDATA[$F{delegado}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="224" splitType="Stretch">
+			<subreport>
+				<reportElement x="1" y="0" width="554" height="163" uuid="020b8ea8-0d8b-47e9-8995-d6255db830a0"/>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "detalle_equipo.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+</jasperReport>

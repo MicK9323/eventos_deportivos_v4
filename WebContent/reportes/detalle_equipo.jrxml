@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="detalle_equipo" language="groovy" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="cd63acf9-124f-4aeb-8c95-a406374805df">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#BFCFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#E6ECFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="Table Dataset 1" uuid="5d24a85d-7d45-4db0-87ac-c968efbf2294"/>
+	<field name="dni_jugador" class="java.lang.String"/>
+	<field name="nom_jugador" class="java.lang.String"/>
+	<field name="sexo" class="java.lang.String"/>
+	<field name="edad" class="java.lang.String"/>
+	<field name="nomSede" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<columnHeader>
+		<band height="28" splitType="Stretch">
+			<staticText>
+				<reportElement x="6" y="2" width="100" height="20" uuid="e994fd6d-06de-4afb-a3ce-ec55596819c5"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DNI]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="114" y="2" width="160" height="20" uuid="5cab7805-13cc-4d44-b2a3-d9c34245d89d"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nombre y Apellidos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="390" y="2" width="44" height="20" uuid="904c0fbc-8ad4-4e69-910e-5358ba7d19a6"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Edad]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="444" y="2" width="100" height="20" uuid="403eef2c-3464-4af5-919e-e10424654ee9"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Sede]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="282" y="2" width="100" height="20" uuid="e881ee7f-7a22-4a63-9981-2bb250e3aa62"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Sexo]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="28" splitType="Stretch">
+			<textField>
+				<reportElement x="6" y="0" width="100" height="20" uuid="62b19b1b-cdb3-41ec-891f-9307230618db"/>
+				<textFieldExpression><![CDATA[$F{dni_jugador}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="114" y="0" width="160" height="20" uuid="1c420ec0-1407-42a4-b48d-a3b73eb74fd7"/>
+				<textFieldExpression><![CDATA[$F{nom_jugador}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="282" y="0" width="100" height="20" uuid="b914b8aa-ded8-4543-872a-28d6569b925a"/>
+				<textFieldExpression><![CDATA[$F{sexo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="390" y="0" width="44" height="20" uuid="7f82304a-d0e3-4169-956d-d6ba3ee88e08"/>
+				<textFieldExpression><![CDATA[$F{edad}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="443" y="0" width="101" height="20" uuid="6c167b03-fc2a-4086-b34c-01d21d49001e"/>
+				<textFieldExpression><![CDATA[$F{nomSede}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="24" width="555" height="1" uuid="7c256051-61f1-491a-a643-9d84d33119ea"/>
+			</line>
+		</band>
+	</detail>
+</jasperReport>
