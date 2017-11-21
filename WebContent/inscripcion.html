@@ -15,7 +15,47 @@
 </head>
 <body>
 
-	<jsp:include page="menu.jsp"></jsp:include>
+	<nav class="navbar navbar-default navbar-fixed-top">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="#">EVENTOS DEPORTIVOS</a>
+			</div>
+			<ul class="nav navbar-nav">
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Mantenimiento <span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="#">Disciplinas</a></li>
+						<li><a href="#">Categorias</a></li>
+						<li><a href="#">Modalidades</a></li>
+						<li><a href="#">Sedes</a></li>
+						<li><a href="#">Jugadores</a></li>
+					</ul>
+				</li>
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Eventos <span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="#">Crear Evento</a></li>
+						<li><a href="#">Listado de eventos</a></li>
+					</ul>
+				</li>
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Reportes <span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li></li>
+						<li></li>
+						<li></li>
+					</ul>
+				</li>
+			</ul>
+
+			<ul class="nav navbar-nav navbar-right">
+				<li><a><span class="glyphicon glyphicon-briefcase"></span> Rol del usuario</a></li>
+				<li><a><span class="glyphicon glyphicon-user"></span> Nombres y Apellidos del Usuario</a></li>
+				<li><a href="organizadores.jsp"><span class="glyphicon glyphicon-lock"></span> Cambiar Contraseña</a></li>
+				<li><a href="login.jsp"><span class="glyphicon glyphicon-log-out"></span> Salir</a></li>
+			</ul>
+		</div>
+	</nav>
 
 
 				<!-- VENTANA MODAL -->
