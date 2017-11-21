@@ -66,10 +66,8 @@
 					</div>
 					<div class="panel-body">
 						<form class="form-horizontal" id="formCategoria">
-							<s:set name="codCategoria" value="categoria.codigo" />
-							<s:set name="idOpcion" value="opcion" />
-							<input type="hidden" id="codigo" name="categoria.codigo" value=<s:property value='codCategoria'/>>
-							<input type="hidden" id="opcion" value=<s:property value='idOpcion'/>>
+							<input type="hidden" id="codigo" name="categoria.codigo">
+							<input type="hidden" id="opcion" >
 							<!-- DESCRIPCION -->
 							<div class="form-group">
 							  <div class="col-md-6">
@@ -86,18 +84,18 @@
 									<label class="control-label">Monto a Pagar: </label>
 								</div>
 							  <div class="col-md-5">
-							  	<s:textfield readonly="true" cssClass="form-control" name="monto" id="monto" />
+									<input readonly="true" type="text" name="monto" id="monto" class="form-control" value="">
 							  </div>
 							</div>
 							<!-- MONTO PAGADO -->
-							<div class="form-group">
+							<!-- <div class="form-group">
 								<div class="col-md-7">
 									<label class="control-label">Pagado: </label>
 								</div>
 							  <div class="col-md-5">
-							  	<s:textfield  name="pagado" cssClass="form-control" placeholder="Pagado" />
+									<input type="text" name="pagado" id="pagado" class="form-control"  placeholder="Pagado" value="">
 							  </div>
-							</div>
+							</div> -->
 							<div class="col-md-12 text-center">
 								<!-- <button class="btn btn-primary" type="button" id="btnNuevo">Registrar Nuevo</button> -->
 								<button class="btn btn-success" type="button" id="btnPagar">Pagar</button>
