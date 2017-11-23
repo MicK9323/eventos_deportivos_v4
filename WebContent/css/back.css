@@ -82,6 +82,15 @@ tr : hover{
 	margin-bottom: 5px;
 }
 
+.foto{
+	height: 170px;
+}
+
+h4.pdCero{
+	padding-top: 0 !important;
+	padding-bottom: 0 !important;
+}
+
 .caja{
 	margin-right: 5px;
 	border-right: 1px dashed #262424;
