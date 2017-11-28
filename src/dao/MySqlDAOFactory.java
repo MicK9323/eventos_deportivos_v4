@@ -9,6 +9,7 @@ import interfaces.FichaDAO;
 import interfaces.JugadorDAO;
 import interfaces.ModalidadDAO;
 import interfaces.SedeDAO;
+import interfaces.constanciaDAO;
 import interfaces.loginDAO;
 import interfaces.reciboDAO;
 
@@ -78,6 +79,12 @@ public class MySqlDAOFactory extends DAOFactory {
 	public reciboDAO getReciboDAO() {
 		// TODO Auto-generated method stub
 		return new MySqlReciboDAO();
+	}
+
+	@Override
+	public constanciaDAO getConstanciaDAO() {
+		// TODO Auto-generated method stub
+		return new MySqlConstanciaDAO();
 	}
 
 }

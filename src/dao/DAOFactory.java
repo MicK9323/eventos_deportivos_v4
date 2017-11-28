@@ -9,6 +9,7 @@ import interfaces.FichaDAO;
 import interfaces.JugadorDAO;
 import interfaces.ModalidadDAO;
 import interfaces.SedeDAO;
+import interfaces.constanciaDAO;
 import interfaces.loginDAO;
 import interfaces.reciboDAO;
 
@@ -34,6 +35,7 @@ public abstract class DAOFactory {
     public abstract AdminDAO getAdminDAO();
     public abstract loginDAO getLoginDAO();
     public abstract reciboDAO getReciboDAO();
+    public abstract constanciaDAO getConstanciaDAO();
     
     public static DAOFactory getDAOFactory(int whichFactory){
         switch(whichFactory){

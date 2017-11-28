@@ -19,6 +19,8 @@ import beans.EventoDTO;
 import beans.JugadorDTO;
 import beans.ModalidadDTO;
 import services.InscripcionService;
+import utils.Correos;
+import utils.Metodos;
 
 @ParentPackage("pit")
 @SuppressWarnings("serial")
@@ -97,6 +99,9 @@ public class InscripcionAction extends ActionSupport {
 	public String inscribirEquipo() throws SQLException {
 		mensaje = serv.inscribirEquipo(evento.getCod_evento(), codModalidad, equipo.getNom_equipo(),
 				delegado.getDni_jugador(), null);
+		if(mensaje.length()==10) {
+			new Correos().enviarConfirmacion("miguel.cortegana93@gmail.com");
+		}
 		return "inscribeEquipo";
 	}
 

@@ -8,6 +8,13 @@ import java.sql.Time;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Properties;
+
+import javax.mail.Message;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 
 import com.lowagie.text.Document;
 import com.lowagie.text.Element;
@@ -43,7 +50,6 @@ public class Metodos {
 		return cifrado;
 	}
 	
-
 // Crear archivo pdf
 	public void generarConstancia(EquipoDTO equipo, List<JugadorDTO> jugadores, EventoDTO evento, 
 			DetEventoDTO detEvento) {

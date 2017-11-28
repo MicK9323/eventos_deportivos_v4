@@ -16,12 +16,18 @@
 </head>
 <body style="padding-top: 70px;">
 
-	<jsp:include page="menuAdmin.jsp"/>
+
+	<s:if test="#session.usuario.idRol != 3">
+		<jsp:include page="menu.jsp"/>
+	</s:if>
+	<s:else>
+		<jsp:include page="menuAdmin.jsp"/>
+	</s:else>
 
 
-	<div class="container-fluid">
+	<div class="container">
 		<div class="row">
-			<div class="col-md-3">
+			<div class="col-md-5">
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<h4>DATOS DE PAGO</h4>
@@ -35,7 +41,7 @@
 							<!-- DESCRIPCION -->
 							<div class="form-group">
 							  <div class="col-md-6">
-								<input type="text" class="form-control" placeholder="Num. Ficha">
+								<input type="text" class="form-control" name="numFicha" id="numFicha" placeholder="Num. Ficha">
 							  </div>
 								<div class="col-md-3">
 									<div class="btn btn-primary">Buscar <span class="glyphicon glyphicon-search"></span></div>
@@ -52,14 +58,14 @@
 							  </div>
 							</div>
 							<!-- MONTO PAGADO -->
-							<div class="form-group">
+							<%-- <div class="form-group">
 								<div class="col-md-7">
 									<label class="control-label">Pagado: </label>
 								</div>
 							  <div class="col-md-5">
 							  	<s:textfield  name="pagado" cssClass="form-control" placeholder="Pagado" />
 							  </div>
-							</div>
+							</div> --%>
 							<div class="col-md-12 text-center">
 								<!-- <button class="btn btn-primary" type="button" id="btnNuevo">Registrar Nuevo</button> -->
 								<button class="btn btn-success" type="button" id="btnPagar">Pagar</button>
@@ -69,7 +75,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-md-9">
+			<div class="col-md-7">
 				<div class="panel panel-primary">
 					<div class="panel-heading">
 						<div class="row">
@@ -83,7 +89,7 @@
 						<s:if test="listaCategoria.empty">
  							<div class="alert alert-danger" role="alert"> <strong>No existe la ficha ingresada!</strong></div>
 						</s:if>
-						
+
 						</div>
 				</div>
 			</div>
