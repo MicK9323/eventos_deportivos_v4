@@ -23,12 +23,12 @@ public class MySqlReciboDAO implements reciboDAO {
 		ResultSet rs = null;
 		try {
 			conn = Conexion.conectar();
-			String sql = "func_CalcularPago(?)";
+			String sql = "select func_CalcularPago(?)";
 			pstm = conn.prepareStatement(sql);
 			pstm.setString(1, numFicha);
 			rs = pstm.executeQuery();
 			if(rs.next()) {
-				monto = rs.getString(1);
+				monto = ""+rs.getDouble(1);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

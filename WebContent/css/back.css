@@ -95,3 +95,15 @@ h4.pdCero{
 	margin-right: 5px;
 	border-right: 1px dashed #262424;
 }
+
+.pdl0{
+	padding-left: 0 !important;
+}
+
+.pdl30{
+	padding-left: 30px !important;
+}
+
+.pdr0{
+	padding-right: 0 !important;
+}

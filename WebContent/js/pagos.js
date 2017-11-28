@@ -5,35 +5,85 @@ $(document).ready(function() {
   var getFicha = location.search.substring(1,location.search.length);
   $('#numFicha').val(Base64.decode(getFicha));
 
-  Culqi.publicKey = 'pk_test_XZ8r8Be2zGAKH52R';
-  var monto = $('#monto').val();
-  var ficha;
+  // ---------------------------------------------------------
+  //---------------PASARELA DE PAGO---------------------------
+  // Culqi.publicKey = 'pk_test_XZ8r8Be2zGAKH52R';
+  // var monto = $('#monto').text();
+  // var ficha;
+  //
+  // Culqi.settings({
+  //       title: 'Eventos Deportivos',
+  //       currency: 'PEN',
+  //       description: 'Derecho de Inscripcion',
+  //       amount: monto
+  //     });
+  //
+  // $('#btnPagar').click(function(){
+  //   Culqi.open();
+  //   e.preventDefault();
+  // })
+  //
+  // function culqi() {
+  //
+  //   if(Culqi.token) { // ¡Token creado exitosamente!
+  //       // Get the token ID:
+  //       var token = Culqi.token.id;
+  //       alert('Se ha creado un token:'.token);
+  //
+  //   }else{ // ¡Hubo algún problema!
+  //       // Mostramos JSON de objeto error en consola
+  //       console.log(Culqi.error);
+  //       alert(Culqi.error.mensaje);
+  //   }
+  // };
+  //------------------------------------------------------------
 
-  Culqi.settings({
-        title: 'Eventos Deportivos',
-        currency: 'PEN',
-        description: 'Derecho de Inscripcion',
-        amount: monto
-      });
+  //---------CONSULTAR PAGO---------------------------------
+  $('#btnconsulta').click(function(){
+    var ficha = $('#numFicha').val().trim();
+    $.ajax({
+    	type: "POST",
+        url: "cargarPago",
+        data: "ficha="+ficha,
+        success: function(data){
+          console.log(data.monto);
+          var monto = data.monto;
+          $('#monto').html('S/. '+monto);
+          //datos de la ficha
+          var numFicha = data.datos.cod_ficha;
+          var fecInscripcion = data.datos.fec_inscripcion;
+          var evento = data.datos.desc_evento;
+          var modalidad = data.datos.desc_modalidad;
+          var inicio = data.datos.fec_inicio;
+          var cierre = data.datos.fec_fin;
+          var equipo = data.datos.nom_equipo;
+          var codEquipo = data.datos.cod_equipo;
+          var delegado = data.datos.delegado;
+          $('#codFicha').val(numFicha);
+          $('#fecInscripcion').val(fecInscripcion);
+          $('#nomEvento').val(evento);
+          $('#nomModalidad').val(modalidad);
+          $('#fecInicio').val(inicio);
+          $('#fecCierre').val(cierre);
+          $('#nomEquipo').val(equipo);
+          $('#codEquipo').val(codEquipo);
+          $('#nomDelegado').val(delegado);
+        },
+        error: function(data){
+          alertify.error(data);
+        }
+      })
+  });
 
-  $('#btnPagar').click(function(){
-    Culqi.open();
-    e.preventDefault();
+  //realizar pago y obtener correo
+  $('.btn-pagar').click(function(){
+    console.log("Captuta boton");
   })
 
-  function culqi() {
 
-    if(Culqi.token) { // ¡Token creado exitosamente!
-        // Get the token ID:
-        var token = Culqi.token.id;
-        alert('Se ha creado un token:'.token);
 
-    }else{ // ¡Hubo algún problema!
-        // Mostramos JSON de objeto error en consola
-        console.log(Culqi.error);
-        alert(Culqi.error.mensaje);
-    }
-};
+
+
 
 
 });

@@ -34,17 +34,13 @@
 					</div>
 					<div class="panel-body">
 						<form class="form-horizontal" id="formCategoria">
-							<s:set name="codCategoria" value="categoria.codigo" />
-							<s:set name="idOpcion" value="opcion" />
-							<input type="hidden" id="codigo" name="categoria.codigo" value=<s:property value='codCategoria'/>>
-							<input type="hidden" id="opcion" value=<s:property value='idOpcion'/>>
 							<!-- DESCRIPCION -->
 							<div class="form-group">
 							  <div class="col-md-6">
-								<input type="text" class="form-control" name="numFicha" id="numFicha" placeholder="Num. Ficha">
+							  	<s:textfield name="ficha" id="numFicha" placeholder="Num. Ficha" cssClass="form-control" value=""/>
 							  </div>
 								<div class="col-md-3">
-									<div class="btn btn-primary">Buscar <span class="glyphicon glyphicon-search"></span></div>
+									<div  id="btnconsulta" class="btn btn-primary">Buscar <span class="glyphicon glyphicon-search"></span></div>
 								</div>
 							</div>
 							<hr>
@@ -54,21 +50,12 @@
 									<label class="control-label">Monto a Pagar: </label>
 								</div>
 							  <div class="col-md-5">
-							  	<s:textfield readonly="true" cssClass="form-control" name="monto" id="monto" />
+							  	<s:label  cssClass="control-label" name="monto" id="monto"/>
 							  </div>
 							</div>
-							<!-- MONTO PAGADO -->
-							<%-- <div class="form-group">
-								<div class="col-md-7">
-									<label class="control-label">Pagado: </label>
-								</div>
-							  <div class="col-md-5">
-							  	<s:textfield  name="pagado" cssClass="form-control" placeholder="Pagado" />
-							  </div>
-							</div> --%>
 							<div class="col-md-12 text-center">
 								<!-- <button class="btn btn-primary" type="button" id="btnNuevo">Registrar Nuevo</button> -->
-								<button class="btn btn-success" type="button" id="btnPagar">Pagar</button>
+								<button class="btn btn-success" type="button" id="btnPagar" data-toggle="modal" data-target="#pago">Pagar</button>
 								<button class="btn btn-warning" type="button" id="btnCancelar">Cancelar</button>
 							</div>
 						</form>
@@ -85,18 +72,223 @@
 						</div>
 					</div>
 					<div class="panel-body buscar">
-						<!-- VERIFICA SI EL ARREGLO NO ESTA VACIO -->
-						<s:if test="listaCategoria.empty">
+						<s:if test="datos.empty">
  							<div class="alert alert-danger" role="alert"> <strong>No existe la ficha ingresada!</strong></div>
 						</s:if>
-
-						</div>
+						<form class="form-horizontal">
+							<!-- Cod. Ficha y Fec. Inscripcion -->
+							<div class="col-md-12 pdl0 pdr0">
+								<div class="col-md-6">
+									<div class="form-group">
+									  <div class="col-md-5 pdl0">
+									  	<label class="control-label">Ficha N°:</label>
+									  </div>
+									  <div class="col-md-7 pdl30">
+									  	<s:textfield name="datos.cod_ficha" id="codFicha" cssClass="form-control" readonly="true" />
+									  </div>
+									</div>
+								</div>
+								<div class="col-md-6 pdr0">
+									<div class="form-group">
+									  <div class="col-md-5">
+									  	<label class="control-label">Inscripción:</label>
+									  </div>
+									  <div class="col-md-7 pdl30">
+									  	<s:textfield name="datos.fec_inscripcion" id="fecInscripcion" cssClass="form-control" readonly="true" />
+									  </div>
+									</div>
+								</div>
+							</div>
+							<!-- nombre evento -->
+							<div class="form-group">
+							  <div class="col-md-3">
+							  	<label class="control-label">Evento:</label>
+							  </div>
+							  <div class="col-md-9">
+							  	<s:textfield name="datos.desc_evento" id="nomEvento" cssClass="form-control" readonly="true" />
+							  </div>
+							</div>
+							<!-- nombre modalidad -->
+							<div class="form-group">
+							  <div class="col-md-3">
+							  	<label class="control-label">Modalidad:</label>
+							  </div>
+							  <div class="col-md-9">
+							  	<s:textfield name="datos.desc_modalidad" id="nomModalidad" cssClass="form-control" readonly="true" />
+							  </div>
+							</div>
+							<!-- fec inicio y fec cierre -->
+							<div class="col-md-12 pdl0 pdr0">
+								<div class="col-md-6">
+									<div class="form-group">
+									  <div class="col-md-5 pdl0">
+									  	<label class="control-label">Fec. Inicio:</label>
+									  </div>
+									  <div class="col-md-7 pdl30">
+									  	<s:textfield name="datos.fec_inicio" id="fecInicio" cssClass="form-control" readonly="true" />
+									  </div>
+									</div>
+								</div>
+								<div class="col-md-6 pdr0">
+									<div class="form-group">
+									  <div class="col-md-5">
+									  	<label class="control-label">Fec. Cierre:</label>
+									  </div>
+									  <div class="col-md-7 pdl30">
+									  	<s:textfield name="datos.fec_fin" id="fecCierre" cssClass="form-control" readonly="true" />
+									  </div>
+									</div>
+								</div>
+							</div>
+							<!-- Nombre de equipo -->
+							<div class="form-group">
+							  <div class="col-md-3">
+							  	<label class="control-label">Equipo:</label>
+							  </div>
+							  <div class="col-md-9">
+							  	<s:textfield name="datos.nom_equipo" id="nomEquipo" cssClass="form-control" readonly="true" />
+							  </div>
+							</div>
+							<!-- Nombre de equipo -->
+							<div class="form-group">
+							  <div class="col-md-3">
+							  	<label class="control-label">Cod. Equipo:</label>
+							  </div>
+							  <div class="col-md-3">
+							  	<s:textfield name="datos.cod_equipo" id="codEquipo" cssClass="form-control" readonly="true" />
+							  </div>
+							</div>
+							<!-- Nombre de delegado -->
+							<div class="form-group">
+							  <div class="col-md-3">
+							  	<label class="control-label">Delegado:</label>
+							  </div>
+							  <div class="col-md-9">
+							  	<s:textfield name="datos.delegado" id="nomDelegado" cssClass="form-control" readonly="true" />
+							  </div>
+							</div>
+							<div class="clearfix"></div>
+							<hr>
+							<%-- <div class="text-center">
+								<table class="table table-hover table-condensed table-bordered">
+									<thead>
+										<tr>
+											<td class="text-center"><strong>DNI</strong></td>
+											<td class="text-center"><strong>Nombres</strong></td>
+											<td class="text-center"><strong>Edad</strong></td>
+											<td class="text-center"><strong>Sexo</strong></td>
+											<td class="text-center"><strong>Sede</strong></td>
+										</tr>
+									</thead>
+									<tbody>
+										<s:iterator value="equipo">
+											<tr>
+												<td><s:property value="dni_jugador" /></td>
+												<td><s:property value="nom_jugador" /></td>
+												<td><s:property value="edad" /></td>
+												<td><s:property value="sexo" /></td>
+												<td><s:property value="nomSede" /></td>
+											</tr>
+										</s:iterator>
+									</tbody>
+								</table>
+							</div> --%>
+						</form>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 
 	<div class="clearfix"></div>
+
+	<!-- modal de pasarela de pago -->
+	<div class="modal fade" id="pago" tabindex="-1">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<!-- CREDIT CARD FORM STARTS HERE -->
+            <div class="panel panel-default credit-card-box">
+                <div class="panel-heading display-table" >
+                    <div class="row display-tr" >
+                        <h3 class="panel-title display-td" >Payment Details</h3>
+                        <div class="display-td" >
+                            <img class="img-responsive pull-right" src="http://i76.imgup.net/accepted_c22e0.png">
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <form role="form" id="payment-form" method="POST" action="javascript:void(0);">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="form-group">
+                                    <label for="cardNumber">CARD NUMBER</label>
+                                    <div class="input-group">
+                                        <input
+                                            type="tel"
+                                            class="form-control"
+                                            name="cardNumber"
+                                            placeholder="Valid Card Number"
+                                            autocomplete="cc-number"
+                                            required autofocus
+                                        />
+                                        <span class="input-group-addon"><i class="fa fa-credit-card"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-7 col-md-7">
+                                <div class="form-group">
+                                    <label for="cardExpiry"><span class="hidden-xs">EXPIRATION</span><span class="visible-xs-inline">EXP</span> DATE</label>
+                                    <input
+                                        type="tel"
+                                        class="form-control"
+                                        name="cardExpiry"
+                                        placeholder="MM / YY"
+                                        autocomplete="cc-exp"
+                                        required
+                                    />
+                                </div>
+                            </div>
+                            <div class="col-xs-5 col-md-5 pull-right">
+                                <div class="form-group">
+                                    <label for="cardCVC">CV CODE</label>
+                                    <input
+                                        type="tel"
+                                        class="form-control"
+                                        name="cardCVC"
+                                        placeholder="CVC"
+                                        autocomplete="cc-csc"
+                                        required
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="form-group">
+                                    <label for="couponCode">COUPON CODE</label>
+                                    <input type="text" class="form-control" name="couponCode" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <button class="subscribe btn btn-success btn-lg btn-block" type="button">Start Subscription</button>
+                            </div>
+                        </div>
+                        <div class="row" style="display:none;">
+                            <div class="col-xs-12">
+                                <p class="payment-errors"></p>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!-- CREDIT CARD FORM ENDS HERE -->
+			</div>
+		</div>
+	</div>
 
 	<%@ include file="footer.jsp" %>
 	<script src="https://checkout.culqi.com/v2"></script>
