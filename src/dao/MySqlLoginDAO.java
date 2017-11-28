@@ -43,14 +43,12 @@ public class MySqlLoginDAO implements loginDAO, Serializable {
 				obj.setCodEstCivil(rs.getInt(9));
 				obj.setTelfDomicilio(rs.getString(10));
 				obj.setTelfMovil(rs.getString(11));
-				obj.setProfesion(rs.getString(12));
-				obj.setDomicilio(rs.getString(13));
-				obj.setDirTrabajo(rs.getString(14));
-				obj.setEmail(rs.getString(15));
-				obj.setCodSede(rs.getString(16));
-				obj.setFoto(rs.getString(17));
-				obj.setEstado(rs.getBoolean(19));
-				obj.setNomSede(rs.getString(20));
+				obj.setDomicilio(rs.getString(12));
+				obj.setEmail(rs.getString(13));
+				obj.setCodSede(rs.getString(14));
+				obj.setFoto(rs.getString(15));
+				obj.setEstado(rs.getBoolean(17));
+				obj.setNomSede(rs.getString(18));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
