@@ -12,6 +12,7 @@ import com.opensymphony.xwork2.ModelDriven;
 import beans.ConstanciaDTO;
 import beans.JugadorDTO;
 import services.PagoService;
+import utils.Correos;
 
 @ParentPackage("pit")
 public class PagoAction extends ActionSupport{
@@ -26,6 +27,8 @@ public class PagoAction extends ActionSupport{
 	private List<JugadorDTO> equipo;
 	private String ficha;
 	private String monto;
+	private String mensaje;
+	private String status;
 	
 	 @Action(value="/cargarPago",results= {
 			 @Result(name="datos",type="json")
@@ -37,9 +40,31 @@ public class PagoAction extends ActionSupport{
 		 Double pago = Double.parseDouble(monto);
 		 if(pago > 0) {
 			 datos = service.datosContancia(ficha);
-//			 equipo = service.detalleEquipo(datos.getCod_equipo());
+			 equipo = service.detalleEquipo(datos.getCod_equipo());
 		 }		 
 		 return "datos";
+	 }
+	 
+	 @Action(value="/registrarPago",results= {
+			 @Result(name="pagado",type="json"),
+			 @Result(name="error",type="json")
+	 })
+	 public String registrarPago() {
+		 Double pago = Double.parseDouble(monto);
+		 mensaje = service.registrarPago(ficha, pago);
+		 if(mensaje == "ok") {
+			 for(JugadorDTO x : equipo) {
+				 status = "Enviando Correos";
+				 String nombre = x.getNom_jugador();
+				 new Correos().enviarBoleta("i201520478@cibertec.edu.pe", datos, monto, nombre);
+				 return "pagado";
+			 }
+			 status ="Finalizado";
+			 return "pagado";
+		 }else {
+			 return "error";
+		 }
+		 
 	 }
 	
 	public String getFicha() {
@@ -68,6 +93,22 @@ public class PagoAction extends ActionSupport{
 		this.monto = monto;
 	}
 
+	public String getMensaje() {
+		return mensaje;
+	}
 
+	public void setMensaje(String mensaje) {
+		this.mensaje = mensaje;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	
 	
 }

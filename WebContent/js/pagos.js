@@ -4,51 +4,18 @@ $(document).ready(function() {
 
   var getFicha = location.search.substring(1,location.search.length);
   $('#numFicha').val(Base64.decode(getFicha));
-
-  // ---------------------------------------------------------
-  //---------------PASARELA DE PAGO---------------------------
-  // Culqi.publicKey = 'pk_test_XZ8r8Be2zGAKH52R';
-  // var monto = $('#monto').text();
-  // var ficha;
-  //
-  // Culqi.settings({
-  //       title: 'Eventos Deportivos',
-  //       currency: 'PEN',
-  //       description: 'Derecho de Inscripcion',
-  //       amount: monto
-  //     });
-  //
-  // $('#btnPagar').click(function(){
-  //   Culqi.open();
-  //   e.preventDefault();
-  // })
-  //
-  // function culqi() {
-  //
-  //   if(Culqi.token) { // ¡Token creado exitosamente!
-  //       // Get the token ID:
-  //       var token = Culqi.token.id;
-  //       alert('Se ha creado un token:'.token);
-  //
-  //   }else{ // ¡Hubo algún problema!
-  //       // Mostramos JSON de objeto error en consola
-  //       console.log(Culqi.error);
-  //       alert(Culqi.error.mensaje);
-  //   }
-  // };
-  //------------------------------------------------------------
-
+  var ficha = $('#numFicha').val().trim();
+  var gmonto;
   //---------CONSULTAR PAGO---------------------------------
   $('#btnconsulta').click(function(){
-    var ficha = $('#numFicha').val().trim();
     $.ajax({
     	type: "POST",
         url: "cargarPago",
         data: "ficha="+ficha,
         success: function(data){
           console.log(data.monto);
-          var monto = data.monto;
-          $('#monto').html('S/. '+monto);
+          gmonto = data.monto;
+          $('#monto').html('S/. '+gmonto);
           //datos de la ficha
           var numFicha = data.datos.cod_ficha;
           var fecInscripcion = data.datos.fec_inscripcion;
@@ -80,8 +47,101 @@ $(document).ready(function() {
     console.log("Captuta boton");
   })
 
+  //ventana de pago
+  var $form = $('#payment-form');
+//  $form.find('.subscribe').on('click', payWithStripe);
 
+  $('#btnProcesar').click(function(){
+    $.ajax({
+      type: "POST",
+      url: "registrarPago",
+      data: "ficha="+ficha+"&monto="+gmonto,
+      success: function(data){
+        $form.find('.subscribe').html('Validando <i class="fa fa-spinner fa-pulse"></i>').prop('disabled', true);
+        if(data.mensaje == "ok"){
+          $form.find('.subscribe').html('Pago exitoso! <i class="fa fa-check"></i>');
+          if(data.status == "finalizado"){
+            $form.find('.subscribe').html('Proceso terminado <i class="fa fa-check"></i>');
+          }else{
+            $form.find('.subscribe').html(data.status+'<i class="fa fa-spinner fa-pulse"></i>').prop('disabled', true);
+          }
+        }else{
+          alertify.error(data.mensaje);
+        }
+      },
+      error: function(data){
 
+      }
+    });
+//    console.log("captura el click");
+//    $form.find('.subscribe').html('Validando <i class="fa fa-spinner fa-pulse"></i>').prop('disabled', true);
+//    $form.find('.subscribe').html('Processing <i class="fa fa-spinner fa-pulse"></i>');
+//    $form.find('.subscribe').html('Payment successful <i class="fa fa-check"></i>');
+  })
+
+  /* Fancy restrictive input formatting via jQuery.payment library*/
+  $('input[name=cardNumber]').payment('formatCardNumber');
+  $('input[name=cardCVC]').payment('formatCardCVC');
+  $('input[name=cardExpiry').payment('formatCardExpiry');
+
+  /* Form validation using Stripe client-side validation helpers */
+  jQuery.validator.addMethod("cardNumber", function(value, element) {
+      return this.optional(element) || Stripe.card.validateCardNumber(value);
+  }, "Número de tarjeta inválido");
+
+  jQuery.validator.addMethod("cardExpiry", function(value, element) {
+      /* Parsing month/year uses jQuery.payment library */
+      value = $.payment.cardExpiryVal(value);
+      return this.optional(element) || Stripe.card.validateExpiry(value.month, value.year);
+  }, "Fecha incorrecta");
+
+  jQuery.validator.addMethod("cardCVC", function(value, element) {
+      return this.optional(element) || Stripe.card.validateCVC(value);
+  }, "CVV Inválido");
+
+  validator = $form.validate({
+      rules: {
+          cardNumber: {
+              required: true,
+              cardNumber: true
+          },
+          cardExpiry: {
+              required: true,
+              cardExpiry: true
+          },
+          cardCVC: {
+              required: true,
+              cardCVC: true
+          }
+      },
+      highlight: function(element) {
+          $(element).closest('.form-control').removeClass('success').addClass('error');
+      },
+      unhighlight: function(element) {
+          $(element).closest('.form-control').removeClass('error').addClass('success');
+      },
+      errorPlacement: function(error, element) {
+          $(element).closest('.form-group').append(error);
+      }
+  });
+
+  paymentFormReady = function() {
+      if ($form.find('[name=cardNumber]').hasClass("success") &&
+          $form.find('[name=cardExpiry]').hasClass("success") &&
+          $form.find('[name=cardCVC]').val().length > 1) {
+          return true;
+      } else {
+          return false;
+      }
+  }
+
+  $form.find('.subscribe').prop('disabled', true);
+  var readyInterval = setInterval(function() {
+      if (paymentFormReady()) {
+          $form.find('.subscribe').prop('disabled', false);
+          clearInterval(readyInterval);
+      }
+  }, 250);
 
 
 
