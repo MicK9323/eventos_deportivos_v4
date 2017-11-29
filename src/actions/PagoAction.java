@@ -29,6 +29,7 @@ public class PagoAction extends ActionSupport{
 	private String monto;
 	private String mensaje;
 	private String status;
+	private String codEquipo;
 	
 	 @Action(value="/cargarPago",results= {
 			 @Result(name="datos",type="json")
@@ -39,8 +40,7 @@ public class PagoAction extends ActionSupport{
 		 System.out.println(monto);
 		 Double pago = Double.parseDouble(monto);
 		 if(pago > 0) {
-			 datos = service.datosContancia(ficha);
-			 equipo = service.detalleEquipo(datos.getCod_equipo());
+			 datos = service.datosContancia(ficha);			 
 		 }		 
 		 return "datos";
 	 }
@@ -52,19 +52,19 @@ public class PagoAction extends ActionSupport{
 	 public String registrarPago() {
 		 Double pago = Double.parseDouble(monto);
 		 mensaje = service.registrarPago(ficha, pago);
+		 datos = service.datosContancia(ficha);
+		 equipo = service.detalleEquipo(codEquipo);
 		 if(mensaje == "ok") {
 			 for(JugadorDTO x : equipo) {
 				 status = "Enviando Correos";
 				 String nombre = x.getNom_jugador();
-				 new Correos().enviarBoleta("i201520478@cibertec.edu.pe", datos, monto, nombre);
-				 return "pagado";
+				 new Correos().enviarBoleta("i201522941@cibertec.edu.pe", datos, monto, nombre);
 			 }
 			 status ="Finalizado";
 			 return "pagado";
 		 }else {
 			 return "error";
 		 }
-		 
 	 }
 	
 	public String getFicha() {
@@ -107,6 +107,14 @@ public class PagoAction extends ActionSupport{
 
 	public void setStatus(String status) {
 		this.status = status;
+	}
+
+	public String getCodEquipo() {
+		return codEquipo;
+	}
+
+	public void setCodEquipo(String codEquipo) {
+		this.codEquipo = codEquipo;
 	}
 
 	

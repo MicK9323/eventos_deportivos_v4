@@ -4,10 +4,12 @@ $(document).ready(function() {
 
   var getFicha = location.search.substring(1,location.search.length);
   $('#numFicha').val(Base64.decode(getFicha));
-  var ficha = $('#numFicha').val().trim();
+  var gficha;
   var gmonto;
   //---------CONSULTAR PAGO---------------------------------
   $('#btnconsulta').click(function(){
+    var ficha = $('#numFicha').val().trim();
+    gficha = ficha;
     $.ajax({
     	type: "POST",
         url: "cargarPago",
@@ -42,41 +44,46 @@ $(document).ready(function() {
       })
   });
 
-  //realizar pago y obtener correo
-  $('.btn-pagar').click(function(){
-    console.log("Captuta boton");
+  $('#btnPagar').click(function(){
+	  var num = $('#numFicha');
+	  var monto = $('#monto').text();
+    if( num == "" || monto == "" ){
+      alertify.warning("Ingrese los datos de ficha y monto para continuar");
+    }else{
+      $('#pago').modal("show");
+    }
   })
+
 
   //ventana de pago
   var $form = $('#payment-form');
 //  $form.find('.subscribe').on('click', payWithStripe);
 
   $('#btnProcesar').click(function(){
-    $.ajax({
-      type: "POST",
-      url: "registrarPago",
-      data: "ficha="+ficha+"&monto="+gmonto,
-      success: function(data){
-        $form.find('.subscribe').html('Validando <i class="fa fa-spinner fa-pulse"></i>').prop('disabled', true);
-        if(data.mensaje == "ok"){
-          $form.find('.subscribe').html('Pago exitoso! <i class="fa fa-check"></i>');
-          if(data.status == "finalizado"){
-            $form.find('.subscribe').html('Proceso terminado <i class="fa fa-check"></i>');
+    if( gficha == "" || gmonto == "" ){
+      alertify.warning("Ingrese los datos de ficha y monto para continuar");
+    }else{
+      var equipo = $('#codEquipo').val().trim();
+      $form.find('.subscribe').html('Validando <i class="fa fa-spinner fa-pulse"></i>').prop('disabled', true);
+      $.ajax({
+        type: "POST",
+        url: "registrarPago",
+        data: "ficha="+gficha+"&monto="+gmonto+"&codEquipo="+equipo,
+        success: function(data){
+          if(data.mensaje == "ok"){
+            $form.find('.subscribe').html('Pago exitoso! <i class="fa fa-check"></i>');
+            if(data.status == "finalizado"){
+              $form.find('.subscribe').html('Proceso terminado <i class="fa fa-check"></i>');
+            }
           }else{
-            $form.find('.subscribe').html(data.status+'<i class="fa fa-spinner fa-pulse"></i>').prop('disabled', true);
+            alertify.error(data.mensaje);
           }
-        }else{
-          alertify.error(data.mensaje);
-        }
-      },
-      error: function(data){
+        },
+        error: function(data){
 
-      }
-    });
-//    console.log("captura el click");
-//    $form.find('.subscribe').html('Validando <i class="fa fa-spinner fa-pulse"></i>').prop('disabled', true);
-//    $form.find('.subscribe').html('Processing <i class="fa fa-spinner fa-pulse"></i>');
-//    $form.find('.subscribe').html('Payment successful <i class="fa fa-check"></i>');
+        }
+      });
+    }
   })
 
   /* Fancy restrictive input formatting via jQuery.payment library*/

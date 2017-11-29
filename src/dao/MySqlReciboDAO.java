@@ -23,7 +23,7 @@ public class MySqlReciboDAO implements reciboDAO {
 			cstm.setString(1, numFicha);
 			cstm.setDouble(2, monto);
 			estado = cstm.executeUpdate();
-			if(estado > -1)
+			if(estado != -1)
 				msg = "ok";
 		} catch (Exception e) {
 			msg = e.getMessage();

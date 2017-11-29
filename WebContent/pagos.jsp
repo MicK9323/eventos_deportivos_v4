@@ -42,7 +42,7 @@
 							<div class="form-group">
 								<div class="col-md-6">
 									<s:textfield name="ficha" id="numFicha"
-										placeholder="Num. Ficha" cssClass="form-control" value="" />
+										placeholder="Num. Ficha" cssClass="form-control" value="" required="true"/>
 								</div>
 								<div class="col-md-3">
 									<div id="btnconsulta" class="btn btn-primary">
@@ -61,9 +61,8 @@
 								</div>
 							</div>
 							<div class="col-md-12 text-center">
-								<!-- <button class="btn btn-primary" type="button" id="btnNuevo">Registrar Nuevo</button> -->
-								<button class="btn btn-success" type="button" id="btnPagar"
-									data-toggle="modal" data-target="#pago">Pagar</button>
+								<button class="btn btn-success" type="button" id="btnPagar">Pagar</button>
+									<!-- data-toggle="modal" data-target="#pago">Pagar</button> -->
 								<button class="btn btn-warning" type="button" id="btnCancelar">Cancelar</button>
 							</div>
 						</form>
