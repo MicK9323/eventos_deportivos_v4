@@ -5,6 +5,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import beans.JugadorDTO;
 import interfaces.JugadorDAO;
@@ -59,7 +61,7 @@ public class MySqlJugadorDAO implements JugadorDAO {
 			cstm.setString(1, dni);
 			rs = cstm.executeQuery();
 			obj = new JugadorDTO();
-			while(rs.next()) {
+			while (rs.next()) {
 				obj.setDni_jugador(rs.getString(1));
 				obj.setNom_jugador(rs.getString(2));
 				obj.setEdad(rs.getInt(3));
@@ -81,6 +83,46 @@ public class MySqlJugadorDAO implements JugadorDAO {
 			}
 		}
 		return obj;
+	}
+
+	@Override
+	public List<JugadorDTO> listaJugadores() {
+		List<JugadorDTO> lista = new ArrayList<JugadorDTO>();
+		Connection conn = null;
+		CallableStatement cstm = null;
+		ResultSet rs = null;
+		try {
+			conn = Conexion.conectar();
+			String sql = "{ call sp_listaJugadores() }";
+			cstm = conn.prepareCall(sql);
+			rs = cstm.executeQuery();
+			JugadorDTO obj = null;
+			while(rs.next()) {
+				obj = new JugadorDTO();
+				obj.setDni_jugador(rs.getString(1));
+				obj.setNom_jugador(rs.getString(2));
+				obj.setEdad(rs.getInt(3));
+				obj.setSexo(rs.getString(4));
+				obj.setTelfMovil(rs.getString(5));
+				obj.setNomSede(rs.getString(6));
+				obj.setEstado(rs.getBoolean(7));
+				lista.add(obj);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null)
+					rs.close();
+				if (cstm != null)
+					cstm.close();
+				if (conn != null)
+					conn.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		return lista;
 	}
 
 }

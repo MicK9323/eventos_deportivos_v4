@@ -1,3 +1,4 @@
+<%@page import="beans.JugadorDTO"%>
 <%@ taglib uri="/struts-tags" prefix="s"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -19,8 +20,13 @@
 <link rel="stylesheet" type="text/css" href="css/pagos.css">
 </head>
 <body style="padding-top: 70px;">
-
-
+		<%
+			JugadorDTO obj = (JugadorDTO) session.getAttribute("usuario");
+		
+			if(obj == null){
+				response.sendRedirect("login.jsp");
+			}
+		%>
 	<s:if test="#session.usuario.idRol != 3">
 		<jsp:include page="menu.jsp" />
 	</s:if>

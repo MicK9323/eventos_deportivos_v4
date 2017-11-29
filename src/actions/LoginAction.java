@@ -4,9 +4,11 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.struts2.convention.annotation.Action;
+import org.apache.struts2.convention.annotation.InterceptorRef;
 import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.dispatcher.SessionMap;
+import org.apache.struts2.interceptor.SessionAware;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
@@ -17,7 +19,7 @@ import services.LoginService;
 
 @SuppressWarnings("serial")
 @ParentPackage("pit")
-public class LoginAction extends ActionSupport{
+public class LoginAction extends ActionSupport implements SessionAware{
 	LoginService dao = new LoginService();
 	private String dni,clave;
 	private boolean mostrar = false;
@@ -25,7 +27,8 @@ public class LoginAction extends ActionSupport{
 	private Map<String, Object> session = (Map<String, Object>)ActionContext.getContext().getSession();
 	
 	@Action(value="/login",results= {
-			@Result(name="ingresa",location="/index.jsp"),
+			@Result(name="usuario",location="/index.jsp"),
+			@Result(name="admin",location="/organizadores.jsp"),
 			@Result(name="error",location="/login.jsp")
 	})
 	public String login() {
@@ -50,7 +53,11 @@ public class LoginAction extends ActionSupport{
 			session.put("opcionesAdmin", menuAdmin);
 			session.put("opcionesMant", menuMantenimiento);
 			session.put("opcionesEventos", menuEventos);
-			return "ingresa";
+			if(jugador.getIdRol() == 3) {
+				return "admin";
+			}else {
+				return "usuario";
+			}
 		}		
 	}
 	
