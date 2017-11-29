@@ -16,11 +16,13 @@ import com.opensymphony.xwork2.ActionSupport;
 import beans.EnlaceDTO;
 import beans.JugadorDTO;
 import services.LoginService;
+import utils.Metodos;
 
 @SuppressWarnings("serial")
 @ParentPackage("pit")
 public class LoginAction extends ActionSupport implements SessionAware{
 	LoginService dao = new LoginService();
+	Metodos met = new Metodos();
 	private String dni,clave;
 	private boolean mostrar = false;
 	private String mensaje;
@@ -32,7 +34,7 @@ public class LoginAction extends ActionSupport implements SessionAware{
 			@Result(name="error",location="/login.jsp")
 	})
 	public String login() {
-		JugadorDTO jugador = dao.loginJugador(dni, clave);
+		JugadorDTO jugador = dao.loginJugador(dni, met.cifrarCadena(clave));
 		if(jugador == null) {
 			mostrar = true;
 			mensaje = "Credenciales Incorrectas";

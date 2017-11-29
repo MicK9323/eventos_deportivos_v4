@@ -24,7 +24,7 @@ public class JugadorAction extends ActionSupport {
 			@Result(name="lista",location="/listaJugadores.jsp")
 	})
 	public String listaJugadores() {
-		
+		lista = service.listaJugadores();
 		return "lista";
 	}
 	
