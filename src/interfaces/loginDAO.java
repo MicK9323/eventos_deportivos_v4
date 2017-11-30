@@ -12,4 +12,5 @@ public interface loginDAO {
 	public List<EnlaceDTO> obtenerEnlacesEventos(String dni);
 	public List<EnlaceDTO> obtenerEnlacesPagos(String dni);
 	public List<EnlaceDTO> obtenerEnlacesReportes(String dni);
+	public List<EnlaceDTO> listaRoles();
 }

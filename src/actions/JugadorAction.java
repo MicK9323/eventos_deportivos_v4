@@ -10,7 +10,9 @@ import org.apache.struts2.convention.annotation.Result;
 
 import com.opensymphony.xwork2.ActionSupport;
 
+import beans.EnlaceDTO;
 import beans.JugadorDTO;
+import beans.SedeDTO;
 import services.JugadorService;
 import utils.Metodos;
 
@@ -21,6 +23,8 @@ public class JugadorAction extends ActionSupport {
 	Metodos met = new Metodos();
 	private File archivo;
 	private List<JugadorDTO> lista;
+	private List<SedeDTO> sedes;
+	private List<EnlaceDTO> roles;
 	private String dni;
 	private JugadorDTO jugador;
 	private String msg;
@@ -33,7 +37,6 @@ public class JugadorAction extends ActionSupport {
 	}
 	
 	@Action(value="/importarData",results= {
-//			@Result(name="importado",type="redirectAction",params={"actionName","listaJugadores"}),
 			@Result(name="importado",location = "/listaJugadores.jsp")
 	})
 	public String importarData() {
@@ -56,6 +59,16 @@ public class JugadorAction extends ActionSupport {
 		}
 		return "importado";
 	}
+	
+	@Action(value="/dataJugador",results= {
+			@Result(name="datos",location="/nuevoJugador.jsp")
+	})
+	public String dataJugador() {
+		sedes = service.listaSedes();
+		roles = service.listaRoles();
+		return "datos";
+	}
+	
 	
 	public List<JugadorDTO> getLista() {
 		return lista;
@@ -103,6 +116,22 @@ public class JugadorAction extends ActionSupport {
 
 	public void setMostrar(boolean mostrar) {
 		this.mostrar = mostrar;
+	}
+
+	public List<SedeDTO> getSedes() {
+		return sedes;
+	}
+
+	public void setSedes(List<SedeDTO> sedes) {
+		this.sedes = sedes;
+	}
+
+	public List<EnlaceDTO> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(List<EnlaceDTO> roles) {
+		this.roles = roles;
 	}
 	
 }

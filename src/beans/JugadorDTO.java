@@ -15,7 +15,6 @@ public class JugadorDTO implements Serializable {
     private String fec_nac;
     private int edad;
     private String sexo;
-    private int codEstCivil;
     private String estCivil;
     private String telfDomicilio;
     private String telfMovil;
@@ -85,12 +84,6 @@ public class JugadorDTO implements Serializable {
 	}
 	public void setSexo(String sexo) {
 		this.sexo = sexo;
-	}
-	public int getCodEstCivil() {
-		return codEstCivil;
-	}
-	public void setCodEstCivil(int codEstCivil) {
-		this.codEstCivil = codEstCivil;
 	}
 	public String getEstCivil() {
 		return estCivil;

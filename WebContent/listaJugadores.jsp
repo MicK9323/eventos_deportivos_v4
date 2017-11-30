@@ -1,5 +1,6 @@
 <%@page import="beans.JugadorDTO"%>
 <%@ taglib uri="/struts-tags" prefix="s" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,10 +16,20 @@
 <link rel="stylesheet" type="text/css" href="css/back.css">
 </head>
 <body>
-	<%
+	<%-- <%
 			JugadorDTO obj = (JugadorDTO) session.getAttribute("usuario");
 			if(obj == null){
 				response.sendRedirect("login.jsp");
+			}
+		%> --%>
+		<%
+			JugadorDTO obj = (JugadorDTO) session.getAttribute("usuario");
+			if(obj == null){ 
+		%>
+				<script type="text/javascript">
+					alert("Sesion Expirada");
+				</script>
+		<%
 			}
 		%>
 	<jsp:include page="menuAdmin.jsp"/>
@@ -34,7 +45,7 @@
 						<div class="row">
 							<div class="col-md-12">
 								<div class="col-md-6">
-									<a href="cargarDatos" id="btnAddEvento" class="btn btn-success mr15">
+									<a href="dataJugador" id="btnAddEvento" class="btn btn-success mr15">
 										<span class="glyphicon glyphicon-plus-sign"></span> <strong>NUEVO</strong>
 									</a>
 									<div id="btnAddEvento" class="btn btn-primary" data-toggle="modal" data-target="#importar">

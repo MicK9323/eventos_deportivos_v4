@@ -268,4 +268,39 @@ public class MySqlLoginDAO implements loginDAO, Serializable {
 		}
 		return lista;
 	}
+
+	@Override
+	public List<EnlaceDTO> listaRoles() {
+		List<EnlaceDTO> lista = new ArrayList<EnlaceDTO>();
+		Connection cn = null;
+		CallableStatement cstm = null;
+		ResultSet rs = null;
+		try {
+			cn = Conexion.conectar();
+			String sql = "{call sp_listarRoles()}";
+			cstm = cn.prepareCall(sql);
+			rs = cstm.executeQuery();
+			EnlaceDTO obj = null;
+			while(rs.next()){
+				obj = new EnlaceDTO();
+				obj.setIdRol(rs.getInt(1));
+				obj.setNomRol(rs.getString(2));
+				lista.add(obj);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null)
+					rs.close();
+				if (cstm != null)
+					cstm.close();
+				if (cn != null)
+					cn.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		return lista;
+	}
 }
