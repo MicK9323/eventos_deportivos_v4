@@ -32,33 +32,14 @@
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h4 class="text-muted"><strong>BIENVENIDO</strong><small> INGRESE SUS CREDENCIALES</small></h4>
+					<h4 class="text-danger text-uppercase"><strong>Sesión expirada</strong></h4>
 				</div>
 				<form class="form-horizontal" method="post" action="login">
 					<div class="modal-body">
-						<div class="form-group">
-					  	<div class="col-md-4">
-					  		<label class="control-label login-label"><span class="glyphicon glyphicon-user"></span> USUARIO:</label>
-					  	</div>
-							<div class="col-md-8">
-								<s:textfield id="dni" name="dni" cssClass="form-control text-uppercase" placeholder="DNI" />
-							</div>
-						</div>
-						<div class="form-group">
-					  	<div class="col-md-4">
-					  		<label class="control-label login-label"><span class="glyphicon glyphicon-lock"></span> CONTRASEÑA:</label>
-					  	</div>
-							<div class="col-md-8">
-								<s:password id="password" name="clave"  cssClass="form-control text-uppercase" placeholder="Password" />
-							</div>
-						</div>
-						<s:if test="mostrar == true">
- 							<div class="alert alert-danger" role="alert"> <strong> <s:label name="mensaje" /> </strong></div>
-						</s:if>
+						<div class="alert alert-danger" role="alert"> Ha expirado su tiempo de conexión con el sistema, por favor vuelva a ingresar</div>
 					</div>
 					<div class="modal-footer text-center">						
-						<input type="submit" class="btn btn-success" value="INGRESAR" data-toggle="modal" data-target="#modalLogin">
-						<input type="reset" class="btn btn-warning" value="CANCELAR" data-toggle="modal" data-target="#modalLogin">
+						<a href="login.jsp" class="btn btn-default" >Aceptar</a>
 					</div>
 				</form>
 			</div>

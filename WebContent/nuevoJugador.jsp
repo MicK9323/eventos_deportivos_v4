@@ -15,7 +15,12 @@
 <link rel="stylesheet" type="text/css" href="css/back.css">
 </head>
 <body>
-		
+	<%
+			JugadorDTO obj = (JugadorDTO) session.getAttribute("usuario");
+			if(obj == null){
+				response.sendRedirect("expirado.jsp");
+			}
+		%>
 	<jsp:include page="menuAdmin.jsp"/>
 
 	<div class="container-fluid">
