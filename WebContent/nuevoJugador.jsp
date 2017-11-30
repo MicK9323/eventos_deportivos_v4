@@ -139,8 +139,8 @@
 													<label class="control-label" for="dirUsuario">Direccion</label>
 												</div>
 												<div class="col-md-8">
-													<s:textfield name="jugador.telfMovil" id="telfMovil" 
-																cssClass="form-control" placeholder="Teléfono Celular" required="true" />
+													<s:textfield name="jugador.domicilio" id="direccion" 
+																cssClass="form-control text-uppercase" placeholder="Direccion de domicilio" required="true" />
 													<input type="text" class="form-control text-uppercase" name="dirUsuario" id="dirUsuario" placeholder="Direccion">
 												</div>
 											</div>
@@ -150,7 +150,8 @@
 													<label class="control-label" for="email">Correo:</label>
 												</div>
 												<div class="col-md-8">
-													<input type="email" class="form-control text-lowercase" name="email" id="email" placeholder="username@example.com">
+													<s:textfield type="email" name="jugador.email" id="email" 
+																cssClass="form-control" placeholder="username@example.com" required="true" />
 												</div>
 											</div>
 										</div>
@@ -164,8 +165,9 @@
 												</div>
 												<div class="col-md-5">
 													<div class="form-group">
-														<input type="file" name="subirImagen" id="subirImagen" class="hide"/>
-														<label for="subirImagen" class="btn btn-default">Seleccionar Foto <span class="glyphicon glyphicon-camera"></span></label>
+														<s:file name="foto" id="subirImagen" class="hide" />
+														<!-- <input type="file" name="subirImagen" id="subirImagen" class="hide"/> -->
+														<label for="foto" class="btn btn-default">Seleccionar Foto <span class="glyphicon glyphicon-camera"></span></label>
 													</div>
 													<!-- <div class="form-group">
 														<div data-toggle="modal" data-target="#sedesModal" id="btnSede" class="btn btn-primary">Seleccionar Sede</div>
