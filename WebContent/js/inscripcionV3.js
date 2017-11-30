@@ -96,7 +96,7 @@ $(document).ready(function() {
     }else{
       html += '<label class="label label-warning">Campo Requerido</label>';
       $('#alerta').children('label').replaceWith(html);
-      alertify.warning("No ah ingresado ningun nombre de equipo");
+      alertify.warning("No ha ingresado ningun nombre de equipo");
     }
   }
   //-------------------------------------------------------------------------------------

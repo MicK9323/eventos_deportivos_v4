@@ -58,7 +58,7 @@ $(document).ready(function(){
 			console.log('Cod. Modalidad '+ $('#codModalidad').val());
 		}
 		else{
-			alert('No ah seleccionado ningun evento');
+			alert('No ha seleccionado ningun evento');
 		}
 	});
 
@@ -101,7 +101,7 @@ $(document).ready(function(){
 				}
 			});
 		}else{
-			alertify.error('No ah ingresado un nombre de equipo');
+			alertify.error('No ha ingresado un nombre de equipo');
 		}
 	});
 

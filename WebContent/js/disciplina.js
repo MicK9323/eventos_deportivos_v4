@@ -78,7 +78,7 @@ function validarNombre(nombre){
   }else{
     html += '<label class="label label-warning">Campo Requerido</label>';
     $('#alerta').children('label').replaceWith(html);
-    alertify.warning("No ah ingresado ningun nombre de disciplina");
+    alertify.warning("No ha ingresado ningun nombre de disciplina");
   }
 }
 

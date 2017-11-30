@@ -97,7 +97,7 @@ $(document).ready(function() {
     }else{
       html += '<label class="label label-warning">Campo Requerido</label>';
       $('#alerta').children('label').replaceWith(html);
-      alertify.warning("No ah ingresado ningun nombre de equipo");
+      alertify.warning("No ha ingresado ningun nombre de equipo");
     }
   }
   //-------------------------------------------------------------------------------------
@@ -363,7 +363,7 @@ $(document).ready(function() {
     								}
     							})
     				     }
-                alertify.confirm('Su equipo ah sido preinscrito. Su codigo de ficha es: '+numFicha
+                alertify.confirm('Su equipo ha sido preinscrito. Su codigo de ficha es: '+numFicha
     														+' Su codigo de Equipo es: '+codEquipo+'. Dispone de 48 horas para realizar el pago de'
                                 +' su inscripción. Desea pagar ahora mismo?',function(){
                                   enviarMonto('pagos.jsp',numFicha);

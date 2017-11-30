@@ -32,7 +32,7 @@ function validarNombre(nombre){
           if(mensaje == 'OK'){
             html += '<label class="label label-success">'+'Nombre '+gnomCategoria+' Valido'+'</label>';
             $('#alerta').children('label').replaceWith(html);
-            alertify.success('Nombre '+gnomCategoria+' Valido');
+            alertify.success('Nombre '+gnomCategoria+' es Valido');
           }
           else{
             html += '<label class="label label-danger">'+mensaje+'</label>';
@@ -49,7 +49,7 @@ function validarNombre(nombre){
   }else{
     html += '<label class="label label-warning">Campo Requerido</label>';
     $('#alerta').children('label').replaceWith(html);
-    alertify.warning("No ah ingresado ningun nombre de categoria");
+    alertify.warning("No ha ingresado ningún nombre de categoría");
   }
 }
 //-----------------------------------------------------------
@@ -84,7 +84,7 @@ $('#formCategoria').bootstrapValidator({
       selector: '#minimo',
       validators:{
         integer:{
-          message: 'Este campo debe contener un valor numerico'
+          message: 'Este campo debe contener un valor numérico'
         },
         between:{
         	min: 5,
@@ -100,7 +100,7 @@ $('#formCategoria').bootstrapValidator({
       selector: '#maximo',
       validators:{
         integer:{
-          message: 'Este campo debe contener un valor numerico'
+          message: 'Este campo debe contener un valor numérico'
         },
         between:{
         	min: 5,

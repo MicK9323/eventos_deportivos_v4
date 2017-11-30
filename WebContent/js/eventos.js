@@ -295,7 +295,7 @@ $(document).ready(function() {
   function validarCamposEvento(nombre,inscripcionInicio,inscripcionFin,eventoInicio,eventoFin){
     var msg = "";
     if(arrayDetalle.length == 0){
-      msg = "No ah ingresado datos";
+      msg = "No ha ingresado datos";
     }else if(nombre == ""){
       msg = "Ingrese un nombre de evento!";
     }else if(inscripcionInicio == ""){
@@ -317,11 +317,11 @@ $(document).ready(function() {
   function validarCamposDetalle(sede,modalidad,inicio,fin,integrantes,mujeres,varones,equipos){
     var msg = "";
     if(sede.length < 0 && modalidad == "" && inicio == "" && fin == "" && minimo == "" && maximo == "" && mujeres == "" && varones == "" && equipos == ""){
-      msg = "No ah ingresado datos";
+      msg = "No ha ingresado datos";
     }else if(sede.length < 0){
       msg = "Seleccione al menos una sede";
     }else if(modalidad == ""){
-      msg = "No ah seleccionado una modalidad";
+      msg = "No ha seleccionado una modalidad";
     }else if(inicio == ""){
       msg = "Ingrese la fecha de apertura para esta modalidad";
     }else if(fin == ""){
