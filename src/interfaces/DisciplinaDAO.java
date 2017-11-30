@@ -10,7 +10,7 @@ public interface DisciplinaDAO {
 	public DisciplinaDTO buscarDisciplina(String codigo);
 	public String uptDisciplina(DisciplinaDTO x);
 	public String delDisciplina(String codigo);
-	public String disableDisciplina(String codigo);
-	public String enableDisciplina(String codigo);
+//	public String disableDisciplina(String codigo);
+//	public String enableDisciplina(String codigo);
 	public String validarNombre(String descripcion);
 }

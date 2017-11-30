@@ -21,14 +21,17 @@ public class LoginService {
 	public List<EnlaceDTO> obtenerEnlacesInscripcion(String dni){
 		return dao.obtenerEnlacesInscripcion(dni);
 	}
-	public List<EnlaceDTO> obtenerEnlacesMenuAdmin(String dni){
-		return dao.obtenerEnlacesMenuAdmin(dni);
-	}
 	public List<EnlaceDTO> obtenerEnlacesMantenimiento(String dni){
 		return dao.obtenerEnlacesMantenimiento(dni);
 	}
 	public List<EnlaceDTO> obtenerEnlacesEventos(String dni){
 		return dao.obtenerEnlacesEventos(dni);
+	}
+	public List<EnlaceDTO> obtenerEnlacesPagos(String dni){
+		return dao.obtenerEnlacesPagos(dni);
+	}
+	public List<EnlaceDTO> obtenerEnlacesReportes(String dni){
+		return dao.obtenerEnlacesReportes(dni);
 	}
 	
 }

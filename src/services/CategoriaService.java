@@ -32,13 +32,13 @@ public class CategoriaService {
 		return dao.delCategoria(codigo);
 	}
 
-	public String disableCategoria(String codigo) {
-		return dao.disableCategoria(codigo);
-	}
+//	public String disableCategoria(String codigo) {
+//		return dao.disableCategoria(codigo);
+//	}
 
-	public String enableCategoria(String codigo) {
-		return dao.enableCategoria(codigo);
-	}
+//	public String enableCategoria(String codigo) {
+//		return dao.enableCategoria(codigo);
+//	}
 	public String validarNombre(String descripcion) {
 		return dao.validarNombre(descripcion);
 	}

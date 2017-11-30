@@ -109,39 +109,39 @@ public class MySqlCategoriaDAO implements CategoriaDAO {
 		return msg;
 	}
 
-	@Override
-	public String disableCategoria(String codigo) {
-		int estado = -1;
-		String msg = "";
-		SqlSession sesion = origen.openSession();
-		try {
-			estado = sesion.update("disableCategoria",codigo);
-			if(estado != -1)
-				msg = "ok";
-		} catch (Exception e) {
-			msg = e.getMessage();
-		}finally {
-			sesion.close();
-		}
-		return msg;
-	}
+//	@Override
+//	public String disableCategoria(String codigo) {
+//		int estado = -1;
+//		String msg = "";
+//		SqlSession sesion = origen.openSession();
+//		try {
+//			estado = sesion.update("disableCategoria",codigo);
+//			if(estado != -1)
+//				msg = "ok";
+//		} catch (Exception e) {
+//			msg = e.getMessage();
+//		}finally {
+//			sesion.close();
+//		}
+//		return msg;
+//	}
 
-	@Override
-	public String enableCategoria(String codigo) {
-		int estado = -1;
-		String msg = "";
-		SqlSession sesion = origen.openSession();
-		try {
-			estado = sesion.update("enableCategoria",codigo);
-			if(estado != -1)
-				msg = "ok";
-		} catch (Exception e) {
-			msg = e.getMessage();
-		}finally {
-			sesion.close();
-		}
-		return msg;
-	}
+//	@Override
+//	public String enableCategoria(String codigo) {
+//		int estado = -1;
+//		String msg = "";
+//		SqlSession sesion = origen.openSession();
+//		try {
+//			estado = sesion.update("enableCategoria",codigo);
+//			if(estado != -1)
+//				msg = "ok";
+//		} catch (Exception e) {
+//			msg = e.getMessage();
+//		}finally {
+//			sesion.close();
+//		}
+//		return msg;
+//	}
 
 	@Override
 	public String validarNombre(String descripcion) {

@@ -10,7 +10,7 @@ public interface CategoriaDAO {
 	public CategoriaDTO buscarCategoria(String codigo);
 	public String uptCategoria(CategoriaDTO x);
 	public String delCategoria(String codigo);
-	public String disableCategoria(String codigo);
-	public String enableCategoria(String codigo);
+//	public String disableCategoria(String codigo);
+//	public String enableCategoria(String codigo);
 	public String validarNombre(String descripcion);
 }

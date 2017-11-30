@@ -47,14 +47,16 @@ public class LoginAction extends ActionSupport implements SessionAware{
 		}else {
 			String dni = jugador.getDni_jugador();
 			List<EnlaceDTO> menuInscripcion = dao.obtenerEnlacesInscripcion(dni);
-			List<EnlaceDTO> menuAdmin = dao.obtenerEnlacesMenuAdmin(dni);
 			List<EnlaceDTO> menuMantenimiento = dao.obtenerEnlacesMantenimiento(dni);
 			List<EnlaceDTO> menuEventos = dao.obtenerEnlacesEventos(dni);
+			List<EnlaceDTO> menuPagos = dao.obtenerEnlacesPagos(dni);
+			List<EnlaceDTO> menuReportes = dao.obtenerEnlacesReportes(dni);
 			session.put("usuario", jugador);
-			session.put("opcionesInscripcion", menuInscripcion);
-			session.put("opcionesAdmin", menuAdmin);
+			session.put("opcionesInscripcion", menuInscripcion);			
 			session.put("opcionesMant", menuMantenimiento);
 			session.put("opcionesEventos", menuEventos);
+			session.put("opcionesPagos", menuPagos);
+			session.put("opcionesReportes", menuReportes);
 			if(jugador.getIdRol() == 3) {
 				return "admin";
 			}else {

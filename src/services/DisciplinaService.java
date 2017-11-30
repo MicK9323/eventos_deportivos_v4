@@ -26,12 +26,12 @@ public class DisciplinaService {
 	public String delDisciplina(String codigo) {
 		return objDisciplina.delDisciplina(codigo);
 	}
-	public String disableDisciplina(String codigo) {
-		return objDisciplina.disableDisciplina(codigo);
-	}
-	public String enableDisciplina(String codigo) {
-		return objDisciplina.enableDisciplina(codigo);
-	}
+//	public String disableDisciplina(String codigo) {
+//		return objDisciplina.disableDisciplina(codigo);
+//	}
+//	public String enableDisciplina(String codigo) {
+//		return objDisciplina.enableDisciplina(codigo);
+//	}
 	public String validarNombre(String descripcion) {
 		return objDisciplina.validarNombre(descripcion);
 	}

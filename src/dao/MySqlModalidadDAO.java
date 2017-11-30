@@ -111,17 +111,17 @@ SqlSessionFactory origen = null;
 		return msg;
 	}
 
-	@Override
-	public String disableModalidad(String codigo) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+//	@Override
+//	public String disableModalidad(String codigo) {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
 
-	@Override
-	public String enableModalidad(String codigo) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+//	@Override
+//	public String enableModalidad(String codigo) {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
 
 	@Override
 	public String validarNombre(String descripcion) {

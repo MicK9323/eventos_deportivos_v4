@@ -142,8 +142,8 @@ public class MySqlEventoDAO implements EventoDAO {
 				obj.setCod_modalidad(rs.getString(3));
 				obj.setNomModalidad(rs.getString(4));
 				obj.setTipoModalidad(rs.getString(5));
-				obj.setFec_inicio(rs.getString(6));
-				obj.setFec_fin(rs.getString(7));
+				obj.setFec_inicio(met.fechaNormal(rs.getString(6)));
+				obj.setFec_fin(met.fechaNormal(rs.getString(7)));
 				obj.setCantIntegrantes(rs.getInt(8));
 				obj.setCantMujeres(rs.getInt(9));
 				obj.setCantVarones(rs.getInt(10));

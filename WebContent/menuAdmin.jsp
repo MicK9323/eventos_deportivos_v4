@@ -23,9 +23,23 @@
 						</s:iterator>
 					</ul>
 				</li>
-				<s:iterator value="#session.opcionesAdmin">
-						<li class=""><a href="${pageContext.request.contextPath }/<s:property value="ruta" />"><s:property value="nomEnlace" /></a></li>
-				</s:iterator>
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Pagos <span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<s:iterator value="#session.opcionesPagos">
+							<li class=""><a href="${pageContext.request.contextPath }/<s:property value="ruta" />"><s:property value="nomEnlace" /></a></li>
+						</s:iterator>
+					</ul>
+				</li>
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Reportes <span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<s:iterator value="#session.opcionesReportes">
+							<li class=""><a href="${pageContext.request.contextPath }/<s:property value="ruta" />"><s:property value="nomEnlace" /></a></li>
+						</s:iterator>
+					</ul>
+				</li>
+				
 			</ul>
 	
 			<ul class="nav navbar-nav navbar-right">

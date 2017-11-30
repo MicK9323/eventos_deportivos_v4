@@ -11,7 +11,7 @@ public interface ModalidadDAO {
 	public ModalidadDTO buscaModalidad(String codigo);
 	public String uptModalidad(ModalidadDTO x);
 	public String deleteModalidad(String codigo);
-	public String disableModalidad(String codigo);
-	public String enableModalidad(String codigo);
+//	public String disableModalidad(String codigo);
+//	public String enableModalidad(String codigo);
 	public String validarNombre(String descripcion);
 }

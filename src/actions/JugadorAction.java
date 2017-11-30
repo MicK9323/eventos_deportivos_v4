@@ -33,21 +33,24 @@ public class JugadorAction extends ActionSupport {
 	}
 	
 	@Action(value="/importarData",results= {
-			@Result(name="importado",type="redirectAction",params={"actionName","listaJugadores"}),
-			@Result(name="error",type="json")
+//			@Result(name="importado",type="redirectAction",params={"actionName","listaJugadores"}),
+			@Result(name="importado",location = "/listaJugadores.jsp")
 	})
 	public String importarData() {
-		ArrayList<JugadorDTO> lista = met.dataCSV(archivo);
-		if(lista != null) {
-			String confirm = service.importarJugadores(lista);
+		ArrayList<JugadorDTO> data = met.dataCSV(archivo);
+		if(data != null) {
+			String confirm = service.importarJugadores(data);
 			if(confirm == "ok") {
+				lista = service.listaJugadores();
 				mostrar = true;
 				msg = "Importacion Correcta";
 			}else {
+				lista = service.listaJugadores();
 				mostrar = true;
 				msg = "Error en la importacion";
 			}
 		}else {
+			lista = service.listaJugadores();
 			mostrar = true;
 			msg = "No hay data que importar";
 		}

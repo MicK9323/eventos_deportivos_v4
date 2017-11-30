@@ -107,45 +107,7 @@ public class MySqlLoginDAO implements loginDAO, Serializable {
 		return lista;
 	}
 
-	@Override
-	public List<EnlaceDTO> obtenerEnlacesMenuAdmin(String dni) {
-		List<EnlaceDTO> lista = new ArrayList<EnlaceDTO>();
-		Connection cn = null;
-		CallableStatement cstm = null;
-		ResultSet rs = null;
-		try {
-			cn = Conexion.conectar();
-			String sql = "{call sp_cargarEnlaces(?,?)}";
-			cstm = cn.prepareCall(sql);
-			cstm.setString(1, dni);
-			cstm.setString(2, "ADM");
-			rs = cstm.executeQuery();
-			EnlaceDTO obj = null;
-			while(rs.next()){
-				obj = new EnlaceDTO();
-				obj.setIdRol(rs.getInt(1));
-				obj.setNomRol(rs.getString(2));
-				obj.setIdEnlace(rs.getInt(3));
-				obj.setNomEnlace(rs.getString(4));
-				obj.setRuta(rs.getString(5));
-				lista.add(obj);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				if (rs != null)
-					rs.close();
-				if (cstm != null)
-					cstm.close();
-				if (cn != null)
-					cn.close();
-			} catch (Exception e2) {
-				e2.printStackTrace();
-			}
-		}
-		return lista;
-	}
+
 
 	@Override
 	public List<EnlaceDTO> obtenerEnlacesMantenimiento(String dni) {
@@ -199,6 +161,86 @@ public class MySqlLoginDAO implements loginDAO, Serializable {
 			cstm = cn.prepareCall(sql);
 			cstm.setString(1, dni);
 			cstm.setString(2, "EVENT");
+			rs = cstm.executeQuery();
+			EnlaceDTO obj = null;
+			while(rs.next()){
+				obj = new EnlaceDTO();
+				obj.setIdRol(rs.getInt(1));
+				obj.setNomRol(rs.getString(2));
+				obj.setIdEnlace(rs.getInt(3));
+				obj.setNomEnlace(rs.getString(4));
+				obj.setRuta(rs.getString(5));
+				lista.add(obj);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null)
+					rs.close();
+				if (cstm != null)
+					cstm.close();
+				if (cn != null)
+					cn.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		return lista;
+	}
+
+	@Override
+	public List<EnlaceDTO> obtenerEnlacesPagos(String dni) {
+		List<EnlaceDTO> lista = new ArrayList<EnlaceDTO>();
+		Connection cn = null;
+		CallableStatement cstm = null;
+		ResultSet rs = null;
+		try {
+			cn = Conexion.conectar();
+			String sql = "{call sp_cargarEnlaces(?,?)}";
+			cstm = cn.prepareCall(sql);
+			cstm.setString(1, dni);
+			cstm.setString(2, "PAGO");
+			rs = cstm.executeQuery();
+			EnlaceDTO obj = null;
+			while(rs.next()){
+				obj = new EnlaceDTO();
+				obj.setIdRol(rs.getInt(1));
+				obj.setNomRol(rs.getString(2));
+				obj.setIdEnlace(rs.getInt(3));
+				obj.setNomEnlace(rs.getString(4));
+				obj.setRuta(rs.getString(5));
+				lista.add(obj);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null)
+					rs.close();
+				if (cstm != null)
+					cstm.close();
+				if (cn != null)
+					cn.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		return lista;
+	}
+
+	@Override
+	public List<EnlaceDTO> obtenerEnlacesReportes(String dni) {
+		List<EnlaceDTO> lista = new ArrayList<EnlaceDTO>();
+		Connection cn = null;
+		CallableStatement cstm = null;
+		ResultSet rs = null;
+		try {
+			cn = Conexion.conectar();
+			String sql = "{call sp_cargarEnlaces(?,?)}";
+			cstm = cn.prepareCall(sql);
+			cstm.setString(1, dni);
+			cstm.setString(2, "RPT");
 			rs = cstm.executeQuery();
 			EnlaceDTO obj = null;
 			while(rs.next()){

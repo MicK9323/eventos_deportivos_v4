@@ -110,39 +110,39 @@ public class MySqlDisciplinaDAO implements DisciplinaDAO {
 		return msg;
 	}
 
-	@Override
-	public String disableDisciplina(String codigo) {
-		String msg = "";
-		int estado = -1;
-		SqlSession sesion = origen.openSession();
-		try {
-			estado = sesion.update("disableDisciplina", codigo);
-			if(estado != -1)
-				msg = "Disciplina "+codigo+ " inhabilitada";
-		} catch (Exception e) {
-			msg = e.getMessage();
-		}finally {
-			sesion.close();
-		}
-		return msg;
-	}
+//	@Override
+//	public String disableDisciplina(String codigo) {
+//		String msg = "";
+//		int estado = -1;
+//		SqlSession sesion = origen.openSession();
+//		try {
+//			estado = sesion.update("disableDisciplina", codigo);
+//			if(estado != -1)
+//				msg = "Disciplina "+codigo+ " inhabilitada";
+//		} catch (Exception e) {
+//			msg = e.getMessage();
+//		}finally {
+//			sesion.close();
+//		}
+//		return msg;
+//	}
 
-	@Override
-	public String enableDisciplina(String codigo) {
-		String msg = "";
-		int estado = -1;
-		SqlSession sesion = origen.openSession();
-		try {
-			estado = sesion.update("enableDisciplina", codigo);
-			if(estado != -1)
-				msg = "Disciplina "+codigo+ " habilitada";
-		} catch (Exception e) {
-			msg = e.getMessage();
-		}finally {
-			sesion.close();
-		}
-		return msg;
-	}
+//	@Override
+//	public String enableDisciplina(String codigo) {
+//		String msg = "";
+//		int estado = -1;
+//		SqlSession sesion = origen.openSession();
+//		try {
+//			estado = sesion.update("enableDisciplina", codigo);
+//			if(estado != -1)
+//				msg = "Disciplina "+codigo+ " habilitada";
+//		} catch (Exception e) {
+//			msg = e.getMessage();
+//		}finally {
+//			sesion.close();
+//		}
+//		return msg;
+//	}
 
 	@Override
 	public String validarNombre(String descripcion) {
