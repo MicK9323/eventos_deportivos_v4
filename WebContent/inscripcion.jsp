@@ -20,7 +20,7 @@
 	<%
 			JugadorDTO obj = (JugadorDTO) session.getAttribute("usuario");		
 			if(obj == null){
-				response.sendRedirect("login.jsp");
+				response.sendRedirect("expirado.jsp");
 			}
 		%>
 	<jsp:include page="menu.jsp"></jsp:include>

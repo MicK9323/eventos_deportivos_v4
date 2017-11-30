@@ -16,20 +16,10 @@
 <link rel="stylesheet" type="text/css" href="css/back.css">
 </head>
 <body>
-	<%-- <%
+		<%
 			JugadorDTO obj = (JugadorDTO) session.getAttribute("usuario");
 			if(obj == null){
-				response.sendRedirect("login.jsp");
-			}
-		%> --%>
-		<%
-			JugadorDTO obj = (JugadorDTO) session.getAttribute("usuario");
-			if(obj == null){ 
-		%>
-				<script type="text/javascript">
-					alert("Sesion Expirada");
-				</script>
-		<%
+				response.sendRedirect("expirado.jsp");
 			}
 		%>
 	<jsp:include page="menuAdmin.jsp"/>
