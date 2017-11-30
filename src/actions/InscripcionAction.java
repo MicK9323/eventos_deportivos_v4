@@ -116,19 +116,6 @@ public class InscripcionAction extends ActionSupport {
 		mensaje = serv.addJugador(equipo.getCod_equipo(), jugador.getDni_jugador());
 		return "registraEquipo";
 	}
-
-	// llenar arreglo de jugadores
-//	@Action(value = "/detalleJugadores", results = { @Result(name = "detalle", type = "json") })
-//	public void detalleJugadores() {
-//		int edad = Integer.parseInt(DNI);
-//		JugadorDTO obj = new JugadorDTO();
-//		obj.setDni_jugador(DNI);
-//		obj.setNom_jugador(nom);
-//		obj.setEdad(edad);
-//		obj.setSexo(sexo);
-//		obj.setNomSede(sede);
-//		jugadores.add(obj);
-//	}
 	
 	// VALIDAR QUE NO SE DUPLIQUE NOMBRE DE EQUIPO
 	@Action(value = "/validarNombre", results = { @Result(name = "validaNombre", type = "json") })

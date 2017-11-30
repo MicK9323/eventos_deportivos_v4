@@ -97,7 +97,7 @@ public class MySqlJugadorDAO implements JugadorDAO {
 			cstm = conn.prepareCall(sql);
 			rs = cstm.executeQuery();
 			JugadorDTO obj = null;
-			while(rs.next()) {
+			while (rs.next()) {
 				obj = new JugadorDTO();
 				obj.setDni_jugador(rs.getString(1));
 				obj.setNom_jugador(rs.getString(2));
@@ -123,6 +123,94 @@ public class MySqlJugadorDAO implements JugadorDAO {
 			}
 		}
 		return lista;
+	}
+
+//	@Override
+//	public String registrarJugador(JugadorDTO obj) {
+//		String msg = "";
+//		Connection conn = null;
+//		CallableStatement cstm = null;
+//		int estado = -1;
+//		try {
+//			conn = Conexion.conectar();
+//			String sql = "{ call sp_importarJugador(?,?,?,?,?,?,?,?,?,?,?,?,?,?) }";
+//			cstm = conn.prepareCall(sql);
+//			cstm.setString(1, obj.getDni_jugador());
+//			cstm.setString(2, obj.getClave());
+//			cstm.setInt(3, obj.getIdRol());
+//			cstm.setString(4, obj.getNom_jugador());
+//			cstm.setString(5, obj.getApe_jugador());
+//			cstm.setString(6, obj.getFec_nac());
+//			cstm.setInt(7, obj.getEdad());
+//			cstm.setString(8, obj.getSexo());
+//			cstm.setInt(9, obj.getCodEstCivil());
+//			cstm.setString(10, obj.getTelfDomicilio());
+//			cstm.setString(11, obj.getTelfMovil());
+//			cstm.setString(12, obj.getDomicilio());
+//			cstm.setString(13, obj.getEmail());
+//			cstm.setString(14, obj.getCodSede());
+//			estado = cstm.executeUpdate();
+//			if(estado != -1) {
+//				msg = "ok";
+//			}
+//		} catch (Exception e) {
+//			msg = e.getMessage();
+//		} finally {
+//			try {
+//				if (cstm != null)
+//					cstm.close();
+//				if (conn != null)
+//					conn.close();
+//			} catch (Exception e2) {
+//				msg = e2.getMessage();
+//			}
+//		}
+//		return msg;
+//	}
+
+	@Override
+	public String importarJugadores(ArrayList<JugadorDTO> data) {
+		String msg = "";
+		Connection conn = null;
+		CallableStatement cstm = null;
+		int estado = 0;
+		try {
+			conn = Conexion.conectar();
+			String sql = "{ call sp_importarJugador(?,?,?,?,?,?,?,?,?,?,?,?,?,?) }";
+			for(JugadorDTO obj : data) {
+				cstm = conn.prepareCall(sql);
+				cstm.setString(1, obj.getDni_jugador());
+				cstm.setString(2, obj.getClave());
+				cstm.setInt(3, obj.getIdRol());
+				cstm.setString(4, obj.getNom_jugador());
+				cstm.setString(5, obj.getApe_jugador());
+				cstm.setString(6, obj.getFec_nac());
+				cstm.setInt(7, obj.getEdad());
+				cstm.setString(8, obj.getSexo());
+				cstm.setString(9, obj.getEstCivil());
+				cstm.setString(10, obj.getTelfDomicilio());
+				cstm.setString(11, obj.getTelfMovil());
+				cstm.setString(12, obj.getDomicilio());
+				cstm.setString(13, obj.getEmail());
+				cstm.setString(14, obj.getCodSede());
+				estado += cstm.executeUpdate();
+			}
+			if(estado > 0) {
+				msg = "ok";
+			}
+		} catch (Exception e) {
+			msg = e.getMessage();
+		} finally {
+			try {
+				if (cstm != null)
+					cstm.close();
+				if (conn != null)
+					conn.close();
+			} catch (Exception e2) {
+				msg = e2.getMessage();
+			}
+		}
+		return msg;
 	}
 
 }

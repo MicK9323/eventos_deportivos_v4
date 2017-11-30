@@ -1,5 +1,6 @@
-<!DOCTYPE html>
 <%@page import="beans.JugadorDTO"%>
+<%@ taglib uri="/struts-tags" prefix="s" %>
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -15,23 +16,12 @@
 </head>
 <body>
 	<%
-			JugadorDTO obj = (JugadorDTO) session.getAttribute("usuario");		
+			JugadorDTO obj = (JugadorDTO) session.getAttribute("usuario");
 			if(obj == null){
 				response.sendRedirect("login.jsp");
 			}
 		%>
 	<jsp:include page="menuAdmin.jsp"/>
-	<div class="container-fluid">
-		<div class="row">
-			<div class="col-md-10 col-md-offset-1">
-				<div class="col-md-4">
-					<a href="cargarDatos" id="btnAddEvento" class="btn btn-success">
-						<span class="glyphicon glyphicon-plus-sign"></span> <strong>NUEVO JUGADOR</strong>
-					</a>
-				</div>
-			</div>
-		</div>
-	</div>
 
 	<div class="container-fluid">
 		<div class="row">
@@ -41,8 +31,27 @@
 						<h4><strong>Jugadores Registrados</strong></h4>
 					</div>
 					<div class="panel-body">
+						<div class="row">
+							<div class="col-md-12">
+								<div class="col-md-6">
+									<a href="cargarDatos" id="btnAddEvento" class="btn btn-success mr15">
+										<span class="glyphicon glyphicon-plus-sign"></span> <strong>NUEVO</strong>
+									</a>
+									<div id="btnAddEvento" class="btn btn-primary" data-toggle="modal" data-target="#importar">
+										<span class="glyphicon glyphicon-save"></span><strong>IMPORTAR</strong>
+									</div>
+								</div>								
+							</div>
+							<div class="col-md-12">
+								<s:if test="mostrar == true">
+ 									<div class="alert alert-info" role="alert"> <strong> <s:label name="msg" /> </strong></div>
+								</s:if>
+							</div>
+						</div>
 						<!-- VERIFICA SI EL ARREGLO NO ESTA VACIO -->
- 						<div class="alert alert-danger" role="alert"> <strong>No hay jugadores registrados!</strong></div>
+						<s:if test="lista.empty">
+							<div class="alert alert-danger" role="alert"> <strong>No hay jugadores registrados!</strong></div>
+						</s:if> 						
 						<!--  -->
 						<table class="table table-bordered table-hover" id="tbEventos">
 							<thead>
@@ -58,7 +67,32 @@
 								</tr>
 							</thead>
 							<tbody id="lstEventos">
-
+								<s:iterator value="lista">
+									<s:if test="estado == true">
+										<tr>
+											<td class="text-center"> <s:property value="dni_jugador" /> </td>
+											<td> <s:property value="nom_jugador" /> </td>
+											<td class="text-center"> <s:property value="edad" /> </td>
+											<td class="text-center"> <s:property value="sexo" /> </td>
+											<td class="text-center"> <s:property value="telfMovil" /> </td>
+											<td class="text-center"> <s:property value="nomSede" /> </td>
+											<td class="text-center"> <a class="habilitado"><span class="glyphicon glyphicon-ok"></span></a> </td>
+											<td class="text-center"><a class="remove"><span class="glyphicon glyphicon-remove"></span></a></td>
+										</tr>
+									</s:if>
+									<s:if test="estado == false">
+										<tr class="fondoRojo">
+											<td class="text-center"> <s:property value="dni_jugador" /> </td>
+											<td> <s:property value="nom_jugador" /> </td>
+											<td class="text-center"> <s:property value="edad" /> </td>
+											<td class="text-center"> <s:property value="sexo" /> </td>
+											<td class="text-center"> <s:property value="telfMovil" /> </td>
+											<td class="text-center"> <s:property value="nomSede" /> </td>
+											<td class="text-center"> <a class="deshabilitado"><span class="glyphicon glyphicon-ban-circle"></span></a> </td>
+											<td class="text-center"><a class="remove"><span class="glyphicon glyphicon-remove"></span></a></td>
+										</tr>
+									</s:if>
+								</s:iterator>
 							</tbody>
 						</table>
 					</div>
@@ -67,31 +101,60 @@
 		</div>
 	</div>
 
+	<div class="modal fade" id="importar" tabindex="-1">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">
+						<span>&times;</span>
+					</button>
+					<h4 class="modal-title">Importar Datos</h4>
+				</div>
 
-	<footer>
-		<div class="mencion">
-			<a
-				style="background-color: black; color: white; text-decoration: none; padding: 4px 6px; font-family: -apple-system, BlinkMacSystemFont,&amp; quot; San Francisco&amp;quot; , &amp; quot; Helvetica Neue&amp;quot; , Helvetica , Ubuntu, Roboto, Noto, &amp;quot; Segoe UI&amp;quot; , Arial , sans-serif; font-size: 12px; font-weight: bold; line-height: 1.2; display: inline-block; border-radius: 3px;"
-				href="https://unsplash.com/@austinban?utm_medium=referral&amp;utm_campaign=photographer-credit&amp;utm_content=creditBadge"
-				target="_blank" rel="noopener noreferrer"
-				title="Download free do whatever you want high-resolution photos from Austin Ban"><span
-				style="display: inline-block; padding: 2px 3px;"><svg
-						xmlns="http://www.w3.org/2000/svg"
-						style="height: 12px; width: auto; position: relative; vertical-align: middle; top: -1px; fill: white;"
-						viewBox="0 0 32 32">
-						<title></title><path
-							d="M20.8 18.1c0 2.7-2.2 4.8-4.8 4.8s-4.8-2.1-4.8-4.8c0-2.7 2.2-4.8 4.8-4.8 2.7.1 4.8 2.2 4.8 4.8zm11.2-7.4v14.9c0 2.3-1.9 4.3-4.3 4.3h-23.4c-2.4 0-4.3-1.9-4.3-4.3v-15c0-2.3 1.9-4.3 4.3-4.3h3.7l.8-2.3c.4-1.1 1.7-2 2.9-2h8.6c1.2 0 2.5.9 2.9 2l.8 2.4h3.7c2.4 0 4.3 1.9 4.3 4.3zm-8.6 7.5c0-4.1-3.3-7.5-7.5-7.5-4.1 0-7.5 3.4-7.5 7.5s3.3 7.5 7.5 7.5c4.2-.1 7.5-3.4 7.5-7.5z"></path></svg></span><span
-				style="display: inline-block; padding: 2px 3px;">Austin Ban</span></a>
+				<div class="modal-body">
+					<div class="row">
+					 	<div class="col-md-12">
+							<div class="col-md-12">
+								<form class="" action="importarData" method="post" enctype="multipart/form-data">
+									<div class="input-group image-preview">
+			            	<input type="text" class="form-control image-preview-filename" disabled="disabled"> <!-- don't give a name === doesn't send on POST/GET -->
+			            	<span class="input-group-btn">
+			                	<!-- image-preview-clear button -->
+			                	<button type="button" class="btn btn-default image-preview-clear" style="display:none;">
+			                    	<span class="glyphicon glyphicon-remove"></span> Eliminar
+			                	</button>
+			                	<!-- image-preview-input -->
+			                	<div class="btn btn-default image-preview-input">
+			                    	<span class="glyphicon glyphicon-folder-open"></span>
+			                    	<span class="image-preview-input-title">Buscar</span>
+			                    	<!-- <input type="file" accept=".csv" name="file"/> -->
+			                    	<s:file accept=".csv" name="archivo"/>
+			                	</div>
+			            	</span>
+			            </div>
+									<br>
+									<s:submit value="Importar" cssClass="btn btn-primary" />
+									<!-- <button type="button" class="btn btn-primary" id="btnCargar" name="button">Importar Datos</button> -->
+								</form>
+							</div>
+					 	</div>
+					</div>
+				</div>
+
+					<!-- <div class="modal-footer">
+						<button type="button" id="btnCargar" class="btn btn-success">Importar</button>
+						<button type="button" id="btnCancelar" class="btn btn-warning">Cancelar</button>
+					</div> -->
+			</div>
 		</div>
-	</footer>
-
+	</div>
 
 	<script type="text/javascript" src="js/jquery.js"></script>
 	<script type="text/javascript" src="js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="js/data-tables/jquery.dataTables.js"></script>
 	<script type="text/javascript" src="js/data-tables/dataTables.bootstrap.js"></script>
 	<script type="text/javascript" src="js/alertify/alertify.min.js"></script>
-	<script type="text/javascript" src="js/eventos.js"></script>
+	<script type="text/javascript" src="js/cargar.js"></script>
 	<script>
 		$(document).ready(function() {
 		  $('#tbEventos').dataTable();

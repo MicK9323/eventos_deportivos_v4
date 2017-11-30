@@ -53,10 +53,8 @@
 							</div>
 						</div>
 						<s:if test="mostrar == true">
- 								<div class="alert alert-danger" role="alert"> <strong> <s:label name="mensaje" /> </strong></div>
+ 							<div class="alert alert-danger" role="alert"> <strong> <s:label name="mensaje" /> </strong></div>
 						</s:if>
-						<%-- <s:set name="idMensaje" value="mensaje" />
-						<s:label cssClass="text-danger text-left" id="mensaje" <s:property value='idMensaje'/>></s:label> --%>
 					</div>
 					<div class="modal-footer text-center">						
 						<input type="submit" class="btn btn-success" value="INGRESAR" data-toggle="modal" data-target="#modalLogin">

@@ -40,7 +40,7 @@ public class MySqlLoginDAO implements loginDAO, Serializable {
 				obj.setFec_nac(rs.getString(6));
 				obj.setEdad(rs.getInt(7));
 				obj.setSexo(rs.getString(8));
-				obj.setCodEstCivil(rs.getInt(9));
+				obj.setEstCivil(rs.getString(9));
 				obj.setTelfDomicilio(rs.getString(10));
 				obj.setTelfMovil(rs.getString(11));
 				obj.setDomicilio(rs.getString(12));

@@ -4,9 +4,9 @@ public class pruebas {
 
 	public static void main(String[] args) {
 		
-		String cifrado = new Metodos().cifrarCadena("70417573");
+		String fecha = new Metodos().fechaNormal("1993-02-04");
 		
-		System.out.println(cifrado);
+		System.out.println(fecha);
 	}
 
 }

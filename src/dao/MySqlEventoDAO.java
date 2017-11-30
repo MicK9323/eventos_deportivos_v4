@@ -18,9 +18,10 @@ import beans.DetEventoDTO;
 import beans.EventoDTO;
 import interfaces.EventoDAO;
 import utils.Conexion;
+import utils.Metodos;
 
 public class MySqlEventoDAO implements EventoDAO {
-
+	Metodos met = new Metodos();
 	SqlSessionFactory origen = null;
 
 	{
@@ -49,10 +50,10 @@ public class MySqlEventoDAO implements EventoDAO {
 				obj = new EventoDTO();
 				obj.setCod_evento(rs.getString(1));
 				obj.setDesc_evento(rs.getString(2));
-				obj.setInicio_inscripcion(rs.getString(3));
-				obj.setFin_inscripcion(rs.getString(4));
-				obj.setInicio_evento(rs.getString(5));
-				obj.setFin_evento(rs.getString(6));
+				obj.setInicio_inscripcion(met.fechaNormal(rs.getString(3)));
+				obj.setFin_inscripcion(met.fechaNormal(rs.getString(4)));
+				obj.setInicio_evento(met.fechaNormal(rs.getString(5)));
+				obj.setFin_evento(met.fechaNormal(rs.getString(6)));
 				obj.setParticipantes(rs.getString(7));
 				obj.setNom_estado(rs.getString(8));
 				eventos.add(obj);
@@ -90,51 +91,32 @@ public class MySqlEventoDAO implements EventoDAO {
 		return lista;
 	}
 
-	@Override
-	public EventoDTO buscarEvento(String codEvento) {
-		EventoDTO evento = null;
-		SqlSession sesion = null;
-		try {
-			sesion = origen.openSession();
-			evento = (EventoDTO) sesion.selectOne("buscarEvento", codEvento);
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			sesion.close();
-		}
-		return evento;
-	}
+//	@Override
+//	public EventoDTO buscarEvento(String codEvento) {
+//		EventoDTO evento = null;
+//		SqlSession sesion = null;
+//		try {
+//			sesion = origen.openSession();
+//			evento = (EventoDTO) sesion.selectOne("buscarEvento", codEvento);
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		} finally {
+//			sesion.close();
+//		}
+//		return evento;
+//	}
 
-	// @Override
-	// public String regEvento(EventoDTO evento) {
-	// String msg = "";
-	// int estado = -1;
-	// SqlSession sesion = null;
-	// try {
-	// sesion = origen.openSession();
-	// estado = sesion.insert("regEvento", evento);
-	// if (estado != -1) {
-	// msg = "ok";
-	// }
-	// } catch (Exception e) {
-	// msg = e.getMessage();
-	// } finally {
-	// sesion.close();
-	// }
-	// return msg;
-	// }
-
-	@Override
-	public String uptEvento(EventoDTO evento) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public String deleteEvento(String codEvento) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+//	@Override
+//	public String uptEvento(EventoDTO evento) {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
+//
+//	@Override
+//	public String deleteEvento(String codEvento) {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
 
 	// DETALLE DE EVENTO
 
@@ -157,8 +139,6 @@ public class MySqlEventoDAO implements EventoDAO {
 				obj = new DetEventoDTO();
 				obj.setCod_evento(rs.getString(1));
 				obj.setNomEvento(rs.getString(2));
-//				obj.setCod_sede(rs.getString(3));
-//				obj.setNomSede(rs.getString(4));
 				obj.setCod_modalidad(rs.getString(3));
 				obj.setNomModalidad(rs.getString(4));
 				obj.setTipoModalidad(rs.getString(5));
@@ -190,11 +170,11 @@ public class MySqlEventoDAO implements EventoDAO {
 		return detalle;
 	}
 
-	@Override
-	public List<DetEventoDTO> buscarDetalleEvento(String codEvento) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+//	@Override
+//	public List<DetEventoDTO> buscarDetalleEvento(String codEvento) {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
 
 	@Override
 	public String regDetalleEvento(DetEventoDTO detEvento) {
@@ -215,11 +195,11 @@ public class MySqlEventoDAO implements EventoDAO {
 		return msg;
 	}
 
-	@Override
-	public String deleteDetEvento(String codEvento, String codModalidad, String codSede) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+//	@Override
+//	public String deleteDetEvento(String codEvento, String codModalidad, String codSede) {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
 
 	@Override
 	public String regEvento(EventoDTO evento) {
@@ -231,10 +211,10 @@ public class MySqlEventoDAO implements EventoDAO {
 			String sql = "{call sp_regEvento(?,?,?,?,?,?)}";
 			cstm = cn.prepareCall(sql);
 			cstm.setString(1, evento.getDesc_evento());
-			cstm.setString(2, evento.getInicio_inscripcion());
-			cstm.setString(3, evento.getFin_inscripcion());
-			cstm.setString(4, evento.getInicio_evento());
-			cstm.setString(5, evento.getFin_evento());
+			cstm.setString(2, met.fechaMysql(evento.getInicio_inscripcion()));
+			cstm.setString(3, met.fechaMysql(evento.getFin_inscripcion()));
+			cstm.setString(4, met.fechaMysql(evento.getInicio_evento()));
+			cstm.setString(5, met.fechaMysql(evento.getFin_evento()));
 			cstm.registerOutParameter(6, Types.CHAR);
 			int estado = cstm.executeUpdate();
 			if (estado != -1)

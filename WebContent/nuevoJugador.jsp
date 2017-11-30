@@ -14,7 +14,7 @@
 </head>
 <body>
 	<%
-			JugadorDTO obj = (JugadorDTO) session.getAttribute("usuario");		
+			JugadorDTO obj = (JugadorDTO) session.getAttribute("usuario");
 			if(obj == null){
 				response.sendRedirect("login.jsp");
 			}
@@ -35,7 +35,7 @@
 			</div>
 		</div> -->
 	</div>
-	<!-- DATOS DE EVENTO -->
+	<!-- DATOS DE JUGADOR -->
 	<div class="container">
 		<form class="form-horizontal" id="formEvento" action="" method="post">
 			<div class="row">

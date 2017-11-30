@@ -1,5 +1,6 @@
 package services;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import beans.JugadorDTO;
@@ -13,5 +14,8 @@ public class JugadorService {
 	
 	public List<JugadorDTO> listaJugadores(){
 		return dao.listaJugadores();
+	}
+	public String importarJugadores(ArrayList<JugadorDTO> data) {
+		return dao.importarJugadores(data);
 	}
 }

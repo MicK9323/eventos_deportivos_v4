@@ -19,11 +19,7 @@ public class JugadorDTO implements Serializable {
     private String estCivil;
     private String telfDomicilio;
     private String telfMovil;
-    private String idUbigueo;
-    private String nomUbigueo;
-    private String profesion;
     private String domicilio;
-    private String dirTrabajo;
     private String email;
     private String codSede;
     private String nomSede;
@@ -114,35 +110,11 @@ public class JugadorDTO implements Serializable {
 	public void setTelfMovil(String telfMovil) {
 		this.telfMovil = telfMovil;
 	}
-	public String getIdUbigueo() {
-		return idUbigueo;
-	}
-	public void setIdUbigueo(String idUbigueo) {
-		this.idUbigueo = idUbigueo;
-	}
-	public String getNomUbigueo() {
-		return nomUbigueo;
-	}
-	public void setNomUbigueo(String nomUbigueo) {
-		this.nomUbigueo = nomUbigueo;
-	}
-	public String getProfesion() {
-		return profesion;
-	}
-	public void setProfesion(String profesion) {
-		this.profesion = profesion;
-	}
 	public String getDomicilio() {
 		return domicilio;
 	}
 	public void setDomicilio(String domicilio) {
 		this.domicilio = domicilio;
-	}
-	public String getDirTrabajo() {
-		return dirTrabajo;
-	}
-	public void setDirTrabajo(String dirTrabajo) {
-		this.dirTrabajo = dirTrabajo;
 	}
 	public String getEmail() {
 		return email;
@@ -162,9 +134,5 @@ public class JugadorDTO implements Serializable {
 	public void setEstado(boolean estado) {
 		this.estado = estado;
 	}
-       
-	
-    
-    
-    
+
 }

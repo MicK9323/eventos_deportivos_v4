@@ -30,6 +30,28 @@ footer{
 	color: #C80909;
 }
 
+.deshabilitado{
+	font-size: 24px;
+	color: #f06619;
+	cursor: pointer;
+}
+
+.deshabilitado:hover{
+	font-size: 24px;
+	color: #C80909;
+}
+
+.habilitado{
+	font-size: 24px;
+	color: #08c83e;
+	cursor: pointer;
+}
+
+.habilitado:hover{
+	font-size: 24px;
+	color: #C80909;
+}
+
 .editar{
 	font-size: 24px;
 	color: #19cf88;
@@ -50,6 +72,10 @@ footer{
 .enlace-ico:hover{
 	margin-left: 3%;
 	color: #CE260A;
+}
+
+.fondoRojo{
+	background-color: #ff8869;
 }
 
 /*--------------------*/
@@ -82,6 +108,10 @@ tr : hover{
 	margin-bottom: 5px;
 }
 
+.mr15{
+	margin-right: 15px;
+}
+
 .foto{
 	height: 170px;
 }
@@ -100,10 +130,37 @@ h4.pdCero{
 	padding-left: 0 !important;
 }
 
+.pdl15{
+	padding-left: 15px !important;
+}
+
 .pdl30{
 	padding-left: 30px !important;
 }
 
 .pdr0{
 	padding-right: 0 !important;
+}
+
+.image-preview-input {
+    position: relative;
+    overflow: hidden;
+    margin: 0px;
+    color: #333;
+    background-color: #fff;
+    border-color: #ccc;
+}
+.image-preview-input input[type=file] {
+	position: absolute;
+	top: 0;
+	right: 0;
+	margin: 0;
+	padding: 0;
+	font-size: 20px;
+	cursor: pointer;
+	opacity: 0;
+	filter: alpha(opacity=0);
+}
+.image-preview-input-title {
+    margin-left:2px;
 }
