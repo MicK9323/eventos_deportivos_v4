@@ -2,7 +2,8 @@ $(document).ready(function(){
 
 var opcion = $('#opcion').val();
 var validacion;
-
+$("#minimo").attr("maxlength", 2);
+$("#maximo").attr("maxlength", 2);
 if(opcion == "registrar"){
   $('#btnNuevo').hide();
   $('#btnGuardar').text('Guardar');
