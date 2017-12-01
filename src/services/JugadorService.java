@@ -30,4 +30,20 @@ public class JugadorService {
 	public List<EnlaceDTO> listaRoles(){
 		return daoEnlace.listaRoles();
 	}
+	
+	//CRUD
+	public String regJugador(JugadorDTO x) {
+		return daoJugador.regJugador(x);
+	}
+	public String uptJugador(JugadorDTO x) {
+		return daoJugador.uptJugador(x);
+	}
+	public String delJugador(JugadorDTO x) {
+		return daoJugador.delJugador(x);
+	}
+	public JugadorDTO buscarJugador(String dni) {
+		return daoJugador.buscarJugador(dni);
+	}
+	
+	
 }

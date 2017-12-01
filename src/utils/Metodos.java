@@ -163,7 +163,7 @@ public class Metodos {
 		return formateador.format(date);
 	}
 
-	public static byte[] getBytesFromFile(File file) throws IOException {
+	public byte[] getBytesFromFile(File file) throws IOException {
 		if (file != null) {
 			InputStream is = new FileInputStream(file);
 

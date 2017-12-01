@@ -1,6 +1,7 @@
 package actions;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,6 +15,7 @@ import beans.EnlaceDTO;
 import beans.JugadorDTO;
 import beans.SedeDTO;
 import services.JugadorService;
+import utils.Constantes;
 import utils.Metodos;
 
 @ParentPackage("pit")
@@ -67,6 +69,16 @@ public class JugadorAction extends ActionSupport {
 		sedes = service.listaSedes();
 		roles = service.listaRoles();
 		return "datos";
+	}
+	
+	@Action(value="/registraJugador",results= {
+			@Result(name="registra",location="/listaJugadores.jsp"),
+			@Result(name="regError",type="redirectAction",params= {"actionName","/dataJugador"})
+	})	
+	public String registraJugador() throws IOException {
+		byte[] array = met.getBytesFromFile(jugador.getFoto());
+		return null;
+		
 	}
 	
 	

@@ -268,14 +268,84 @@ public class MySqlJugadorDAO implements JugadorDAO {
 
 	@Override
 	public String delJugador(JugadorDTO x) {
-		// TODO Auto-generated method stub
-		return null;
+		String msg = "";
+		Connection conn = null;
+		CallableStatement cstm = null;
+		int estado = -1;
+		try {
+			conn = Conexion.conectar();
+			String sql = "{ call sp_delJugador(?) }";
+			cstm = conn.prepareCall(sql);
+			cstm.setString(1, x.getDni_jugador());
+			estado = cstm.executeUpdate();
+			if(estado != -1) {
+				msg = "ok";
+			}
+		} catch (Exception e) {
+			msg = e.getMessage();
+		} finally {
+			try {
+				if (cstm != null)
+					cstm.close();
+				if (conn != null)
+					conn.close();
+			} catch (Exception e2) {
+				msg = e2.getMessage();
+			}
+		}
+		return msg;
 	}
 
 	@Override
 	public JugadorDTO buscarJugador(String dni) {
-		// TODO Auto-generated method stub
-		return null;
+		JugadorDTO obj = null;
+		Connection cn = null;
+		CallableStatement cstm = null;
+		ResultSet rs = null;
+		try {
+			cn = Conexion.conectar();
+			String sql = "{call sp_login(?)}";
+			cstm = cn.prepareCall(sql);
+			cstm.setString(1, dni);
+			rs = cstm.executeQuery();
+			if(rs.next()) {
+				obj = new JugadorDTO();
+				obj.setDni_jugador(rs.getString(1));
+				obj.setClave(rs.getString(2));
+				obj.setIdRol(rs.getInt(3));
+				obj.setNom_jugador(rs.getString(4));
+				obj.setApe_jugador(rs.getString(5));
+				obj.setFec_nac(rs.getString(6));
+				obj.setEdad(rs.getInt(7));
+				obj.setSexo(rs.getString(8));
+				obj.setEstCivil(rs.getString(9));
+				obj.setTelfDomicilio(rs.getString(10));
+				obj.setTelfMovil(rs.getString(11));
+				obj.setDomicilio(rs.getString(12));
+				obj.setEmail(rs.getString(13));
+				obj.setCodSede(rs.getString(14));
+				if(rs.getBlob(15)==null) {
+					obj.setFotoByte(null);
+				}else {
+					obj.setFotoByte(rs.getBlob(15).getBytes(1, (int) rs.getBlob(15).length()));
+				}				
+				obj.setEstado(rs.getBoolean(18));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null)
+					rs.close();
+				if (cstm != null)
+					cstm.close();
+				if (cn != null)
+					cn.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		return obj;
 	}
 
 }

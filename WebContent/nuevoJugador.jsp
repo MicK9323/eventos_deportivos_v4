@@ -27,10 +27,10 @@
 	</div>
 	<!-- DATOS DE JUGADOR -->
 	<div class="container">
-		<form class="form-horizontal" id="formEvento" action="" method="post">
+		<form class="form-horizontal" id="formJugador" action="" method="post" enctype="multipart/form-data">
 			<div class="row">
 				<div class="col-md-12">
-					<div class="panel-group" id="acordeon">
+					<div class="panel-group">
 						<!-- DATOS DEL JUGADOR -->
 						<div class="panel panel-primary">
 							<div class="panel-heading">
@@ -119,7 +119,7 @@
 												<div class="col-md-6">
 													<div class="form-group">
 														<div class="col-md-10">
-															<s:textfield name="jugador.telfDomicilio" id="telfFijo" 
+															<s:textfield name="jugador.telfDomicilio" id="telfFijo"
 																cssClass="form-control" placeholder="Teléfono Fijo (Opcional)" />
 														</div>
 													</div>
@@ -127,7 +127,7 @@
 												<div class="col-md-6">
 													<div class="form-group">
 														<div class="col-md-10">
-															<s:textfield name="jugador.telfMovil" id="telfMovil" 
+															<s:textfield name="jugador.telfMovil" id="telfMovil"
 																cssClass="form-control" placeholder="Teléfono Celular" required="true" />
 														</div>
 													</div>
@@ -139,7 +139,7 @@
 													<label class="control-label" for="dirUsuario">Direccion</label>
 												</div>
 												<div class="col-md-8">
-													<s:textfield name="jugador.domicilio" id="direccion" 
+													<s:textfield name="jugador.domicilio" id="direccion"
 																cssClass="form-control text-uppercase" placeholder="Direccion de domicilio" required="true" />
 													<input type="text" class="form-control text-uppercase" name="dirUsuario" id="dirUsuario" placeholder="Direccion">
 												</div>
@@ -150,7 +150,7 @@
 													<label class="control-label" for="email">Correo:</label>
 												</div>
 												<div class="col-md-8">
-													<s:textfield type="email" name="jugador.email" id="email" 
+													<s:textfield type="email" name="jugador.email" id="email"
 																cssClass="form-control" placeholder="username@example.com" required="true" />
 												</div>
 											</div>
@@ -165,9 +165,9 @@
 												</div>
 												<div class="col-md-5">
 													<div class="form-group">
-														<s:file name="foto" id="subirImagen" class="hide" />
-														<!-- <input type="file" name="subirImagen" id="subirImagen" class="hide"/> -->
-														<label for="foto" class="btn btn-default">Seleccionar Foto <span class="glyphicon glyphicon-camera"></span></label>
+														<div class="hide"><s:file name="jugador.foto" id="subirImagen" /></div>
+														<!-- <input type="file" name="foto" id="subirImagen" class="hide"/> -->
+														<label for="subirImagen" class="btn btn-default">Seleccionar Foto <span class="glyphicon glyphicon-camera"></span></label>
 													</div>
 													<!-- <div class="form-group">
 														<div data-toggle="modal" data-target="#sedesModal" id="btnSede" class="btn btn-primary">Seleccionar Sede</div>
@@ -179,7 +179,7 @@
 															 listKey="codSede"
 															 listValue="nomSede"
 															 headerKey="-1"
-															 headerValue="[SELECCIONE]" cssClass="form-control text-uppercase"/>													
+															 headerValue="[SELECCIONE]" cssClass="form-control text-uppercase"/>
 													</div>
 													<div class="form-group">
 														<label class="control-label">Perfil</label>
@@ -187,7 +187,7 @@
 															 listKey="idRol"
 															 listValue="nomRol"
 															 headerKey="-1"
-															 headerValue="[SELECCIONE]" cssClass="form-control text-uppercase"/>													
+															 headerValue="[SELECCIONE]" cssClass="form-control text-uppercase"/>
 													</div>
 												</div>
 											</div>
@@ -241,7 +241,7 @@
 						</thead>
 						<tbody id="tbSedes">
 							<s:iterator>
-								
+
 							</s:iterator>
 						</tbody>
 					</table>
