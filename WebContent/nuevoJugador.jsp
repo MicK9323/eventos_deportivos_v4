@@ -178,7 +178,8 @@
 															 listKey="codSede"
 															 listValue="nomSede"
 															 headerKey="-1"
-															 headerValue="[SELECCIONE]" cssClass="form-control text-uppercase"/>
+															 headerValue="[Seleccione]" cssClass="form-control text-uppercase"
+															 required="true"/>
 													</div>
 													<div class="form-group">
 														<label class="control-label">Perfil</label>
@@ -186,7 +187,8 @@
 															 listKey="idRol"
 															 listValue="nomRol"
 															 headerKey="-1"
-															 headerValue="[SELECCIONE]" cssClass="form-control text-uppercase"/>
+															 headerValue="[Seleccione]" cssClass="form-control text-uppercase"
+															 required="true"/>
 													</div>
 												</div>
 												<div class="col-md-12">
