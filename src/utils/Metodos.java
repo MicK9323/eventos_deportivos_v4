@@ -6,11 +6,13 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.math.BigInteger;
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
@@ -25,6 +27,24 @@ import com.csvreader.CsvReader;
 import beans.JugadorDTO;
 
 public class Metodos {
+	// CODIFICAR EN BASE64
+	public String codificarBase64(String cadena) {
+		String cod = "";
+		Base64.Encoder encoder = Base64.getEncoder();
+		cod = encoder.encodeToString(cadena.getBytes(StandardCharsets.UTF_8));
+		return cod;
+	}
+	
+	// DECODIFICAR BASE64
+	public String decodificarBase64(String cod) {
+		String cadena = "";
+		Base64.Decoder decoder = Base64.getDecoder();
+		byte[] arraybytes = decoder.decode(cod);
+		cadena = new String(arraybytes);
+		return cadena;
+	}
+	
+	
 	// CIFRAR EN MD5
 	public String cifrarCadena(String cadena) {
 		String cifrado = "";
@@ -41,62 +61,7 @@ public class Metodos {
 		}
 		return cifrado;
 	}
-	//IMPORTAR DE XLSX
-	public ArrayList<JugadorDTO> dataExcel(File excelFile) {
-		ArrayList<JugadorDTO> data = new ArrayList<JugadorDTO>();
-		InputStream excelStream = null;
-		XSSFWorkbook libro = null;
-		XSSFSheet hoja = null;
-		JugadorDTO obj = null;
-		try {
-			excelStream = new FileInputStream(excelFile);
-			libro = new XSSFWorkbook(excelStream);
-			hoja = libro.getSheetAt(0);
-			Row fila;
-			int filas = hoja.getLastRowNum();
-			int cols = hoja.getRow(0).getLastCellNum();
-			if (cols == 13 && filas > 0) {
-				Iterator<Row> rowIterator = hoja.rowIterator();
-				while (rowIterator.hasNext()) {
-					fila = (Row) rowIterator.next();	
-					obj = new JugadorDTO();
-					obj.setDni_jugador(""+fila.getCell(0).getStringCellValue().trim());
-					obj.setClave(new Metodos().cifrarCadena(""+fila.getCell(0).getStringCellValue().trim()));
-					obj.setIdRol(Integer.parseInt(""+fila.getCell(1).getStringCellValue().trim()));
-					obj.setNom_jugador(fila.getCell(2).getStringCellValue().trim().toUpperCase());
-					obj.setApe_jugador(fila.getCell(3).getStringCellValue().trim().toUpperCase());
-					obj.setFec_nac(fila.getCell(4).getDateCellValue().toString().trim());
-					obj.setEdad(Integer.parseInt(""+fila.getCell(5).getStringCellValue().trim()));
-					obj.setSexo(fila.getCell(6).getStringCellValue().trim().toUpperCase());
-					obj.setEstCivil(fila.getCell(7).getStringCellValue().trim().toUpperCase());
-					obj.setTelfDomicilio(""+fila.getCell(8).getStringCellValue().trim());
-					obj.setTelfMovil(""+fila.getCell(8).getStringCellValue().trim());
-					if(fila.getCell(10).getStringCellValue() == null) {
-						obj.setDomicilio("PENDIENTE");
-					}else {
-						obj.setDomicilio(fila.getCell(10).getStringCellValue().trim().toUpperCase());
-					}			
-					obj.setEmail(fila.getCell(11).getStringCellValue().trim());
-					obj.setCodSede(fila.getCell(12).getStringCellValue().trim().toUpperCase());
-					data.add(obj);
-				}
-			} else {
-				return null;
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				if (libro != null)
-					libro.close();
-				if (excelStream != null)
-					excelStream.close();
-			} catch (Exception e2) {
-				e2.printStackTrace();
-			}
-		}
-		return data;
-	}
+
 	//IMPORTAR DE CSV
 	public ArrayList<JugadorDTO> dataCSV(File archivo){
 		ArrayList<JugadorDTO> data = new ArrayList<JugadorDTO>();
@@ -108,7 +73,7 @@ public class Metodos {
 			while(reader.readRecord()) {
 				obj = new JugadorDTO();
 				obj.setDni_jugador(reader.get(0).trim());
-				obj.setClave(cifrarCadena(reader.get(0).trim()));
+				obj.setClave(codificarBase64(reader.get(0).trim()));
 				obj.setIdRol(Integer.parseInt(reader.get(1).trim()));
 				obj.setNom_jugador(reader.get(2).trim().toUpperCase());
 				obj.setApe_jugador(reader.get(3).trim().toUpperCase());

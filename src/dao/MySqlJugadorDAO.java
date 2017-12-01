@@ -187,7 +187,7 @@ public class MySqlJugadorDAO implements JugadorDAO {
 			cstm = conn.prepareCall(sql);
 			Blob blob = new SerialBlob(obj.getFotoByte());
 			cstm.setString(1, obj.getDni_jugador());
-			cstm.setString(2, met.cifrarCadena(obj.getDni_jugador()));
+			cstm.setString(2, met.codificarBase64(obj.getDni_jugador()));
 			cstm.setInt(3, obj.getIdRol());
 			cstm.setString(4, obj.getNom_jugador());
 			cstm.setString(5, obj.getApe_jugador());
@@ -233,7 +233,7 @@ public class MySqlJugadorDAO implements JugadorDAO {
 			cstm = conn.prepareCall(sql);
 			Blob blob = new SerialBlob(obj.getFotoByte());
 			cstm.setString(1, obj.getDni_jugador());
-			cstm.setString(2, met.cifrarCadena(obj.getClave()));
+			cstm.setString(2, met.codificarBase64(obj.getClave()));
 			cstm.setString(3, obj.getNom_jugador());
 			cstm.setString(4, obj.getApe_jugador());
 			cstm.setString(5, obj.getFec_nac());
@@ -305,14 +305,14 @@ public class MySqlJugadorDAO implements JugadorDAO {
 		ResultSet rs = null;
 		try {
 			cn = Conexion.conectar();
-			String sql = "{call sp_login(?)}";
+			String sql = "{call sp_buscarJugador(?)}";
 			cstm = cn.prepareCall(sql);
 			cstm.setString(1, dni);
 			rs = cstm.executeQuery();
 			if(rs.next()) {
 				obj = new JugadorDTO();
 				obj.setDni_jugador(rs.getString(1));
-				obj.setClave(rs.getString(2));
+				obj.setClave(met.decodificarBase64(rs.getString(2)));
 				obj.setIdRol(rs.getInt(3));
 				obj.setNom_jugador(rs.getString(4));
 				obj.setApe_jugador(rs.getString(5));

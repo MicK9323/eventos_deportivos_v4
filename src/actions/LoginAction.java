@@ -34,7 +34,7 @@ public class LoginAction extends ActionSupport implements SessionAware{
 			@Result(name="error",location="/login.jsp")
 	})
 	public String login() {
-		JugadorDTO jugador = dao.loginJugador(dni, met.cifrarCadena(clave));
+		JugadorDTO jugador = dao.loginJugador(dni, met.codificarBase64(clave));
 		if(jugador == null) {
 			mostrar = true;
 			mensaje = "Credenciales Incorrectas";

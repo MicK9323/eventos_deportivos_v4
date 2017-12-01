@@ -45,7 +45,16 @@
 											  	<label for="dni" class="control-label">DNI: </label>
 											  </div>
 											  <div class="col-md-4">
-											  	<s:textfield name="jugador.dni_jugador" id="dni" cssClass="form-control" placeholder="DNI" required="true" />
+											  	<s:textfield name="jugador.dni_jugador" id="dni" cssClass="form-control" placeholder="DNI" readonly="true" />
+											  </div>
+											</div>
+											<!-- PASSWORD -->
+											<div class="form-group">
+											  <div class="col-md-2">
+											  	<label for="dni" class="control-label">DNI: </label>
+											  </div>
+											  <div class="col-md-4">
+											  	<s:password name="jugador.clave" id="clave" cssClass="form-control" required="true" />
 											  </div>
 											</div>
 											<!-- NOMBRES -->
@@ -54,7 +63,7 @@
 											  	<label for="nombre" class="control-label">Nombres: </label>
 											  </div>
 											  <div class="col-md-9">
-											  	<s:textfield name="jugador.nom_jugador" id="nombre" cssClass="form-control text-uppercase" placeholder="Nombres" required="true" />
+											  	<s:textfield name="jugador.nom_jugador" id="nombre" cssClass="form-control text-uppercase" placeholder="Nombres" readonly="true" />
 											  </div>
 											</div>
 											<!-- APELLIDOS -->
@@ -63,7 +72,7 @@
 											  	<label for="apellido" class="control-label">Apellidos: </label>
 											  </div>
 											  <div class="col-md-9">
-											  	<s:textfield name="jugador.ape_jugador" id="apellido" cssClass="form-control text-uppercase" placeholder="Apellidos" required="true" />
+											  	<s:textfield name="jugador.ape_jugador" id="apellido" cssClass="form-control text-uppercase" placeholder="Apellidos" readonly="true" />
 											  </div>
 											</div>
 											<!-- FECHA DE NACIMIENTO Y EDAD -->
@@ -72,7 +81,7 @@
 													<div class="col-md-10">
 														<div class="form-group">
 															<div class="input-group input-append date" id="datePicker" >
-																<s:textfield name="jugador.fec_nac" id="fecNac" cssClass="fecha form-control" placeholder="Fec. Nacimiento" required="true" />
+																<s:textfield name="jugador.fec_nac" id="fecNac" cssClass="fecha form-control" placeholder="Fec. Nacimiento" readonly="true" />
 																<span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span>
 															</div>
 														</div>
@@ -81,7 +90,7 @@
 												<div class="col-md-6">
 													<div class="col-md-10">
 														<div class="form-group">
-															<s:textfield name="jugador.edad" id="edad" cssClass="form-control" placeholder="Edad" required="true" readonly="true" />
+															<s:textfield name="jugador.edad" id="edad" cssClass="form-control" placeholder="Edad"  readonly="true" />
 														</div>
 													</div>
 												</div>
@@ -95,7 +104,7 @@
 													<s:select name="jugador.sexo"
 														list="#{'MASCULINO':'MASCULINO','FEMENINO':'FEMENINO'}"
 														headerKey="-1"
-														headerValue="[Seleccione]" id="sexo" cssClass="form-control">
+														headerValue="[Seleccione]" id="sexo" cssClass="form-control" readonly="true">
 													</s:select>
 												</div>
 											</div>

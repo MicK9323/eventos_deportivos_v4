@@ -3,6 +3,10 @@ $(document).ready(function() {
   $('#fecNac').datepicker({
     autoclose: true
   });
+  
+  $('#fecNac').change(function(){
+	  $('#edad').val(setEdad());
+  })
 
   $('#subirImagen').change(function(){
      readImgUrlAndPreview(this);
@@ -42,6 +46,18 @@ $(document).ready(function() {
           event.preventDefault();
       }
   });
+  
+  
+  //SETEAR EDAD SEGUN AÑO
+  function setEdad(){
+		var fechaNac = $('#fecNac').val();
+		var fecha 	 = new Date();
+		var ano 	 = fecha.getFullYear();
+
+		fechaNac.substr(0,4);
+		var edad = parseInt(ano)- parseInt(fechaNac);
+		return edad;
+	}
   
   
   

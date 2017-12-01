@@ -37,75 +37,106 @@ public class JugadorAction extends ActionSupport {
 		lista = service.listaJugadores();
 		return "lista";
 	}
-	
-	@Action(value="/importarData",results= {
-			@Result(name="importado",location = "/listaJugadores.jsp")
-	})
+
+	@Action(value = "/importarData", results = { @Result(name = "importado", location = "/listaJugadores.jsp") })
 	public String importarData() {
 		ArrayList<JugadorDTO> data = met.dataCSV(archivo);
-		if(data != null) {
+		if (data != null) {
 			String confirm = service.importarJugadores(data);
-			if(confirm == "ok") {
+			if (confirm == "ok") {
 				lista = service.listaJugadores();
 				mostrar = true;
 				msg = "Importacion Correcta";
-			}else {
+			} else {
 				lista = service.listaJugadores();
 				mostrar = true;
 				msg = "Error en la importacion";
 			}
-		}else {
+		} else {
 			lista = service.listaJugadores();
 			mostrar = true;
 			msg = "No hay data que importar";
 		}
 		return "importado";
 	}
-	
-	@Action(value="/dataJugador",results= {
-			@Result(name="datos",location="/nuevoJugador.jsp")
-	})
+
+	@Action(value = "/dataJugador", results = { @Result(name = "datos", location = "/nuevoJugador.jsp") })
 	public String dataJugador() {
 		sedes = service.listaSedes();
 		roles = service.listaRoles();
 		return "datos";
 	}
-	
-	@Action(value="/registraJugador",results= {
-			@Result(name="registra",location="/listaJugadores.jsp"),
-			@Result(name="regError",type="redirectAction",params= {"actionName","/dataJugador"})
-	})	
+
+	@Action(value = "/registraJugador", results = { @Result(name = "registra", location = "/listaJugadores.jsp"),
+			@Result(name = "regError", location = "/nuevoJugador.jsp") })
 	public String registraJugador() throws IOException {
-		File file = jugador.getFoto();
+		JugadorDTO obj = jugador;
+		File file = obj.getFoto();
 		int kb = met.getLongfile(file);
-		if(kb <= 100) {
+		if (kb <= 100) {
 			byte[] array = met.getBytesFromFile(file);
-			jugador.setFotoByte(array);
-			jugador.setFotoFileName(jugador.getDni_jugador());
-			msg = service.regJugador(jugador);
-			if(msg == "ok") {
+			obj.setFotoByte(array);
+			obj.setFotoFileName(obj.getDni_jugador());
+			msg = service.regJugador(obj);
+			if (msg == "ok") {
 				mostrar = true;
 				msg = "Registro Existoso";
 				lista = service.listaJugadores();
 				return "registra";
-			}else {
+			} else {
+				jugador = obj;
 				listarDatos();
 				mostrar = true;
 				return "regError";
 			}
-		}else {
+		} else {
+			jugador = obj;
 			listarDatos();
 			mostrar = true;
-			msg = "Tamaño de la foto excede los 500KB";
+			msg = "Tamaño de la foto excede los 100KB";
 			return "regError";
 		}
 	}
-	
+
+	@Action(value = "/mostrarJugador", results = { 
+			@Result(name = "encuentra", location = "/encuentraJugador.jsp"),
+			@Result(name = "noencuentra", location = "/listaJugadores.jsp") 
+			})
+	public String buscarJugador() {
+		JugadorDTO obj = service.buscarJugador(jugador.getDni_jugador());
+		if (obj != null) {
+			listarDatos();
+			return "encuentra";
+		} else {
+			mostrar = true;
+			msg = "Jugador no encontrado";
+			listado();
+			return "noencuentra";
+		}
+	}
+
+	@Action(value = "verFoto", results = {
+			@Result(params = { "inputName", "foto" }, name = "success", type = "stream") 
+			})
+	public String verFoto() throws Exception {
+		try {
+			EmpleadoDTO bean = new EmpleadoService().buscarFotoEmpleado(idCodigo);
+			foto = new ByteArrayInputStream(bean.getFotoByte());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return SUCCESS;
+	}
+
 	void listarDatos() {
 		sedes = service.listaSedes();
 		roles = service.listaRoles();
 	}
-	
+
+	void listado() {
+		lista = service.listaJugadores();
+	}
+
 	public List<JugadorDTO> getLista() {
 		return lista;
 	}
@@ -169,5 +200,5 @@ public class JugadorAction extends ActionSupport {
 	public void setRoles(List<EnlaceDTO> roles) {
 		this.roles = roles;
 	}
-	
+
 }

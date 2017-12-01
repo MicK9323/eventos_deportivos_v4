@@ -11,12 +11,11 @@ import beans.EnlaceDTO;
 import beans.JugadorDTO;
 import interfaces.loginDAO;
 import utils.Conexion;
+import utils.Metodos;
 
-public class MySqlLoginDAO implements loginDAO, Serializable {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -2866767539575427907L;
+public class MySqlLoginDAO implements loginDAO{
+	
+	Metodos met = new Metodos();
 
 	public JugadorDTO loginJugador(String dni, String clave) {
 		JugadorDTO obj = null;
@@ -33,7 +32,7 @@ public class MySqlLoginDAO implements loginDAO, Serializable {
 			if(rs.next()) {
 				obj = new JugadorDTO();
 				obj.setDni_jugador(rs.getString(1));
-				obj.setClave(rs.getString(2));
+				obj.setClave(met.decodificarBase64(rs.getString(2)));
 				obj.setIdRol(rs.getInt(3));
 				obj.setNom_jugador(rs.getString(4));
 				obj.setApe_jugador(rs.getString(5));
