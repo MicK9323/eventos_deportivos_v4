@@ -56,7 +56,7 @@
 											<!-- PASSWORD -->
 											<div class="form-group">
 											  <div class="col-md-2">
-											  	<label for="dni" class="control-label">PASSWORD: </label>
+											  	<label for="dni" class="control-label">Contraseña: </label>
 											  </div>
 											  <div class="col-md-4">
 											  	<s:textfield name="jugador.clave" id="clave" cssClass="form-control" required="true" />
@@ -231,55 +231,6 @@
 			</div>
 		</form>
 	</div>
-
-	<!-- VENTANAS MODALES -->
-	<!-- SEDES -->
-	<%-- <div class="modal fade" id="sedesModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<div class="col-md-4">
-						<h4><strong>SEDES</strong></h4>
-					</div>
-					<div class="col-md-8" align="right">
-						<!-- BOTON BUSCAR -->
-						<div class="col-md-12">
-							<div class="input-group">
-								<span class="input-group-addon">Buscar</span>
-								<input type="text" id="buscaSedes" class="form-control text-uppercase" placeholder="Buscar Sede">
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="modal-body sedes">
-					<!-- VERIFICA SI EL ARREGLO NO ESTA VACIO -->
-					<s:if test="sedes.isEmpty">
-						<div class="alert alert-danger" role="alert"> <strong>No hay sedes registradas!</strong></div>
-					</s:if>
-					<table class="table table-striped table-condensed table-hover">
-						<thead>
-							<tr>
-								<td class="text-center"><strong>Cod. Sede</strong></td>
-								<td class="text-center"><strong>Sede</strong></td>
-							</tr>
-						</thead>
-						<tbody id="tbSedes">
-							<s:iterator>
-
-							</s:iterator>
-						</tbody>
-					</table>
-				</div>
-				<div class="modal-footer">
-					<div class="col-md-8 text-left">
-						<div id="addSede" class="btn btn-primary" data-toggle="modal" data-target="#sedesModal">Aceptar</div>
-						<div class="btn btn-warning" id="btnLimpiarSedes">Limpiar</div>
-						<div data-toggle="modal" data-target="#sedesModal" class="btn btn-default btnCancelar">Cancelar</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div> --%>
 
 
 
