@@ -120,8 +120,8 @@ public class JugadorAction extends ActionSupport {
 			})
 	public String verFoto() throws Exception {
 		try {
-			EmpleadoDTO bean = new EmpleadoService().buscarFotoEmpleado(idCodigo);
-			foto = new ByteArrayInputStream(bean.getFotoByte());
+			//EmpleadoDTO bean = new EmpleadoService().buscarFotoEmpleado(idCodigo);
+			//foto = new ByteArrayInputStream(bean.getFotoByte());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

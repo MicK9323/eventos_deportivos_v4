@@ -54,12 +54,38 @@ $(document).ready(function() {
 		var fecha 	 = new Date();
 		var ano 	 = fecha.getFullYear();
 
-		fechaNac.substr(0,4);
+		fechaNac = fechaNac.substr(0,4);
 		var edad = parseInt(ano)- parseInt(fechaNac);
 		return edad;
 	}
   
+  ValidarCombos = function(){};
+	  
   
+  $('#guardar').click(function() {
+		 if ($('#sexo').val() == '-1') {
+			alert("Seleccione Sexo");
+			return;
+		}
+		 else if ($('#estCivil').val() == '-1') {
+			alert("Seleccione su Estado Civil");
+			return;
+		}
+		 else if ($('#jugador_codSede').val() == '-1') {
+			alert("Seleccione su Sede");
+			return;
+		}
+		 else if ($('#jugador_idRol').val() == '-1') {
+			alert("Seleccione su Perfil");
+			return;
+		} 
+  });
+	  
+	  
+
+ 
+  
+ 
   
   
 });
