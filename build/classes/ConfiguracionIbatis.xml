@@ -9,7 +9,6 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<typeAlias type="beans.ModalidadDTO" alias="ModalidadIbatis"/>
 		<typeAlias type="beans.EventoDTO" alias="EventoIbatis"/>
 		<typeAlias type="beans.DetEventoDTO" alias="DetEventoIbatis"/>
-		<typeAlias type="beans.AdminDTO" alias="AdminIbatis"/>
 		<typeAlias type="beans.SedeDTO" alias="SedeIbatis"/>
 	</typeAliases>
 	<environments default="development">
@@ -27,7 +26,6 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<mapper resource="mapperDisciplina.xml"/>
 		<mapper resource="mapperCategoria.xml"/>
 		<mapper resource="mapperModalidad.xml"/>
-		<mapper resource="mapperAdmin.xml"/>
 		<mapper resource="mapperEvento.xml"/>
 		<mapper resource="mapperSede.xml"/>
 	</mappers>

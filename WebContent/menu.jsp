@@ -22,6 +22,9 @@
 				</ul>
 				
 				<ul class="nav navbar-nav navbar-right">
+					<s:url id="idBuscar" action="mostrarJugador">
+					 	<%-- <s:param name="dni" value="#session.usuario.dni_jugador"/> --%>
+					</s:url>
 					<s:if test=" #session.opcionesInscripcion.get(0).idRol != 3 ">
 						<li><a><span class="glyphicon glyphicon-map-marker"></span> <s:property value="#session.usuario.nomSede" /></a></li>
 					</s:if>				

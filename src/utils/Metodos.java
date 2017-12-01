@@ -150,7 +150,10 @@ public class Metodos {
 	
 	public int getLongfile(File file) {
 		int tamaño = 0;
-		tamaño = (int) Math.round(Math.ceil(file.length()/1024.0));
+		if(file != null)
+			tamaño = (int) Math.round(Math.ceil(file.length()/1024.0));
+		else
+			tamaño = 1;
 		return tamaño;
 	}
 }

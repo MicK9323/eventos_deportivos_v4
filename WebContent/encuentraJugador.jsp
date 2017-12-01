@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Registrar Jugador</title>
+<title>Datos Usuario</title>
 <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="css/bootstrap-theme.min.css">
 <link rel="stylesheet" type="text/css" href="css/bootstrap-datepicker.min.css">
@@ -171,9 +171,16 @@
 											<!-- FOTO -->
 											<div class="row">
 												<div class="col-md-6">
+												<s:if test="foto.empty">
+													<div class="thumbnail">
+														<img class="img-responsive" src="img/imgUser.png" id="imagePreview" alt="">
+													</div>
+												</s:if>
+												<s:else>
 													<div class="thumbnail">
 														<img class="img-responsive" src=" mostrarFoto?dni=<s:property value="jugador.dni_jugador" /> " id="imagePreview" alt="">
 													</div>
+												</s:else>													
 												</div>
 												<div class="col-md-5">
 													<div class="form-group">

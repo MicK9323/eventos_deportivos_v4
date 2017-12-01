@@ -1,6 +1,5 @@
 package dao;
 
-import interfaces.AdminDAO;
 import interfaces.CategoriaDAO;
 import interfaces.DisciplinaDAO;
 import interfaces.EquipoDAO;
@@ -55,12 +54,6 @@ public class MySqlDAOFactory extends DAOFactory {
 	public ModalidadDAO getModalidadDAO() {
 		// TODO Auto-generated method stub
 		return new MySqlModalidadDAO();
-	}
-
-	@Override
-	public AdminDAO getAdminDAO() {
-		// TODO Auto-generated method stub
-		return new MySqlAdminDAO();
 	}
 
 	@Override

@@ -127,7 +127,8 @@ public class JugadorAction extends ActionSupport {
 	public String verFoto() throws Exception {
 		try {
 			JugadorDTO obj =  (JugadorDTO) session.get("usuario");
-			foto= new ByteArrayInputStream(obj.getFotoByte());
+			byte[] array = obj.getFotoByte();
+			foto= new ByteArrayInputStream(array);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -165,9 +166,41 @@ public class JugadorAction extends ActionSupport {
 	}
 	
 	
-
+	@Action(value = "/actualizaJugador", results = { 
+			@Result(name = "actualiza", location = "/encuentraJugador.jsp"),
+			@Result(name = "actualizalista", location = "/listaJugadores.jsp"),
+			@Result(name = "regError", location = "/nuevoJugador.jsp")
+	})
+	public String actualizaJugador() throws IOException {
+		JugadorDTO obj = jugador;
+		File file = obj.getFoto();
+		int kb = met.getLongfile(file);
+		if (kb <= 100) {
+			byte[] array = met.getBytesFromFile(file);
+			obj.setFotoByte(array);
+			obj.setFotoFileName(obj.getDni_jugador());
+			msg = service.regJugador(obj);
+			if (msg == "ok") {
+				mostrar = true;
+				msg = "Registro Existoso";
+				lista = service.listaJugadores();
+				return "registra";
+			} else {
+				jugador = obj;
+				listarDatos();
+				mostrar = true;
+				return "regError";
+			}
+		} else {
+			jugador = obj;
+			listarDatos();
+			mostrar = true;
+			msg = "Tamaño de la foto excede los 100KB";
+			return "regError";
+		}
+	}
 	
-
+	
 	void listarDatos() {
 		sedes = service.listaSedes();
 		roles = service.listaRoles();

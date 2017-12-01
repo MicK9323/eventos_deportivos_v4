@@ -1,6 +1,5 @@
 package dao;
 
-import interfaces.AdminDAO;
 import interfaces.CategoriaDAO;
 import interfaces.DisciplinaDAO;
 import interfaces.EquipoDAO;
@@ -32,7 +31,6 @@ public abstract class DAOFactory {
     public abstract CategoriaDAO getCategoriaDAO();
     public abstract ModalidadDAO getModalidadDAO();
     public abstract SedeDAO getSedeDAO();
-    public abstract AdminDAO getAdminDAO();
     public abstract loginDAO getLoginDAO();
     public abstract reciboDAO getReciboDAO();
     public abstract constanciaDAO getConstanciaDAO();
