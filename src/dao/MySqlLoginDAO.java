@@ -46,9 +46,9 @@ public class MySqlLoginDAO implements loginDAO, Serializable {
 				obj.setDomicilio(rs.getString(12));
 				obj.setEmail(rs.getString(13));
 				obj.setCodSede(rs.getString(14));
-				obj.setFoto(rs.getString(15));
-				obj.setEstado(rs.getBoolean(17));
-				obj.setNomSede(rs.getString(18));
+				obj.setFotoByte(rs.getBlob(15).getBytes(1, (int) rs.getBlob(15).length()));
+				obj.setEstado(rs.getBoolean(18));
+				obj.setNomSede(rs.getString(19));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

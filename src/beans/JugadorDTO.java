@@ -1,12 +1,9 @@
 package beans;
 
-import java.io.Serializable;
+import java.io.File;
 
-public class JugadorDTO implements Serializable {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -6930712121076987493L;
+public class JugadorDTO {
+
 	private String dni_jugador;
 	private String clave;
 	private int idRol;
@@ -22,7 +19,10 @@ public class JugadorDTO implements Serializable {
     private String email;
     private String codSede;
     private String nomSede;
-    private String foto;
+    private File foto;
+    private byte[] FotoByte;
+    private String FotoContentType;
+    private String FotoFileName;    
     private boolean estado;
     
 	public String getClave() {
@@ -115,17 +115,35 @@ public class JugadorDTO implements Serializable {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public String getFoto() {
+	public File getFoto() {
 		return foto;
 	}
-	public void setFoto(String foto) {
+	public void setFoto(File foto) {
 		this.foto = foto;
 	}
-	public boolean isEstado() {
+	public byte[] getFotoByte() {
+		return FotoByte;
+	}
+	public void setFotoByte(byte[] fotoByte) {
+		FotoByte = fotoByte;
+	}
+	public String getFotoContentType() {
+		return FotoContentType;
+	}
+	public void setFotoContentType(String fotoContentType) {
+		FotoContentType = fotoContentType;
+	}
+	public String getFotoFileName() {
+		return FotoFileName;
+	}
+	public void setFotoFileName(String fotoFileName) {
+		FotoFileName = fotoFileName;
+	}
+	public boolean getEstado() {
 		return estado;
 	}
 	public void setEstado(boolean estado) {
 		this.estado = estado;
 	}
-
+	
 }

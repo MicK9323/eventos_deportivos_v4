@@ -11,4 +11,11 @@ public interface JugadorDAO {
 	public JugadorDTO datosJugador(String dni) throws SQLException;
 	public List<JugadorDTO> listaJugadores();
 	public String importarJugadores(ArrayList<JugadorDTO> data);
+	
+	
+	//CRUD
+	public String regJugador(JugadorDTO x);
+	public String uptJugador(JugadorDTO x);
+	public String delJugador(JugadorDTO x);
+	public JugadorDTO buscarJugador(String dni);
 }
