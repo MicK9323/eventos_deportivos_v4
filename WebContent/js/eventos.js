@@ -20,7 +20,24 @@ $(document).ready(function() {
       })
   }(jQuery));
   //---------------------------------------------------------
+  //Mascara para fecha
+  $('#inicioInscripcion, #inicioEvento, #finInscripcion, #finEvento, #inicioModalidad, #finModalidad').mask('9999-99-99');
+  	
+  
+  //Validacion de campos
+  $("#integrantes").attr("maxlength", 3);
+  $("#cantMujeres").attr("maxlength", 2);
+  $("#cantVarones").attr("maxlength", 2);
+  $("#nroEquipos").attr("maxlength", 2);
+  $("#nomEvento").attr("maxlength", 30);
 
+  
+//Solo Números
+  $('#integrantes, #cantMujeres, #cantVarones,#nroEquipos').on('input', function () { 
+  	    this.value = this.value.replace(/[^0-9]/g,'');
+  	});
+  
+  
   //---------------VALIDATORS--------------------------------
   var cantIntegrantes;
   $('#formEvento').bootstrapValidator({
@@ -215,7 +232,7 @@ $(document).ready(function() {
     }else{
       html += '<label class="label label-warning">Campo Requerido</label>';
       $('#alerta').children('label').replaceWith(html);
-      alertify.warning("No ah ingresado ningun nombre de evento");
+      alertify.warning("No ha ingresado ningun nombre de evento");
     }
   }
   //-----------------------------------------------------------
@@ -240,6 +257,24 @@ $(document).ready(function() {
     }});
   }
   //--------------------------------------------------------------
+  
+
+//Maximo valor del input
+$("#nomEvento").attr("maxlength", 30);
+$("#dirSede").attr("maxlength", 35);
+$("#telf").attr("maxlength", 10);
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
 
 	//-------------------------SELECCIONAR SEDE----------------------------------------
 	// var codSede;

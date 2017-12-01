@@ -272,6 +272,7 @@
 	<script type="text/javascript" src="js/bootstrap-datepicker.min.js"></script>
 	<script type="text/javascript" src="js/bootstrapValidator.min.js"></script>
 	<script type="text/javascript" src="js/alertify/alertify.min.js"></script>
+	<script type="text/javascript" src="js/jquery.maskedinput.min.js"></script>
 
 	<script type="text/javascript" src="js/fechas.js"></script>
 	<script type="text/javascript" src="js/usuarios.js"></script>

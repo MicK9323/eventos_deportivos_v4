@@ -12,6 +12,19 @@ if(opcion == "registrar"){
   $('#btnGuardar').text('Actualizar');
 }
 
+
+
+//Maximo valor del input
+$("#descripcion").attr("maxlength", 30);
+$("#minimo").attr("maxlength", 2);
+$("#maximo").attr("maxlength", 2);
+
+//Solo Números
+$('#minimo, #maximo').on('input', function () { 
+	    this.value = this.value.replace(/[^0-9]/g,'');
+	});
+
+
 //-------------------VALIDAR NOMBRE DE CATEGORIA----------------
 var gnomCategoria = $('#descripcion').val().trim().toUpperCase();
 $('#descripcion').focusout(function(){
@@ -273,12 +286,12 @@ $('#formCategoria').bootstrapValidator({
               $(location).attr("href","listaCategorias");
             },1000);
           }else{
-            alertify.error(msg);
+            alertify.error("Categoría no puede ser Eliminada,    Se encuentra en uso");
           }
         },
         error:function(data){
           var msg = data.mensaje;
-          alertify.error(msg);
+          alertify.error("Error al Eliminar Categoría");
         }
       });
     },function(){//SI PULSA CANCELAR

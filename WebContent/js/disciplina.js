@@ -12,6 +12,11 @@ if(opcion == "registrar"){
   $('#btnGuardar').text('Actualizar');
   $('#btnReset').text('Cancelar');
 }
+
+
+//Maximo valor del input
+$("#descripcion").attr("maxlength", 25);
+
 //----------------------------------------------------
 //VALIDACIONES DE CAJAS DE TEXTO
 $('#formDisciplina').bootstrapValidator({
@@ -215,12 +220,12 @@ function validarNombre(nombre){
               $(location).attr("href","listadoDisciplina");
             },1000);
           }else{
-            alertify.error(msg);
+             alertify.error("Disciplina no puede ser Eliminada,    Se encuentra en uso");
           }
         },
         error:function(data){
           var msg = data.mensaje;
-          alertify.error(msg);
+          alertify.error("Error al Eliminar Disciplina");
         }
       });
     },function(){

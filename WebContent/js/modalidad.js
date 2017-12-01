@@ -15,6 +15,10 @@ $(document).ready(function() {
     $('#btnReset').text('Cancelar');
   }
 
+  
+//Maximo valor del input
+  $("#descripcion").attr("maxlength", 30);
+
   //--------BOOTSTRAP VALIDATOR--------------
   $('#formModalidad').bootstrapValidator({
     feedbackIcons: {
