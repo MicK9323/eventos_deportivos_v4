@@ -69,7 +69,7 @@
 							<div class="col-md-12 text-center">
 								<!-- <button class="btn btn-primary" type="button" id="btnNuevo">Registrar Nuevo</button> -->
 								<button class="btn btn-success" type="button" id="btnGuardar"></button>
-								<button class="btn btn-warning" type="button" id="btnReset">Cancelar</button>
+								<button class="btn btn-warning" type="button" id="btnReset">Limpiar</button>
 							</div>
 						</form>
 					</div>
