@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-  $('#fecNacimiento').datepicker({
+  $('#fecNac').datepicker({
     autoclose: true
   });
 
