@@ -27,7 +27,7 @@
 	</div>
 	<!-- DATOS DE JUGADOR -->
 	<div class="container">
-		<form class="form-horizontal" id="formJugador" action="" method="post" enctype="multipart/form-data">
+		<form class="form-horizontal" id="formJugador" action="registraJugador" method="post" enctype="multipart/form-data">
 			<div class="row">
 				<div class="col-md-12">
 					<div class="panel-group">
@@ -37,7 +37,6 @@
 								<strong>DATOS DE JUGADOR</strong>
 							</div>
 							<div class="panel-body">
-								<form class="form-horizontal" action="" method="post">
 									<div class="row">
 										<div class="col-md-6">
 											<!-- DNI -->
@@ -141,7 +140,6 @@
 												<div class="col-md-8">
 													<s:textfield name="jugador.domicilio" id="direccion"
 																cssClass="form-control text-uppercase" placeholder="Direccion de domicilio" required="true" />
-													<input type="text" class="form-control text-uppercase" name="dirUsuario" id="dirUsuario" placeholder="Direccion">
 												</div>
 											</div>
 											<!-- CORREO -->
@@ -165,9 +163,10 @@
 												</div>
 												<div class="col-md-5">
 													<div class="form-group">
-														<div class="hide"><s:file name="jugador.foto" id="subirImagen" /></div>
+														<div class="hide"><s:file name="jugador.foto" id="subirImagen" accept=".jpg,.png" /></div>
 														<!-- <input type="file" name="foto" id="subirImagen" class="hide"/> -->
 														<label for="subirImagen" class="btn btn-default">Seleccionar Foto <span class="glyphicon glyphicon-camera"></span></label>
+														<p class="help-block">Tamaño máximo = 100KB</p>
 													</div>
 													<!-- <div class="form-group">
 														<div data-toggle="modal" data-target="#sedesModal" id="btnSede" class="btn btn-primary">Seleccionar Sede</div>
@@ -190,12 +189,19 @@
 															 headerValue="[SELECCIONE]" cssClass="form-control text-uppercase"/>
 													</div>
 												</div>
+												<div class="col-md-12">
+													<s:if test="mostrar == true">
+					 									<div class="alert alert-info" role="alert"> <strong> <s:label name="msg" /> </strong></div>
+													</s:if>
+												</div>
 											</div>
 										</div>
 									</div>
-								</form>
 							</div>
 							<div class="panel-footer">
+							<div class="text-left">
+									<a href="listaJugadores" class="btn btn-primary">Volver al listado</a>
+								</div>
 								<div class="text-right">
 									<input type="submit" class="btn btn-success" name="guardar" id="guardar" value="Guardar">
 									<input type="reset" class="btn btn-warning" name="cancelar" id="cancelar" value="Cancelar">

@@ -76,12 +76,35 @@ public class JugadorAction extends ActionSupport {
 			@Result(name="regError",type="redirectAction",params= {"actionName","/dataJugador"})
 	})	
 	public String registraJugador() throws IOException {
-		byte[] array = met.getBytesFromFile(jugador.getFoto());
-		
-		return null;
-		
+		File file = jugador.getFoto();
+		int kb = met.getLongfile(file);
+		if(kb <= 100) {
+			byte[] array = met.getBytesFromFile(file);
+			jugador.setFotoByte(array);
+			jugador.setFotoFileName(jugador.getDni_jugador());
+			msg = service.regJugador(jugador);
+			if(msg == "ok") {
+				mostrar = true;
+				msg = "Registro Existoso";
+				lista = service.listaJugadores();
+				return "registra";
+			}else {
+				listarDatos();
+				mostrar = true;
+				return "regError";
+			}
+		}else {
+			listarDatos();
+			mostrar = true;
+			msg = "Tamaño de la foto excede los 500KB";
+			return "regError";
+		}
 	}
 	
+	void listarDatos() {
+		sedes = service.listaSedes();
+		roles = service.listaRoles();
+	}
 	
 	public List<JugadorDTO> getLista() {
 		return lista;
