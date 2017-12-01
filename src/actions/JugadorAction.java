@@ -77,6 +77,7 @@ public class JugadorAction extends ActionSupport {
 	})	
 	public String registraJugador() throws IOException {
 		byte[] array = met.getBytesFromFile(jugador.getFoto());
+		
 		return null;
 		
 	}

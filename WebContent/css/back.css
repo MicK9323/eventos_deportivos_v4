@@ -1,6 +1,6 @@
 body{
 	background-image: url('../img/fondo3.jpg');
-	background-repeat: repeat-x;
+	background-repeat: repeat;
 	padding-top: 70px;
 	background-size: cover;
 }
