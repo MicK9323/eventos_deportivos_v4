@@ -54,21 +54,25 @@
 							<div class="alert alert-danger" role="alert"> <strong>No hay jugadores registrados!</strong></div>
 						</s:if> 						
 						<!--  -->
-						<table class="table table-bordered table-hover" id="tbEventos">
+						<table class="table table-bordered table-hover" id="tbJugadores">
 							<thead>
 								<tr>
 									<th class="text-center col-md-1"><strong>DNI</strong></th>
-									<th class="text-center col-md-3"><strong>Nombres</strong></th>
+									<th class="text-center col-md-2"><strong>Nombres</strong></th>
 									<th class="text-center col-md-1"><strong>Edad</strong></th>
 									<th class="text-center col-md-1"><strong>Sexo</strong></th>
 									<th class="text-center col-md-1"><strong>Movil</strong></th>
 									<th class="text-center col-md-2"><strong>Sede</strong></th>
 									<th class="text-center col-md-1"><strong>Estado</strong></th>
 									<th class="text-center col-md-1"></th>
+									<th class="text-center col-md-1"></th>
 								</tr>
 							</thead>
-							<tbody id="lstEventos">
-								<s:iterator value="lista">
+							<tbody id="lstJugadores">
+								<s:iterator value="lista">									
+										<s:url id="idBuscar" action="buscaJugador">
+				 							<s:param name="jugador.dni_jugador" value="dni_jugador"/>
+										 </s:url>
 									<s:if test="estado == true">
 										<tr>
 											<td class="text-center"> <s:property value="dni_jugador" /> </td>
@@ -78,6 +82,7 @@
 											<td class="text-center"> <s:property value="telfMovil" /> </td>
 											<td class="text-center"> <s:property value="nomSede" /> </td>
 											<td class="text-center"> <a class="habilitado"><span class="glyphicon glyphicon-ok"></span></a> </td>
+											<td><s:a href="%{idBuscar}" cssClass="editar" ><span class="glyphicon glyphicon-pencil"></span></s:a></td>
 											<td class="text-center"><a class="remove"><span class="glyphicon glyphicon-remove"></span></a></td>
 										</tr>
 									</s:if>
@@ -90,6 +95,7 @@
 											<td class="text-center"> <s:property value="telfMovil" /> </td>
 											<td class="text-center"> <s:property value="nomSede" /> </td>
 											<td class="text-center"> <a class="deshabilitado"><span class="glyphicon glyphicon-ban-circle"></span></a> </td>
+											<td><s:a href="%{idBuscar}" cssClass="editar" ><span class="glyphicon glyphicon-pencil"></span></s:a></td>
 											<td class="text-center"><a class="remove"><span class="glyphicon glyphicon-remove"></span></a></td>
 										</tr>
 									</s:if>
@@ -142,10 +148,6 @@
 					</div>
 				</div>
 
-					<!-- <div class="modal-footer">
-						<button type="button" id="btnCargar" class="btn btn-success">Importar</button>
-						<button type="button" id="btnCancelar" class="btn btn-warning">Cancelar</button>
-					</div> -->
 			</div>
 		</div>
 	</div>
@@ -158,7 +160,7 @@
 	<script type="text/javascript" src="js/cargar.js"></script>
 	<script>
 		$(document).ready(function() {
-		  $('#tbEventos').dataTable();
+		  $('#tbJugadores').dataTable();
 		});
 	</script>
 </body>

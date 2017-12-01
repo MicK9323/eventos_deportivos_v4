@@ -182,4 +182,10 @@ public class Metodos {
 			return null;
 		}
 	}
+	
+	public int getLongfile(File file) {
+		int tamaño = 0;
+		tamaño = (int) Math.round(Math.ceil(file.length()/1024.0));
+		return tamaño;
+	}
 }
