@@ -23,12 +23,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id="uptCategoria" statementType="CALLABLE" parameterType="CategoriaIbatis">
 		call sp_uptCategoria( #{codigo}, #{descripcion}, #{edadMin}, #{edadMax} )
 	</update>
-	<update id="disableCategoria" statementType="CALLABLE">
-		call sp_disableCategoria( #{codigo} )
-	</update>
-	<update id="enableCategoria" statementType="CALLABLE">
-		call sp_enableCategoria( #{codigo} )
-	</update>
 	<delete id="deleteCategoria" statementType="CALLABLE">
 		call sp_deleteCategoria( #{codigo} )
 	</delete>

@@ -14,6 +14,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="listaSedes" statementType="CALLABLE" resultMap="mapSedeIbatis">
 		call sp_listaSedes()
 	</select>
+	<select id="buscaSedes" statementType="CALLABLE" resultMap="mapSedeIbatis">
+		call sp_buscaSede( #{codSede} )
+	</select>
+	<insert id="regSede" statementType="CALLABLE" parameterType="SedeIbatis">
+		call sp_regSede( #{nomSede}, #{direccion}, #{telf} )
+	</insert>
+	<update id="uptSede" statementType="CALLABLE" parameterType="SedeIbatis">
+		call sp_uptSede( #{codSede}, #{nomSede}, #{direccion}, #{telf} )
+	</update>
+	<delete id="deleteSede" statementType="CALLABLE">
+		call sp_deleteSede( #{codSede} )
+	</delete>
 </mapper>
 
 
