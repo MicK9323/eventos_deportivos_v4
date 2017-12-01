@@ -232,7 +232,7 @@ public class MySqlJugadorDAO implements JugadorDAO {
 			cstm = conn.prepareCall(sql);
 			Blob blob = new SerialBlob(obj.getFotoByte());
 			cstm.setString(1, obj.getDni_jugador());
-			cstm.setString(2, met.cifrarCadena(obj.getDni_jugador()));
+			cstm.setString(2, met.cifrarCadena(obj.getClave()));
 			cstm.setString(3, obj.getNom_jugador());
 			cstm.setString(4, obj.getApe_jugador());
 			cstm.setString(5, obj.getFec_nac());
