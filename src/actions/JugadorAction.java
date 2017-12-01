@@ -182,7 +182,7 @@ public class JugadorAction extends ActionSupport {
 			msg = service.uptJugador(obj);
 			if (msg == "ok") {
 				mostrar = true;
-				msg = "Actualizacion Existosa";
+				msg = "Actualización Existosa";
 				listarDatos();
 				return "actualiza";
 			} else {

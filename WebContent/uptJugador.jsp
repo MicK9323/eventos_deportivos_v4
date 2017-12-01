@@ -56,10 +56,10 @@
 											<!-- PASSWORD -->
 											<div class="form-group">
 											  <div class="col-md-2">
-											  	<label for="dni" class="control-label">PASSWORD: </label>
+											  	<label for="dni" class="control-label">Contraseña: </label>
 											  </div>
 											  <div class="col-md-4">
-											  	<s:password name="jugador.clave" id="clave" cssClass="form-control" required="true" />
+											  	<s:password name="jugador.clave" id="clave" class="password" cssClass="form-control" required="true" />
 											  </div>
 											</div>
 											<!-- NOMBRES -->

@@ -21,6 +21,10 @@ $(document).ready(function() {
           }
    });
   
+  //Convertir password
+  $('#clave').attr('type', 'password');
+
+
   
   //Solo Números
   $('#dni, #edad, #telfFijo, #telfMovil').on('input', function () { 
