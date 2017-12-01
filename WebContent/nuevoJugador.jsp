@@ -204,7 +204,7 @@
 								</div>
 								<div class="text-right">
 									<input type="submit" class="btn btn-success" name="guardar" id="guardar" value="Guardar">
-									<input type="reset" class="btn btn-warning" name="cancelar" id="cancelar" value="Cancelar">
+									<input type="reset" class="btn btn-warning" name="cancelar" id="cancelar" value="Limpiar">
 								</div>
 							</div>
 						</div>
