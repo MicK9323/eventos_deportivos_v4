@@ -1,14 +1,18 @@
 package actions;
 
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Result;
 
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
 import beans.EnlaceDTO;
@@ -31,7 +35,9 @@ public class JugadorAction extends ActionSupport {
 	private JugadorDTO jugador;
 	private String msg;
 	private boolean mostrar = false;
-
+	private InputStream foto;
+	private Map<String, Object> session	= ActionContext.getContext().getSession();
+	
 	@Action(value = "/listaJugadores", results = { @Result(name = "lista", location = "/listaJugadores.jsp") })
 	public String listaJugadores() {
 		lista = service.listaJugadores();
@@ -100,11 +106,11 @@ public class JugadorAction extends ActionSupport {
 
 	@Action(value = "/mostrarJugador", results = { 
 			@Result(name = "encuentra", location = "/encuentraJugador.jsp"),
-			@Result(name = "noencuentra", location = "/listaJugadores.jsp") 
+			@Result(name = "noencuentra", location = "/index.jsp") 
 			})
-	public String buscarJugador() {
-		JugadorDTO obj = service.buscarJugador(jugador.getDni_jugador());
-		if (obj != null) {
+	public String mostrarJugador() {
+		jugador = (JugadorDTO) session.get("usuario");
+		if (jugador != null) {
 			listarDatos();
 			return "encuentra";
 		} else {
@@ -114,19 +120,53 @@ public class JugadorAction extends ActionSupport {
 			return "noencuentra";
 		}
 	}
-
-	@Action(value = "verFoto", results = {
-			@Result(params = { "inputName", "foto" }, name = "success", type = "stream") 
-			})
+	
+	@Action(value = "mostrarFoto",results={@Result(
+			params={"inputName","foto"}, 
+			name = "getFoto", type="stream")})
 	public String verFoto() throws Exception {
 		try {
-			EmpleadoDTO bean = new EmpleadoService().buscarFotoEmpleado(idCodigo);
-			foto = new ByteArrayInputStream(bean.getFotoByte());
+			JugadorDTO obj =  (JugadorDTO) session.get("usuario");
+			foto= new ByteArrayInputStream(obj.getFotoByte());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return SUCCESS;
+		return "getFoto";
 	}
+	
+	@Action(value = "/buscaJugador", results = { 
+			@Result(name = "encuentra", location = "/uptJugador.jsp"),
+			@Result(name = "noencuentra", location = "/listaJugadores.jsp") 
+			})
+	public String buscaJugador() {
+		jugador = service.buscarJugador(met.decodificarBase64(dni));
+		if (jugador != null) {
+			listarDatos();
+			return "encuentra";
+		} else {
+			mostrar = true;
+			msg = "Jugador no encontrado";
+			listado();
+			return "noencuentra";
+		}
+	}
+	
+	@Action(value = "buscarFoto",results={@Result(
+			params={"inputName","foto"}, 
+			name = "getFoto", type="stream")})
+	public String buscarFoto() throws Exception {
+		try {
+			JugadorDTO obj =  service.buscarFoto(met.decodificarBase64(dni));
+			foto= new ByteArrayInputStream(obj.getFotoByte());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "getFoto";
+	}
+	
+	
+
+	
 
 	void listarDatos() {
 		sedes = service.listaSedes();
@@ -136,6 +176,8 @@ public class JugadorAction extends ActionSupport {
 	void listado() {
 		lista = service.listaJugadores();
 	}
+	
+	
 
 	public List<JugadorDTO> getLista() {
 		return lista;
@@ -199,6 +241,22 @@ public class JugadorAction extends ActionSupport {
 
 	public void setRoles(List<EnlaceDTO> roles) {
 		this.roles = roles;
+	}
+
+	public InputStream getFoto() {
+		return foto;
+	}
+
+	public void setFoto(InputStream foto) {
+		this.foto = foto;
+	}
+
+	public Metodos getMet() {
+		return met;
+	}
+
+	public void setMet(Metodos met) {
+		this.met = met;
 	}
 
 }

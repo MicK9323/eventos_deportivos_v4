@@ -172,7 +172,7 @@
 											<div class="row">
 												<div class="col-md-6">
 													<div class="thumbnail">
-														<img class="img-responsive" src=" mostrarFoto?dni=<s:property value="jugador.dni_jugador" /> " id="imagePreview" alt="">
+														<img class="img-responsive" src=" buscarFoto?dni=<s:property value="met.codificarBase64(jugador.dni_jugador)" /> " id="imagePreview" alt="">
 													</div>
 												</div>
 												<div class="col-md-5">
