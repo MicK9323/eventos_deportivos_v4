@@ -50,10 +50,10 @@ public class MySqlEventoDAO implements EventoDAO {
 				obj = new EventoDTO();
 				obj.setCod_evento(rs.getString(1));
 				obj.setDesc_evento(rs.getString(2));
-				obj.setInicio_inscripcion(met.fechaNormal(rs.getString(3)));
-				obj.setFin_inscripcion(met.fechaNormal(rs.getString(4)));
-				obj.setInicio_evento(met.fechaNormal(rs.getString(5)));
-				obj.setFin_evento(met.fechaNormal(rs.getString(6)));
+				obj.setInicio_inscripcion(rs.getString(3));
+				obj.setFin_inscripcion(rs.getString(4));
+				obj.setInicio_evento(rs.getString(5));
+				obj.setFin_evento(rs.getString(6));
 				obj.setParticipantes(rs.getString(7));
 				obj.setNom_estado(rs.getString(8));
 				eventos.add(obj);
@@ -142,8 +142,8 @@ public class MySqlEventoDAO implements EventoDAO {
 				obj.setCod_modalidad(rs.getString(3));
 				obj.setNomModalidad(rs.getString(4));
 				obj.setTipoModalidad(rs.getString(5));
-				obj.setFec_inicio(met.fechaNormal(rs.getString(6)));
-				obj.setFec_fin(met.fechaNormal(rs.getString(7)));
+				obj.setFec_inicio(rs.getString(6));
+				obj.setFec_fin(rs.getString(7));
 				obj.setCantIntegrantes(rs.getInt(8));
 				obj.setCantMujeres(rs.getInt(9));
 				obj.setCantVarones(rs.getInt(10));
@@ -211,10 +211,10 @@ public class MySqlEventoDAO implements EventoDAO {
 			String sql = "{call sp_regEvento(?,?,?,?,?,?)}";
 			cstm = cn.prepareCall(sql);
 			cstm.setString(1, evento.getDesc_evento());
-			cstm.setString(2, met.fechaMysql(evento.getInicio_inscripcion()));
-			cstm.setString(3, met.fechaMysql(evento.getFin_inscripcion()));
-			cstm.setString(4, met.fechaMysql(evento.getInicio_evento()));
-			cstm.setString(5, met.fechaMysql(evento.getFin_evento()));
+			cstm.setString(2, evento.getInicio_inscripcion());
+			cstm.setString(3, evento.getFin_inscripcion());
+			cstm.setString(4, evento.getInicio_evento());
+			cstm.setString(5, evento.getFin_evento());
 			cstm.registerOutParameter(6, Types.CHAR);
 			int estado = cstm.executeUpdate();
 			if (estado != -1)
