@@ -40,7 +40,7 @@ public class LoginAction extends ActionSupport implements SessionAware{
 			mensaje = "Credenciales Incorrectas";
 			return "error";
 		}
-		else if(jugador != null && jugador.getEstado() == false) {
+		else if(jugador != null && jugador.getEstado() == 0) {
 			mostrar = true;
 			mensaje = "Jugador Deshabilitado";
 			return "error";

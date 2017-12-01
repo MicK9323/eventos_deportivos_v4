@@ -51,7 +51,7 @@ public class MySqlLoginDAO implements loginDAO{
 				}else {
 					obj.setFotoByte(rs.getBlob(15).getBytes(1, (int) rs.getBlob(15).length()));
 				}				
-				obj.setEstado(rs.getBoolean(18));
+				obj.setEstado(rs.getInt(18));
 				obj.setNomSede(rs.getString(19));
 				System.out.println(rs.getBoolean(18));
 			}

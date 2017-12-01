@@ -73,7 +73,7 @@
 										<s:url id="idBuscar" action="buscaJugador">
 				 							<s:param name="dni" value="met.codificarBase64(dni_jugador)"/>
 										 </s:url>
-									<s:if test="estado == true">
+									<s:if test="estado == 1">
 										<tr>
 											<td class="text-center"> <s:property value="dni_jugador" /> </td>
 											<td> <s:property value="nom_jugador" /> </td>
@@ -86,7 +86,7 @@
 											<td class="text-center"><a class="remove"><span class="glyphicon glyphicon-remove"></span></a></td>
 										</tr>
 									</s:if>
-									<s:if test="estado == false">
+									<s:if test="estado == 0">
 										<tr class="fondoRojo">
 											<td class="text-center"> <s:property value="dni_jugador" /> </td>
 											<td> <s:property value="nom_jugador" /> </td>
