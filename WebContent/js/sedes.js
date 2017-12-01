@@ -18,6 +18,18 @@ $('#nombre').focusout(function(){
   validarNombre(nombre);
 });
 
+
+//Maximo valor del input
+$("#nombre").attr("maxlength", 30);
+$("#dirSede").attr("maxlength", 35);
+$("#telf").attr("maxlength", 10);
+
+//Solo Números
+$('#telf').on('input', function () { 
+	    this.value = this.value.replace(/[^0-9]/g,'');
+	});
+
+//
 function validarNombre(nombre){
   var html = "";
   if( nombre != '' ){
@@ -265,12 +277,12 @@ $('#formSede').bootstrapValidator({
               $(location).attr("href","listaSedes");
             },1000);
           }else{
-            alertify.error(msg);
+        	 alertify.error("Sede no puede ser Eliminada,    Se encuentra en uso");
           }
         },
         error:function(data){
           var msg = data.mensaje;
-          alertify.error(msg);
+          alertify.error("Error al Eliminar Sede");
         }
       });
     },function(){//SI PULSA CANCELAR

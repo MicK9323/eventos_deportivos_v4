@@ -38,6 +38,9 @@ $(document).ready(function() {
   $("#nombre").attr("maxlength", 30);
   $("#apellido").attr("maxlength", 30);
   
+  //Mascara para fecha
+  $('#fecNac').mask('9999-99-99');
+  	
   
   //Solo Letras
   $("#nombre,#apellido ").keypress(function(event){

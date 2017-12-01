@@ -43,7 +43,8 @@ $(document).ready(function() {
         }
       })
   });
-
+  
+//Validaciones
   $('#btnPagar').click(function(){
 	  var num = $('#numFicha');
 	  var monto = $('#monto').text();
@@ -54,6 +55,9 @@ $(document).ready(function() {
     }
   })
 
+   $("#numFicha").attr("maxlength", 15);
+  
+  
 
   //ventana de pago
   var $form = $('#payment-form');
