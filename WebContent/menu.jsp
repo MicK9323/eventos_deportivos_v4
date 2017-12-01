@@ -1,4 +1,3 @@
-
 <%@page import="beans.JugadorDTO"%>
 <%@ taglib uri="/struts-tags" prefix="s" %>
 		<%
@@ -27,11 +26,10 @@
 						<li><a><span class="glyphicon glyphicon-map-marker"></span> <s:property value="#session.usuario.nomSede" /></a></li>
 					</s:if>				
 					<li><a><span class="glyphicon glyphicon-briefcase"></span> <s:property value="#session.opcionesInscripcion.get(0).nomRol" /></a></li>
-					<li><a><span class="glyphicon glyphicon-user"></span> <s:property value="#session.usuario.nom_jugador" /> <s:property value="#session.usuario.ape_jugador" /></a></li>
-					<li><a href="organizadores.jsp"><span class="glyphicon glyphicon-lock"></span> Cambiar Contraseña</a></li>
+					<li><s:a href="%{idBuscar}"><span class="glyphicon glyphicon-user"></span> <s:property value="#session.usuario.nom_jugador" /> <s:property value="#session.usuario.ape_jugador" /></s:a></li>
+				<%-- <li><a><span class="glyphicon glyphicon-user"></span> <s:property value="#session.usuario.nom_jugador" /> <s:property value="#session.usuario.ape_jugador" /></a></li> --%>
+				<%-- <li><a href="organizadores.jsp"><span class="glyphicon glyphicon-lock"></span> Cambiar Contraseña</a></li> --%>
 					<li><a href="login.jsp"><span class="glyphicon glyphicon-log-out"></span> Salir</a></li>
 				</ul>
 			</div>
 		</nav>
-	
-

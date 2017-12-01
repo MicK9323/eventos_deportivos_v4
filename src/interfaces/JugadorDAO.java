@@ -18,4 +18,5 @@ public interface JugadorDAO {
 	public String uptJugador(JugadorDTO x);
 	public String delJugador(JugadorDTO x);
 	public JugadorDTO buscarJugador(String dni);
+	public JugadorDTO buscarFoto(String dni);
 }

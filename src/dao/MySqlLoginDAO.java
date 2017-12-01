@@ -33,6 +33,7 @@ public class MySqlLoginDAO implements loginDAO{
 				obj = new JugadorDTO();
 				obj.setDni_jugador(rs.getString(1));
 				obj.setClave(met.decodificarBase64(rs.getString(2)));
+				System.out.println(obj.getClave());
 				obj.setIdRol(rs.getInt(3));
 				obj.setNom_jugador(rs.getString(4));
 				obj.setApe_jugador(rs.getString(5));

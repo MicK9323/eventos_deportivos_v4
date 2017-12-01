@@ -43,9 +43,13 @@
 			</ul>
 	
 			<ul class="nav navbar-nav navbar-right">
+				<s:url id="idBuscar" action="mostrarJugador">
+				 	<s:param name="dni" value="#session.usuario.dni_jugador"/>
+				</s:url>
 				<li><a><span class="glyphicon glyphicon-briefcase"></span> <s:property value="#session.opcionesEventos.get(0).nomRol" /></a></li>
-				<li><a><span class="glyphicon glyphicon-user"></span> <s:property value="#session.usuario.nom_jugador" /> <s:property value="#session.usuario.ape_jugador" /></a></li>
-				<li><a href="organizadores.jsp"><span class="glyphicon glyphicon-lock"></span> Cambiar Contraseña</a></li>
+				<li><s:a href="%{idBuscar}"><span class="glyphicon glyphicon-user"></span> <s:property value="#session.usuario.nom_jugador" /> <s:property value="#session.usuario.ape_jugador" /></s:a></li>
+				<%-- <li><a><span class="glyphicon glyphicon-user"></span> <s:property value="#session.usuario.nom_jugador" /> <s:property value="#session.usuario.ape_jugador" /></a></li> --%>
+				<%-- <li><a href="organizadores.jsp"><span class="glyphicon glyphicon-lock"></span> Cambiar Contraseña</a></li> --%>
 				<li><a href="login.jsp"><span class="glyphicon glyphicon-log-out"></span> Salir</a></li>
 			</ul>
 		</div>

@@ -6,6 +6,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.SQLType;
+import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -185,7 +187,15 @@ public class MySqlJugadorDAO implements JugadorDAO {
 			conn = Conexion.conectar();
 			String sql = "{ call sp_regJugador(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) }";
 			cstm = conn.prepareCall(sql);
-			Blob blob = new SerialBlob(obj.getFotoByte());
+			Blob blob = null;
+			String filename= null;
+//			if(obj.getFotoByte() != null) {
+//				blob = new SerialBlob(obj.getFotoByte());
+//				filename = obj.getFotoFileName();
+//			}else {
+//				blob = null;
+//				filename = null;
+//			}	
 			cstm.setString(1, obj.getDni_jugador());
 			cstm.setString(2, met.codificarBase64(obj.getDni_jugador()));
 			cstm.setInt(3, obj.getIdRol());
@@ -200,8 +210,15 @@ public class MySqlJugadorDAO implements JugadorDAO {
 			cstm.setString(12, obj.getDomicilio());
 			cstm.setString(13, obj.getEmail());
 			cstm.setString(14, obj.getCodSede());
-			cstm.setBlob(15, blob);
-			cstm.setString(16, obj.getFotoFileName());			
+			if(obj.getFotoByte() != null) {
+				blob = new SerialBlob(obj.getFotoByte());
+				filename = obj.getFotoFileName();
+				cstm.setBlob(15, blob);
+				cstm.setString(16, filename);
+			}else {
+				cstm.setNull(15, Types.BLOB);
+				cstm.setNull(16, Types.VARCHAR);
+			}						
 			estado = cstm.executeUpdate();
 			if(estado != -1) {
 				msg = "ok";
@@ -229,9 +246,17 @@ public class MySqlJugadorDAO implements JugadorDAO {
 		int estado = -1;
 		try {
 			conn = Conexion.conectar();
-			String sql = "{ call sp_uptJugador(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) }";
+			String sql = "{ call sp_uptJugador(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) }";			
 			cstm = conn.prepareCall(sql);
-			Blob blob = new SerialBlob(obj.getFotoByte());
+			Blob blob = null;
+			String filename= null;
+//			if(obj.getFotoByte() != null) {
+//				blob = new SerialBlob(obj.getFotoByte());
+//				filename = obj.getFotoFileName();
+//			}else {
+//				blob = null;
+//				filename = null;
+//			}				
 			cstm.setString(1, obj.getDni_jugador());
 			cstm.setString(2, met.codificarBase64(obj.getClave()));
 			cstm.setString(3, obj.getNom_jugador());
@@ -245,8 +270,15 @@ public class MySqlJugadorDAO implements JugadorDAO {
 			cstm.setString(11, obj.getDomicilio());
 			cstm.setString(12, obj.getEmail());
 			cstm.setString(13, obj.getCodSede());
-			cstm.setBlob(14, blob);
-			cstm.setString(15, obj.getFotoFileName());	
+			if(obj.getFotoByte() != null) {
+				blob = new SerialBlob(obj.getFotoByte());
+				filename = obj.getFotoFileName();
+				cstm.setBlob(15, blob);
+				cstm.setString(16, filename);
+			}else {
+				cstm.setNull(15, Types.BLOB);
+				cstm.setNull(16, Types.VARCHAR);
+			}	
 			cstm.setBoolean(16, obj.getEstado());
 			estado = cstm.executeUpdate();
 			if(estado != -1) {
@@ -324,13 +356,8 @@ public class MySqlJugadorDAO implements JugadorDAO {
 				obj.setTelfMovil(rs.getString(11));
 				obj.setDomicilio(rs.getString(12));
 				obj.setEmail(rs.getString(13));
-				obj.setCodSede(rs.getString(14));
-				if(rs.getBlob(15)==null) {
-					obj.setFotoByte(null);
-				}else {
-					obj.setFotoByte(rs.getBlob(15).getBytes(1, (int) rs.getBlob(15).length()));
-				}				
-				obj.setEstado(rs.getBoolean(18));
+				obj.setCodSede(rs.getString(14));						
+				obj.setEstado(rs.getBoolean(15));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -347,6 +374,43 @@ public class MySqlJugadorDAO implements JugadorDAO {
 			}
 		}
 		return obj;
+	}
+
+	@Override
+	public JugadorDTO buscarFoto(String dni) {
+		JugadorDTO obj = null;
+		Connection cn = null;
+		CallableStatement cstm = null;
+		ResultSet rs = null;
+		try {
+			cn = Conexion.conectar();
+			String sql = "{call sp_buscarFoto(?)}";
+			cstm = cn.prepareCall(sql);
+			cstm.setString(1, dni);
+			rs = cstm.executeQuery();
+			if(rs.next()) {
+				obj = new JugadorDTO();
+				if(rs.getBlob(1)==null) {
+					obj.setFotoByte(null);
+				}else {
+					obj.setFotoByte(rs.getBlob(1).getBytes(1, (int) rs.getBlob(1).length()));
+				}	
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null)
+					rs.close();
+				if (cstm != null)
+					cstm.close();
+				if (cn != null)
+					cn.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		return obj;			
 	}
 
 }

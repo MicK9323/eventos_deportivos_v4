@@ -69,9 +69,9 @@
 								</tr>
 							</thead>
 							<tbody id="lstJugadores">
-								<s:iterator value="lista">									
+								<s:iterator value="lista">
 										<s:url id="idBuscar" action="buscaJugador">
-				 							<s:param name="jugador.dni_jugador" value="dni_jugador"/>
+				 							<s:param name="dni" value="met.codificarBase64(dni_jugador)"/>
 										 </s:url>
 									<s:if test="estado == true">
 										<tr>
@@ -82,7 +82,7 @@
 											<td class="text-center"> <s:property value="telfMovil" /> </td>
 											<td class="text-center"> <s:property value="nomSede" /> </td>
 											<td class="text-center"> <a class="habilitado"><span class="glyphicon glyphicon-ok"></span></a> </td>
-											<td><s:a href="%{idBuscar}" cssClass="editar" ><span class="glyphicon glyphicon-pencil"></span></s:a></td>
+											<td class="text-center"><s:a href="%{idBuscar}" cssClass="editar" ><span class="glyphicon glyphicon-pencil"></span></s:a></td>
 											<td class="text-center"><a class="remove"><span class="glyphicon glyphicon-remove"></span></a></td>
 										</tr>
 									</s:if>

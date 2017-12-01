@@ -44,6 +44,8 @@ public class JugadorService {
 	public JugadorDTO buscarJugador(String dni) {
 		return daoJugador.buscarJugador(dni);
 	}
-	
+	public JugadorDTO buscarFoto(String dni) {
+		return daoJugador.buscarFoto(dni);
+	}
 	
 }
