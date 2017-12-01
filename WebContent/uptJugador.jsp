@@ -59,7 +59,7 @@
 											  	<label for="dni" class="control-label">Contraseña: </label>
 											  </div>
 											  <div class="col-md-4">
-											  	<s:password name="jugador.clave" id="clave" class="password" cssClass="form-control" required="true" />
+											  	<s:textfield name="jugador.clave" id="clave" cssClass="form-control" required="true" />
 											  </div>
 											</div>
 											<!-- NOMBRES -->
@@ -68,7 +68,7 @@
 											  	<label for="nombre" class="control-label">Nombres: </label>
 											  </div>
 											  <div class="col-md-9">
-											  	<s:textfield name="jugador.nom_jugador" id="nombre" cssClass="form-control text-uppercase" placeholder="Nombres" readonly="true" />
+											  	<s:textfield name="jugador.nom_jugador" id="nombre" cssClass="form-control text-uppercase" placeholder="Nombres" />
 											  </div>
 											</div>
 											<!-- APELLIDOS -->
@@ -77,7 +77,7 @@
 											  	<label for="apellido" class="control-label">Apellidos: </label>
 											  </div>
 											  <div class="col-md-9">
-											  	<s:textfield name="jugador.ape_jugador" id="apellido" cssClass="form-control text-uppercase" placeholder="Apellidos" readonly="true" />
+											  	<s:textfield name="jugador.ape_jugador" id="apellido" cssClass="form-control text-uppercase" placeholder="Apellidos"/>
 											  </div>
 											</div>
 											<!-- FECHA DE NACIMIENTO Y EDAD -->
@@ -86,7 +86,7 @@
 													<div class="col-md-10">
 														<div class="form-group">
 															<div class="input-group input-append date" id="datePicker" >
-																<s:textfield name="jugador.fec_nac" id="fecNac" cssClass="fecha form-control" placeholder="Fec. Nacimiento" readonly="true" />
+																<s:textfield name="jugador.fec_nac" id="fecNac" cssClass="fecha form-control" placeholder="Fec. Nacimiento" />
 																<span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span>
 															</div>
 														</div>
@@ -192,7 +192,7 @@
 															 listKey="codSede"
 															 listValue="nomSede"
 															 headerKey="-1"
-															 headerValue="[SELECCIONE]" cssClass="form-control text-uppercase" readonly="true"/>
+															 headerValue="[SELECCIONE]" cssClass="form-control text-uppercase" />
 													</div>
 													<div class="form-group">
 														<label class="control-label">Perfil</label>
@@ -200,7 +200,13 @@
 															 listKey="idRol"
 															 listValue="nomRol"
 															 headerKey="-1"
-															 headerValue="[SELECCIONE]" cssClass="form-control text-uppercase" readonly="true"/>
+															 headerValue="[SELECCIONE]" cssClass="form-control text-uppercase"/>
+													</div>
+													<div class="form-group">
+														<label class="control-label">Estado</label>
+														<s:select name="jugador.estado"
+																list="#{'1':'HABILITADO','2':'DESHABILITADO''}"
+																cssClass="form-control text-uppercase"/>
 													</div>
 												</div>
 												<div class="col-md-12">
@@ -215,7 +221,7 @@
 							<div class="panel-footer">
 								<div class="text-right">
 									<a href="listaJugadores" class="btn btn-primary">Volver al listado</a>
-									<input type="submit" class="btn btn-success" name="guardar" id="guardar" value="Guardar">
+									<input type="submit" class="btn btn-success" name="guardar" id="guardar" value="Aplicar">
 									<input type="reset" class="btn btn-warning" name="cancelar" id="cancelar" value="Cancelar">
 								</div>
 							</div>
@@ -225,55 +231,6 @@
 			</div>
 		</form>
 	</div>
-
-	<!-- VENTANAS MODALES -->
-	<!-- SEDES -->
-	<%-- <div class="modal fade" id="sedesModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<div class="col-md-4">
-						<h4><strong>SEDES</strong></h4>
-					</div>
-					<div class="col-md-8" align="right">
-						<!-- BOTON BUSCAR -->
-						<div class="col-md-12">
-							<div class="input-group">
-								<span class="input-group-addon">Buscar</span>
-								<input type="text" id="buscaSedes" class="form-control text-uppercase" placeholder="Buscar Sede">
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="modal-body sedes">
-					<!-- VERIFICA SI EL ARREGLO NO ESTA VACIO -->
-					<s:if test="sedes.isEmpty">
-						<div class="alert alert-danger" role="alert"> <strong>No hay sedes registradas!</strong></div>
-					</s:if>
-					<table class="table table-striped table-condensed table-hover">
-						<thead>
-							<tr>
-								<td class="text-center"><strong>Cod. Sede</strong></td>
-								<td class="text-center"><strong>Sede</strong></td>
-							</tr>
-						</thead>
-						<tbody id="tbSedes">
-							<s:iterator>
-
-							</s:iterator>
-						</tbody>
-					</table>
-				</div>
-				<div class="modal-footer">
-					<div class="col-md-8 text-left">
-						<div id="addSede" class="btn btn-primary" data-toggle="modal" data-target="#sedesModal">Aceptar</div>
-						<div class="btn btn-warning" id="btnLimpiarSedes">Limpiar</div>
-						<div data-toggle="modal" data-target="#sedesModal" class="btn btn-default btnCancelar">Cancelar</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div> --%>
 
 
 

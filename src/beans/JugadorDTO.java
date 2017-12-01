@@ -23,7 +23,7 @@ public class JugadorDTO {
     private byte[] FotoByte;
     private String FotoContentType;
     private String FotoFileName;    
-    private boolean estado;
+    private int estado;
     
 	public String getClave() {
 		return clave;
@@ -139,10 +139,10 @@ public class JugadorDTO {
 	public void setFotoFileName(String fotoFileName) {
 		FotoFileName = fotoFileName;
 	}
-	public boolean getEstado() {
+	public int getEstado() {
 		return estado;
 	}
-	public void setEstado(boolean estado) {
+	public void setEstado(int estado) {
 		this.estado = estado;
 	}
 	

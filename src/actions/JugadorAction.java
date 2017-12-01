@@ -73,8 +73,10 @@ public class JugadorAction extends ActionSupport {
 		return "datos";
 	}
 
-	@Action(value = "/registraJugador", results = { @Result(name = "registra", location = "/listaJugadores.jsp"),
-			@Result(name = "regError", location = "/nuevoJugador.jsp") })
+	@Action(value = "/registraJugador", results = { 
+			@Result(name = "registra", location = "/listaJugadores.jsp"),
+			@Result(name = "regError", location = "/nuevoJugador.jsp") 
+	})
 	public String registraJugador() throws IOException {
 		JugadorDTO obj = jugador;
 		File file = obj.getFoto();
@@ -172,7 +174,6 @@ public class JugadorAction extends ActionSupport {
 	})
 	public String actualizaDatos() throws IOException {
 		JugadorDTO obj = jugador;
-		InputStream img = foto;
 		File file = obj.getFoto();
 		int kb = met.getLongfile(file);
 		if (kb <= 100) {
@@ -186,19 +187,50 @@ public class JugadorAction extends ActionSupport {
 				listarDatos();
 				return "actualiza";
 			} else {
-				foto = img;
 				jugador = obj;
 				listarDatos();
 				mostrar = true;
 				return "uptError";
 			}
 		} else {
-			foto = img;
 			jugador = obj;
 			listarDatos();
 			mostrar = true;
 			msg = "Tamaño de la foto excede los 100KB";
 			return "uptError";
+		}
+	}
+	
+	@Action(value = "/actualizaUsuario", results = { 
+			@Result(name = "modifica", location = "/listaJugadores.jsp"),
+			@Result(name = "modError", location = "/encuentraJugador.jsp")
+	})
+	public String actualizaUsuario() throws IOException {
+		JugadorDTO obj = jugador;
+		File file = obj.getFoto();
+		int kb = met.getLongfile(file);
+		if (kb <= 100) {
+			byte[] array = met.getBytesFromFile(file);
+			obj.setFotoByte(array);
+			obj.setFotoFileName(obj.getDni_jugador());
+			msg = service.uptJugador(obj);
+			if (msg == "ok") {
+				mostrar = true;
+				msg = "Actualizacion Existosa";
+				listado();
+				return "modifica";
+			} else {
+				jugador = obj;
+				listarDatos();
+				mostrar = true;
+				return "modError";
+			}
+		} else {
+			jugador = obj;
+			listarDatos();
+			mostrar = true;
+			msg = "Tamaño de la foto excede los 100KB";
+			return "modError";
 		}
 	}
 	

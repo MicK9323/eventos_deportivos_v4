@@ -112,7 +112,7 @@ public class MySqlJugadorDAO implements JugadorDAO {
 				obj.setSexo(rs.getString(4));
 				obj.setTelfMovil(rs.getString(5));
 				obj.setNomSede(rs.getString(6));
-				obj.setEstado(rs.getBoolean(7));
+				obj.setEstado(rs.getInt(7));
 				lista.add(obj);
 			}
 		} catch (Exception e) {
@@ -280,7 +280,7 @@ public class MySqlJugadorDAO implements JugadorDAO {
 				cstm.setNull(15, Types.VARCHAR);
 			}
 			System.out.println(obj.getEstado());
-			cstm.setBoolean(16, obj.getEstado());
+			cstm.setInt(16, obj.getEstado());
 			estado = cstm.executeUpdate();
 			if(estado != -1) {
 				msg = "ok";
@@ -358,7 +358,7 @@ public class MySqlJugadorDAO implements JugadorDAO {
 				obj.setDomicilio(rs.getString(12));
 				obj.setEmail(rs.getString(13));
 				obj.setCodSede(rs.getString(14));						
-				obj.setEstado(rs.getBoolean(15));
+				obj.setEstado(rs.getInt(15));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
