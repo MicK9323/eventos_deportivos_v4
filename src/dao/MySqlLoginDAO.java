@@ -53,6 +53,7 @@ public class MySqlLoginDAO implements loginDAO{
 				}				
 				obj.setEstado(rs.getBoolean(18));
 				obj.setNomSede(rs.getString(19));
+				System.out.println(rs.getBoolean(18));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

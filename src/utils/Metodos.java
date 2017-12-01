@@ -44,23 +44,18 @@ public class Metodos {
 		return cadena;
 	}
 	
-	
-	// CIFRAR EN MD5
-	public String cifrarCadena(String cadena) {
-		String cifrado = "";
-		try {
-			MessageDigest md = MessageDigest.getInstance("MD5");
-			byte[] bytesArray = md.digest(cadena.getBytes());
-			BigInteger number = new BigInteger(1, bytesArray);
-			cifrado = number.toString(16);
-			while (cifrado.length() < 32) {
-				cifrado = "0" + cifrado;
+	//FECHA MYSQL
+		public String fechaMysql(String fecha) {
+			SimpleDateFormat parseador = new SimpleDateFormat("dd/MM/yyyy");
+			SimpleDateFormat formateador = new SimpleDateFormat("yyyy-MM-dd");
+			Date date = null;
+			try {
+				date = parseador.parse(fecha);
+			} catch (ParseException e) {
+				e.printStackTrace();
 			}
-		} catch (NoSuchAlgorithmException e) {
-			e.printStackTrace();
+			return formateador.format(date);
 		}
-		return cifrado;
-	}
 
 	//IMPORTAR DE CSV
 	public ArrayList<JugadorDTO> dataCSV(File archivo){
@@ -102,30 +97,6 @@ public class Metodos {
 			}
 		}
 		return data;
-	}
-	//FECHA NORMAL
-	public String fechaNormal(String fecha) {
-		SimpleDateFormat parseador = new SimpleDateFormat("yyyy-MM-dd");
-		SimpleDateFormat formateador = new SimpleDateFormat("dd/MM/yyyy");
-		Date date = null;
-		try {
-			date = parseador.parse(fecha);
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
-		return formateador.format(date);
-	}
-	//FECHA MYSQL
-	public String fechaMysql(String fecha) {
-		SimpleDateFormat parseador = new SimpleDateFormat("dd/MM/yyyy");
-		SimpleDateFormat formateador = new SimpleDateFormat("yyyy-MM-dd");
-		Date date = null;
-		try {
-			date = parseador.parse(fecha);
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
-		return formateador.format(date);
 	}
 
 	public byte[] getBytesFromFile(File file) throws IOException {

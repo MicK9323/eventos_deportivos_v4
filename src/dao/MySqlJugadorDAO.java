@@ -273,12 +273,13 @@ public class MySqlJugadorDAO implements JugadorDAO {
 			if(obj.getFotoByte() != null) {
 				blob = new SerialBlob(obj.getFotoByte());
 				filename = obj.getFotoFileName();
-				cstm.setBlob(15, blob);
-				cstm.setString(16, filename);
+				cstm.setBlob(14, blob);
+				cstm.setString(15, filename);
 			}else {
-				cstm.setNull(15, Types.BLOB);
-				cstm.setNull(16, Types.VARCHAR);
-			}	
+				cstm.setNull(14, Types.BLOB);
+				cstm.setNull(15, Types.VARCHAR);
+			}
+			System.out.println(obj.getEstado());
 			cstm.setBoolean(16, obj.getEstado());
 			estado = cstm.executeUpdate();
 			if(estado != -1) {

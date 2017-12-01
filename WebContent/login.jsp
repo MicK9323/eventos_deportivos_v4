@@ -49,7 +49,7 @@
 					  		<label class="control-label login-label"><span class="glyphicon glyphicon-lock"></span> CONTRASEÑA:</label>
 					  	</div>
 							<div class="col-md-8">
-								<s:password id="password" name="clave"  cssClass="form-control text-uppercase" placeholder="Password" />
+								<s:password id="password" name="clave"  cssClass="form-control" placeholder="Password" />
 							</div>
 						</div>
 						<s:if test="mostrar == true">

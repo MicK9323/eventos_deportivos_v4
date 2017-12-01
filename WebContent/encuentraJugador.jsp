@@ -32,7 +32,7 @@
 	</div>
 	<!-- DATOS DE JUGADOR -->
 	<div class="container">
-		<form class="form-horizontal" id="formJugador" action="registraJugador" method="post" enctype="multipart/form-data">
+		<form class="form-horizontal" id="formJugador" action="actualizaDatos" method="post" enctype="multipart/form-data">
 			<div class="row">
 				<div class="col-md-12">
 					<div class="panel-group">
@@ -59,7 +59,7 @@
 											  	<label for="dni" class="control-label">PASSWORD: </label>
 											  </div>
 											  <div class="col-md-4">
-											  	<s:password name="jugador.clave" id="clave" cssClass="form-control" required="true" />
+											  	<s:textfield  name="jugador.clave" id="clave" cssClass="form-control" required="true" />
 											  </div>
 											</div>
 											<!-- NOMBRES -->
@@ -220,12 +220,14 @@
 									</div>
 							</div>
 							<div class="panel-footer">
-							<div class="text-left">
-									<a href="listaJugadores" class="btn btn-primary">Volver</a>
-								</div>
-								<div class="text-right">
-									<input type="submit" class="btn btn-success" name="guardar" id="guardar" value="Guardar">
-									<input type="reset" class="btn btn-warning" name="cancelar" id="cancelar" value="Cancelar">
+								<div class="text-right">									
+									<input type="submit" class="btn btn-success" name="guardar" id="guardar" value="Aplicar">
+									<s:if test="#session.usuario.idRol != 3">
+										<a href="index.jsp" class="btn btn-warning" name="cancelar" id="cancelar">Volver</a>
+									</s:if>
+									<s:else>
+										<a href="organizadores.jsp" class="btn btn-warning" name="cancelar" id="cancelar">Volver</a>
+									</s:else>									
 								</div>
 							</div>
 						</div>

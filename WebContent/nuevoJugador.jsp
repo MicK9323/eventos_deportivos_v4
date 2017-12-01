@@ -201,10 +201,8 @@
 									</div>
 							</div>
 							<div class="panel-footer">
-							<div class="text-left">
-									<a href="listaJugadores" class="btn btn-primary">Volver</a>
-								</div>
 								<div class="text-right">
+									<a href="listaJugadores" class="btn btn-primary">Volver al listado</a>
 									<input type="submit" class="btn btn-success" name="guardar" id="guardar" value="Guardar">
 									<input type="reset" class="btn btn-warning" name="cancelar" id="cancelar" value="Limpiar">
 								</div>

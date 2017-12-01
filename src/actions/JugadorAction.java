@@ -105,25 +105,25 @@ public class JugadorAction extends ActionSupport {
 	}
 
 	@Action(value = "/mostrarJugador", results = { 
-			@Result(name = "encuentra", location = "/encuentraJugador.jsp"),
-			@Result(name = "noencuentra", location = "/index.jsp") 
+			@Result(name = "muestra", location = "/encuentraJugador.jsp"),
+			@Result(name = "nomuestra", location = "/index.jsp") 
 			})
 	public String mostrarJugador() {
 		jugador = (JugadorDTO) session.get("usuario");
 		if (jugador != null) {
 			listarDatos();
-			return "encuentra";
+			return "muestra";
 		} else {
 			mostrar = true;
 			msg = "Jugador no encontrado";
 			listado();
-			return "noencuentra";
+			return "nomuestra";
 		}
 	}
 	
 	@Action(value = "mostrarFoto",results={@Result(
 			params={"inputName","foto"}, 
-			name = "getFoto", type="stream")})
+			name = "muestraFoto", type="stream")})
 	public String verFoto() throws Exception {
 		try {
 			JugadorDTO obj =  (JugadorDTO) session.get("usuario");
@@ -132,7 +132,7 @@ public class JugadorAction extends ActionSupport {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return "getFoto";
+		return "muestraFoto";
 	}
 	
 	@Action(value = "/buscaJugador", results = { 
@@ -166,37 +166,39 @@ public class JugadorAction extends ActionSupport {
 	}
 	
 	
-	@Action(value = "/actualizaJugador", results = { 
+	@Action(value = "/actualizaDatos", results = { 
 			@Result(name = "actualiza", location = "/encuentraJugador.jsp"),
-			@Result(name = "actualizalista", location = "/listaJugadores.jsp"),
-			@Result(name = "regError", location = "/nuevoJugador.jsp")
+			@Result(name = "uptError", location = "/encuentraJugador.jsp")
 	})
-	public String actualizaJugador() throws IOException {
+	public String actualizaDatos() throws IOException {
 		JugadorDTO obj = jugador;
+		InputStream img = foto;
 		File file = obj.getFoto();
 		int kb = met.getLongfile(file);
 		if (kb <= 100) {
 			byte[] array = met.getBytesFromFile(file);
 			obj.setFotoByte(array);
 			obj.setFotoFileName(obj.getDni_jugador());
-			msg = service.regJugador(obj);
+			msg = service.uptJugador(obj);
 			if (msg == "ok") {
 				mostrar = true;
-				msg = "Registro Existoso";
-				lista = service.listaJugadores();
-				return "registra";
+				msg = "Actualizacion Existosa";
+				listarDatos();
+				return "actualiza";
 			} else {
+				foto = img;
 				jugador = obj;
 				listarDatos();
 				mostrar = true;
-				return "regError";
+				return "uptError";
 			}
 		} else {
+			foto = img;
 			jugador = obj;
 			listarDatos();
 			mostrar = true;
 			msg = "Tamaño de la foto excede los 100KB";
-			return "regError";
+			return "uptError";
 		}
 	}
 	
