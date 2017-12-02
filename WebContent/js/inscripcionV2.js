@@ -24,7 +24,13 @@ $(document).ready(function() {
   $('#validador').hide();
 	$('#hoy').text(hoy);
   //-----------------------------------------------------------
-
+	$("#NomEquipo").attr("maxlength", 25);
+	$("#dniJugador").attr("maxlength", 8);
+	//Solo Números
+	$('#dniJugador').on('input', function () { 
+		    this.value = this.value.replace(/[^0-9]/g,'');
+		});
+	
   //--------------BUSCADOR-----------------------------------
   (function ($) {
     $('#buscador').keyup(function () {

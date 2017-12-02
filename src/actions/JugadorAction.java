@@ -55,7 +55,7 @@ public class JugadorAction extends ActionSupport {
 			} else {
 				lista = service.listaJugadores();
 				mostrar = true;
-				msg = "Error en la importacion";
+				msg = "Error en la importación";
 			}
 		} else {
 			lista = service.listaJugadores();
