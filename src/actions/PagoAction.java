@@ -58,7 +58,7 @@ public class PagoAction extends ActionSupport{
 			 for(JugadorDTO x : equipo) {
 				 status = "Enviando Correos";
 				 String nombre = x.getNom_jugador();
-				 new Correos().enviarBoleta("i201522941@cibertec.edu.pe", datos, monto, nombre);
+				 new Correos().enviarBoleta(x.getEmail(), datos, monto, nombre);
 			 }
 			 status ="Finalizado";
 			 return "pagado";

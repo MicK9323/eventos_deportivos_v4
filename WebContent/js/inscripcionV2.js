@@ -27,10 +27,10 @@ $(document).ready(function() {
 	$("#NomEquipo").attr("maxlength", 25);
 	$("#dniJugador").attr("maxlength", 8);
 	//Solo Números
-	$('#dniJugador').on('input', function () { 
+	$('#dniJugador').on('input', function () {
 		    this.value = this.value.replace(/[^0-9]/g,'');
 		});
-	
+
   //--------------BUSCADOR-----------------------------------
   (function ($) {
     $('#buscador').keyup(function () {
@@ -353,29 +353,33 @@ $(document).ready(function() {
     							+"&delegado.dni_jugador="+dniDelegado,
     					success: function(data){
     						var trama = data.mensaje;
-    						var numFicha = trama.substr(0,5);
-    						var codEquipo = trama.substr(5,5);
-    						for (var i = 0; i < arrayJugadores.length; i++) {
-    							$.ajax({
-    								type: "POST",
-    								url: "registrarEquipo",
-    								data: "equipo.cod_equipo="+codEquipo+"&jugador.dni_jugador="+arrayJugadores[i],
-    								success: function(data){
-//                      var dni = arrayJugadores[i].toString();
-//                      alertify.success('Jugador con DNI: '+dni+' registrado en '+nomEquipo);
-    								},
-    								error: function(data){
-    									alertify.error('Error en el equipo');
-    								}
-    							})
-    				     }
-                alertify.confirm('Su equipo ha sido preinscrito. Su codigo de ficha es: '+numFicha
-    														+' Su codigo de Equipo es: '+codEquipo+'. Dispone de 48 horas para realizar el pago de'
-                                +' su inscripción. Desea pagar ahora mismo?',function(){
-                                  enviarMonto('pagos.jsp',numFicha);
-                                },function(){
-                                  $(location).attr("href","cargarEventos");
-                                })
+    						if(trama.length == 10){
+                  var numFicha = trama.substr(0,5);
+      						var codEquipo = trama.substr(5,5);
+      						for (var i = 0; i < arrayJugadores.length; i++) {
+      							$.ajax({
+      								type: "POST",
+      								url: "registrarEquipo",
+      								data: "equipo.cod_equipo="+codEquipo+"&jugador.dni_jugador="+arrayJugadores[i],
+      								success: function(data){
+  //                      var dni = arrayJugadores[i].toString();
+  //                      alertify.success('Jugador con DNI: '+dni+' registrado en '+nomEquipo);
+      								},
+      								error: function(data){
+      									alertify.error('Error en el equipo');
+      								}
+      							})
+      				     }
+                  alertify.confirm('Su equipo ha sido preinscrito. Su codigo de ficha es: '+numFicha
+      														+' Su codigo de Equipo es: '+codEquipo+'. Dispone de 48 horas para realizar el pago de'
+                                  +' su inscripción. Desea pagar ahora mismo?',function(){
+                                    enviarMonto('pagos.jsp',numFicha);
+                                  },function(){
+                                    $(location).attr("href","cargarEventos");
+                                  });
+                }else{
+                  alertify.error(trama);
+                }
     					},
     					error: function(data){
     						alertify.error('Error en la ficha');

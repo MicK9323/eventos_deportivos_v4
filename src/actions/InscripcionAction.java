@@ -104,8 +104,8 @@ public class InscripcionAction extends ActionSupport {
 			ficha = mensaje.substring(0, 5);
 			equipo = mensaje.substring(5, 5);
 			JugadorDTO obj = (JugadorDTO) session.get("usuario");
-			nombre = obj.getNom_jugador();
-			new Correos().enviarConfirmacion("i201520478@cibertec.edu.pe", ficha, equipo, nombre);
+			nombre = obj.getNom_jugador();			
+			new Correos().enviarConfirmacion(delegado.getEmail(), ficha, equipo, nombre);
 		}
 		return "inscribeEquipo";
 	}
