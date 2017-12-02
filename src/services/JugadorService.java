@@ -38,8 +38,8 @@ public class JugadorService {
 	public String uptJugador(JugadorDTO x) {
 		return daoJugador.uptJugador(x);
 	}
-	public String delJugador(JugadorDTO x) {
-		return daoJugador.delJugador(x);
+	public String delJugador(String dni) {
+		return daoJugador.delJugador(dni);
 	}
 	public JugadorDTO buscarJugador(String dni) {
 		return daoJugador.buscarJugador(dni);

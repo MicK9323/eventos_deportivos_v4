@@ -36,7 +36,6 @@ public class JugadorAction extends ActionSupport {
 	private String msg;
 	private boolean mostrar = false;
 	private InputStream foto;
-	private Map<String, Object> session	= ActionContext.getContext().getSession();
 	
 	@Action(value = "/listaJugadores", results = { @Result(name = "lista", location = "/listaJugadores.jsp") })
 	public String listaJugadores() {
@@ -111,7 +110,7 @@ public class JugadorAction extends ActionSupport {
 			@Result(name = "nomuestra", location = "/index.jsp") 
 			})
 	public String mostrarJugador() {
-		jugador = (JugadorDTO) session.get("usuario");
+		jugador = service.buscarJugador(met.decodificarBase64(dni));
 		if (jugador != null) {
 			listarDatos();
 			return "muestra";
@@ -128,7 +127,7 @@ public class JugadorAction extends ActionSupport {
 			name = "muestraFoto", type="stream")})
 	public String verFoto() throws Exception {
 		try {
-			JugadorDTO obj =  (JugadorDTO) session.get("usuario");
+			JugadorDTO obj =  service.buscarFoto(met.decodificarBase64(dni));
 			byte[] array = obj.getFotoByte();
 			foto= new ByteArrayInputStream(array);
 		} catch (Exception e) {
@@ -183,7 +182,7 @@ public class JugadorAction extends ActionSupport {
 			msg = service.uptJugador(obj);
 			if (msg == "ok") {
 				mostrar = true;
-				msg = "Actualización Existosa";
+				msg = "Actualizacion Existosa";
 				listarDatos();
 				return "actualiza";
 			} else {
@@ -232,6 +231,19 @@ public class JugadorAction extends ActionSupport {
 			msg = "Tamaño de la foto excede los 100KB";
 			return "modError";
 		}
+	}
+	
+	@Action(value="/delJugador",results= {
+			@Result(name="eliminado",type="json")
+	})
+	public String delJugador() {
+		msg = service.delJugador(dni);
+//		if(msg=="ok") {
+//			listado();
+//			mostrar = true;
+//			msg = "Jugador eliminado";
+//		}
+		return "eliminado";
 	}
 	
 	

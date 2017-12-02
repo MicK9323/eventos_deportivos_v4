@@ -8,9 +8,7 @@
 <title>Listado de Jugadores</title>
 <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="css/bootstrap-theme.min.css">
-<!-- <link rel="stylesheet" type="text/css" href="css/bootstrapValidator.min.css"> -->
 <link rel="stylesheet" type="text/css" href="css/data-tables/dataTables.bootstrap.css">
-<!-- <link rel="stylesheet" type="text/css" href="css/datepicker.min.css"> -->
 <link rel="stylesheet" type="text/css" href="css/alertify/alertify.min.css">
 <link rel="stylesheet" type="text/css" href="css/alertify/themes/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="css/back.css">
@@ -70,12 +68,15 @@
 							</thead>
 							<tbody id="lstJugadores">
 								<s:iterator value="lista">
+										<%-- <s:url id="idEliminar" action="delJugador">
+				 							<s:param name="dni" value="met.codificarBase64(dni_jugador)"/>
+										 </s:url> --%>
 										<s:url id="idBuscar" action="buscaJugador">
 				 							<s:param name="dni" value="met.codificarBase64(dni_jugador)"/>
 										 </s:url>
 									<s:if test="estado == 1">
 										<tr>
-											<td class="text-center"> <s:property value="dni_jugador" /> </td>
+											<td class="text-center dni"> <s:property value="dni_jugador" /> </td>
 											<td> <s:property value="nom_jugador" /> </td>
 											<td class="text-center"> <s:property value="edad" /> </td>
 											<td class="text-center"> <s:property value="sexo" /> </td>
@@ -83,20 +84,20 @@
 											<td class="text-center"> <s:property value="nomSede" /> </td>
 											<td class="text-center"> <a class="habilitado"><span class="glyphicon glyphicon-ok"></span></a> </td>
 											<td class="text-center"><s:a href="%{idBuscar}" cssClass="editar" ><span class="glyphicon glyphicon-pencil"></span></s:a></td>
-											<td class="text-center"><a class="remove"><span class="glyphicon glyphicon-remove"></span></a></td>
+											<td class="text-center"><a class="remove" ><span class="glyphicon glyphicon-remove"></span></a></td>
 										</tr>
 									</s:if>
 									<s:if test="estado == 0">
 										<tr class="fondoRojo">
-											<td class="text-center"> <s:property value="dni_jugador" /> </td>
+											<td class="text-center dni"> <s:property value="dni_jugador" /> </td>
 											<td> <s:property value="nom_jugador" /> </td>
 											<td class="text-center"> <s:property value="edad" /> </td>
 											<td class="text-center"> <s:property value="sexo" /> </td>
 											<td class="text-center"> <s:property value="telfMovil" /> </td>
 											<td class="text-center"> <s:property value="nomSede" /> </td>
 											<td class="text-center"> <a class="deshabilitado"><span class="glyphicon glyphicon-ban-circle"></span></a> </td>
-											<td><s:a href="%{idBuscar}" cssClass="editar" ><span class="glyphicon glyphicon-pencil"></span></s:a></td>
-											<td class="text-center"><a class="remove"><span class="glyphicon glyphicon-remove"></span></a></td>
+											<td class="text-center"><s:a href="%{idBuscar}" cssClass="editar" ><span class="glyphicon glyphicon-pencil"></span></s:a></td>
+											<td class="text-center"><a class="remove" ><span class="glyphicon glyphicon-remove"></span></a></td>
 										</tr>
 									</s:if>
 								</s:iterator>
@@ -141,7 +142,6 @@
 			            </div>
 									<br>
 									<s:submit value="Importar" cssClass="btn btn-primary" />
-									<!-- <button type="button" class="btn btn-primary" id="btnCargar" name="button">Importar Datos</button> -->
 								</form>
 							</div>
 					 	</div>
@@ -157,11 +157,43 @@
 	<script type="text/javascript" src="js/data-tables/jquery.dataTables.js"></script>
 	<script type="text/javascript" src="js/data-tables/dataTables.bootstrap.js"></script>
 	<script type="text/javascript" src="js/alertify/alertify.min.js"></script>
-	<script type="text/javascript" src="js/cargar.js"></script>
 	<script>
 		$(document).ready(function() {
 		  $('#tbJugadores').dataTable();
 		});
+		 //ELIMINAR SEDE
+		  $('.remove').click(function(){	 
+		    var dni = $(this).parent().parent().find('.dni').text().trim();
+		    console.log(dni);
+		    alertify.confirm('Desea eliminar este jugador?',
+		    function(){//SI PULSA OK
+		      $.ajax({
+		        type:"POST",
+		        url:'delJugador',
+		        data:"dni="+dni,
+		        success:function(data){
+		          var msg = data.msg;
+		          console.log(msg);
+		          if(msg == 'ok'){
+		            alertify.success('Jugador eliminado!');
+		            setTimeout(function(){
+		              $(location).attr("href","listaJugadores");
+		            },1000);
+		          }else{
+		        	 alertify.error("No se puede eliminar este Jugador");
+		          }
+		        },
+		        error:function(data){
+		          var msg = data.msg;
+		          alertify.error("Error al Eliminar Jugador");
+		        }
+		      });
+		    },function(){//SI PULSA CANCELAR
+		      alertify.error('Eliminacion Cancelada!');
+		    })
+		  });
 	</script>
+	<script type="text/javascript" src="js/cargar.js"></script>
+	
 </body>
 </html>

@@ -32,7 +32,7 @@
 	</div>
 	<!-- DATOS DE JUGADOR -->
 	<div class="container">
-		<form class="form-horizontal" id="formJugador" action="registraJugador" method="post" enctype="multipart/form-data">
+		<form class="form-horizontal" id="formJugador" action="actualizaUsuario" method="post" enctype="multipart/form-data">
 			<div class="row">
 				<div class="col-md-12">
 					<div class="panel-group">
@@ -205,7 +205,7 @@
 													<div class="form-group">
 														<label class="control-label">Estado</label>
 														<s:select name="jugador.estado"
-																list="#{'1':'HABILITADO','2':'DESHABILITADO''}"
+																list="#{'1':'HABILITADO','0':'DESHABILITADO'}"
 																cssClass="form-control text-uppercase"/>
 													</div>
 												</div>

@@ -87,12 +87,5 @@ $(document).ready(function() {
 			return;
 		} 
   });
-	  
-	  
-
- 
-  
- 
-  
   
 });

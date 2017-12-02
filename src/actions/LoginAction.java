@@ -65,6 +65,14 @@ public class LoginAction extends ActionSupport implements SessionAware{
 		}		
 	}
 	
+	public Metodos getMet() {
+		return met;
+	}
+
+	public void setMet(Metodos met) {
+		this.met = met;
+	}
+
 	@Action(value="/cerrar",results={
 			@Result(name="logout",location="/login.jsp")
 	})

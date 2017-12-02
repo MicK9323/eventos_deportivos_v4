@@ -52,6 +52,7 @@
 											  <div class="col-md-4">
 											  	<s:textfield name="jugador.dni_jugador" id="dni" cssClass="form-control" placeholder="DNI" readonly="true" />
 											  </div>
+											  <s:hidden name="jugador.estado" /> 
 											</div>
 											<!-- PASSWORD -->
 											<div class="form-group">
@@ -106,11 +107,12 @@
 													<label for="sexo" class="control-label">Sexo: </label>
 												</div>
 												<div class="col-md-5">
-													<s:select name="jugador.sexo"
+													<s:textfield name="jugador.sexo" id="sexo" cssClass="form-control" readonly="true" />
+													<%-- <s:select name="jugador.sexo"
 														list="#{'MASCULINO':'MASCULINO','FEMENINO':'FEMENINO'}"
 														headerKey="-1"
 														headerValue="[Seleccione]" id="sexo" cssClass="form-control" readonly="true">
-													</s:select>
+													</s:select> --%>
 												</div>
 											</div>
 											<!-- ESTADO CIVIL -->
@@ -119,12 +121,13 @@
 													<label for="sexo" class="control-label">Est. Civil: </label>
 												</div>
 												<div class="col-md-4">
-													<s:select name="jugador.estCivil"
+													<s:textfield name="jugador.estCivil" id="estCivil" cssClass="form-control" readonly="true" />
+													<%-- <s:select name="jugador.estCivil"
 														list="#{'SOLTERO':'SOLTERO','CASADO':'CASADO',
 																'VIUDO':'VIUDO','DIVORCIADO':'DIVORCIADO'}"
 														headerKey="-1"
 														headerValue="[Seleccione]" id="estCivil" cssClass="form-control">
-													</s:select>
+													</s:select> --%>
 												</div>
 											</div>
 											<!-- TELEFONOS -->
@@ -178,7 +181,7 @@
 												</s:if>
 												<s:else>
 													<div class="thumbnail">
-														<img class="img-responsive" src=" mostrarFoto?dni=<s:property value="jugador.dni_jugador" /> " id="imagePreview" alt="">
+														<img class="img-responsive" src=" buscarFoto?dni=<s:property value="met.codificarBase64(jugador.dni_jugador)" /> " id="imagePreview" alt="">
 													</div>
 												</s:else>													
 												</div>
@@ -195,20 +198,23 @@
 													</div> -->
 													<div class="form-group">
 														<label class="control-label">Sedes</label>
-														<s:select list="sedes" name="jugador.codSede"
+														<s:textfield name="jugador.codSede" id="codSede" cssClass="form-control" readonly="true" />
+														<%-- <s:select list="sedes" name="jugador.codSede"
 															 listKey="codSede"
 															 listValue="nomSede"
 															 headerKey="-1"
-															 headerValue="[SELECCIONE]" cssClass="form-control text-uppercase" readonly="true"/>
+															 headerValue="[SELECCIONE]" cssClass="form-control text-uppercase" readonly="true"/> --%>
 													</div>
-													<div class="form-group">
+													<%-- <div class="form-group">
 														<label class="control-label">Perfil</label>
+														<s:textfield name="jugador.codSede" id="codSede" cssClass="form-control" readonly="true" />
 														<s:select list="roles" name="jugador.idRol"
 															 listKey="idRol"
 															 listValue="nomRol"
 															 headerKey="-1"
 															 headerValue="[SELECCIONE]" cssClass="form-control text-uppercase" readonly="true"/>
-													</div>
+														
+													</div> --%>
 												</div>
 												<div class="col-md-12">
 													<s:if test="mostrar == true">
@@ -223,10 +229,10 @@
 								<div class="text-right">									
 									<input type="submit" class="btn btn-success" name="guardar" id="guardar" value="Aplicar">
 									<s:if test="#session.usuario.idRol != 3">
-										<a href="index.jsp" class="btn btn-warning" name="cancelar" id="cancelar">Volver</a>
+										<a href="index.jsp" class="btn btn-warning"  id="cancelar">Volver</a>
 									</s:if>
 									<s:else>
-										<a href="organizadores.jsp" class="btn btn-warning" name="cancelar" id="cancelar">Volver</a>
+										<a href="organizadores.jsp" class="btn btn-warning"  id="cancelar">Volver</a>
 									</s:else>									
 								</div>
 							</div>
@@ -236,56 +242,6 @@
 			</div>
 		</form>
 	</div>
-
-	<!-- VENTANAS MODALES -->
-	<!-- SEDES -->
-	<%-- <div class="modal fade" id="sedesModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<div class="col-md-4">
-						<h4><strong>SEDES</strong></h4>
-					</div>
-					<div class="col-md-8" align="right">
-						<!-- BOTON BUSCAR -->
-						<div class="col-md-12">
-							<div class="input-group">
-								<span class="input-group-addon">Buscar</span>
-								<input type="text" id="buscaSedes" class="form-control text-uppercase" placeholder="Buscar Sede">
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="modal-body sedes">
-					<!-- VERIFICA SI EL ARREGLO NO ESTA VACIO -->
-					<s:if test="sedes.isEmpty">
-						<div class="alert alert-danger" role="alert"> <strong>No hay sedes registradas!</strong></div>
-					</s:if>
-					<table class="table table-striped table-condensed table-hover">
-						<thead>
-							<tr>
-								<td class="text-center"><strong>Cod. Sede</strong></td>
-								<td class="text-center"><strong>Sede</strong></td>
-							</tr>
-						</thead>
-						<tbody id="tbSedes">
-							<s:iterator>
-
-							</s:iterator>
-						</tbody>
-					</table>
-				</div>
-				<div class="modal-footer">
-					<div class="col-md-8 text-left">
-						<div id="addSede" class="btn btn-primary" data-toggle="modal" data-target="#sedesModal">Aceptar</div>
-						<div class="btn btn-warning" id="btnLimpiarSedes">Limpiar</div>
-						<div data-toggle="modal" data-target="#sedesModal" class="btn btn-default btnCancelar">Cancelar</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div> --%>
-
 
 
 	<script type="text/javascript" src="js/jquery.js"></script>

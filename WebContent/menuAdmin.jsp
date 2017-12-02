@@ -1,4 +1,5 @@
 <%@page import="beans.JugadorDTO"%>
+<%@page import="utils.Metodos" %>
 <%@ taglib uri="/struts-tags" prefix="s" %>
 	<jsp:include page="valida.jsp" />
 	<nav class="navbar navbar-default navbar-fixed-top">
@@ -44,7 +45,7 @@
 	
 			<ul class="nav navbar-nav navbar-right">
 				<s:url id="idBuscar" action="mostrarJugador">
-				 	<%-- <s:param name="dni" value="#session.usuario.dni_jugador"/> --%>
+				 	<s:param name="dni" value="met.codificarBase64(#session.usuario.dni_jugador)"/>
 				</s:url>
 				<li><a><span class="glyphicon glyphicon-briefcase"></span> <s:property value="#session.opcionesEventos.get(0).nomRol" /></a></li>
 				<li><s:a href="%{idBuscar}"><span class="glyphicon glyphicon-user"></span> <s:property value="#session.usuario.nom_jugador" /> <s:property value="#session.usuario.ape_jugador" /></s:a></li>

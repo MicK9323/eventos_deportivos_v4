@@ -189,13 +189,6 @@ public class MySqlJugadorDAO implements JugadorDAO {
 			cstm = conn.prepareCall(sql);
 			Blob blob = null;
 			String filename= null;
-//			if(obj.getFotoByte() != null) {
-//				blob = new SerialBlob(obj.getFotoByte());
-//				filename = obj.getFotoFileName();
-//			}else {
-//				blob = null;
-//				filename = null;
-//			}	
 			cstm.setString(1, obj.getDni_jugador());
 			cstm.setString(2, met.codificarBase64(obj.getDni_jugador()));
 			cstm.setInt(3, obj.getIdRol());
@@ -249,14 +242,7 @@ public class MySqlJugadorDAO implements JugadorDAO {
 			String sql = "{ call sp_uptJugador(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) }";			
 			cstm = conn.prepareCall(sql);
 			Blob blob = null;
-			String filename= null;
-//			if(obj.getFotoByte() != null) {
-//				blob = new SerialBlob(obj.getFotoByte());
-//				filename = obj.getFotoFileName();
-//			}else {
-//				blob = null;
-//				filename = null;
-//			}				
+			String filename= null;			
 			cstm.setString(1, obj.getDni_jugador());
 			cstm.setString(2, met.codificarBase64(obj.getClave()));
 			cstm.setString(3, obj.getNom_jugador());
@@ -301,7 +287,7 @@ public class MySqlJugadorDAO implements JugadorDAO {
 	}
 
 	@Override
-	public String delJugador(JugadorDTO x) {
+	public String delJugador(String dni) {
 		String msg = "";
 		Connection conn = null;
 		CallableStatement cstm = null;
@@ -310,7 +296,7 @@ public class MySqlJugadorDAO implements JugadorDAO {
 			conn = Conexion.conectar();
 			String sql = "{ call sp_delJugador(?) }";
 			cstm = conn.prepareCall(sql);
-			cstm.setString(1, x.getDni_jugador());
+			cstm.setString(1, dni);
 			estado = cstm.executeUpdate();
 			if(estado != -1) {
 				msg = "ok";
