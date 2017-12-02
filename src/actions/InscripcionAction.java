@@ -19,6 +19,7 @@ import beans.EventoDTO;
 import beans.JugadorDTO;
 import beans.ModalidadDTO;
 import services.InscripcionService;
+import services.JugadorService;
 import utils.Correos;
 import utils.Metodos;
 
@@ -104,8 +105,9 @@ public class InscripcionAction extends ActionSupport {
 			ficha = mensaje.substring(0, 5);
 			equipo = mensaje.substring(5, 5);
 			JugadorDTO obj = (JugadorDTO) session.get("usuario");
-			nombre = obj.getNom_jugador();			
-			new Correos().enviarConfirmacion(delegado.getEmail(), ficha, equipo, nombre);
+			nombre = obj.getNom_jugador();
+			JugadorDTO x = new JugadorService().buscarJugador(delegado.getDni_jugador());
+			new Correos().enviarConfirmacion(x.getEmail(), ficha, equipo, nombre);
 		}
 		return "inscribeEquipo";
 	}
