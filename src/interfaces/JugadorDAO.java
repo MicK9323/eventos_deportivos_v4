@@ -12,7 +12,6 @@ public interface JugadorDAO {
 	public List<JugadorDTO> listaJugadores();
 	public String importarJugadores(ArrayList<JugadorDTO> data);
 	
-	
 	//CRUD
 	public String regJugador(JugadorDTO x);
 	public String uptJugador(JugadorDTO x);

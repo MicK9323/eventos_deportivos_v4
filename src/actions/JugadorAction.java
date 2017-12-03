@@ -50,8 +50,8 @@ public class JugadorAction extends ActionSupport {
 			String confirm = service.importarJugadores(data);
 			if (confirm == "ok") {
 				lista = service.listaJugadores();
-				mostrar = true;
-				msg = "Importacion Correcta";
+//				mostrar = true;
+//				msg = "Importacion Correcta";
 			} else {
 				lista = service.listaJugadores();
 				mostrar = true;

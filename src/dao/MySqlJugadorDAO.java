@@ -137,12 +137,12 @@ public class MySqlJugadorDAO implements JugadorDAO {
 		String msg = "";
 		Connection conn = null;
 		CallableStatement cstm = null;
-		int estado = 0;
+		int estado = -1;
 		try {
 			conn = Conexion.conectar();
 			String sql = "{ call sp_importarJugador(?,?,?,?,?,?,?,?,?,?,?,?,?,?) }";
-			for(JugadorDTO obj : data) {
-				cstm = conn.prepareCall(sql);
+			cstm = conn.prepareCall(sql);
+			for(JugadorDTO obj : data) {				
 				cstm.setString(1, obj.getDni_jugador());
 				cstm.setString(2, obj.getClave());
 				cstm.setInt(3, obj.getIdRol());
@@ -158,9 +158,11 @@ public class MySqlJugadorDAO implements JugadorDAO {
 				cstm.setString(13, obj.getEmail());
 				cstm.setString(14, obj.getCodSede());
 				estado += cstm.executeUpdate();
+				System.out.println(""+estado);
 			}
-			if(estado > 0) {
+			if(estado != -1) {
 				msg = "ok";
+				System.out.println(msg);
 			}
 		} catch (Exception e) {
 			msg = e.getMessage();
