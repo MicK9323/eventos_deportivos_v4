@@ -465,7 +465,7 @@ public class Correos {
             message.addRecipient(
                 Message.RecipientType.TO,// a quien va el correo
                 new InternetAddress(destinatario));
-            message.setSubject("PREINSCRIPCION DE EQUIPO");
+            message.setSubject("CONFIRMACION DE PAGO E INSCRIPCION");
             message.setText(
             		"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional //EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\"><html xmlns=\"http://www.w3.org/1999/xhtml\" xmlns:v=\"urn:schemas-microsoft-com:vml\" xmlns:o=\"urn:schemas-microsoft-com:office:office\"><head>\r\n" + 
             		"    <!--[if gte mso 9]><xml>\r\n" + 
