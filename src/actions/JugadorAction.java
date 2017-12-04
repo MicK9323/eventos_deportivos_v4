@@ -46,16 +46,16 @@ public class JugadorAction extends ActionSupport {
 	@Action(value = "/importarData", results = { @Result(name = "importado", location = "/listaJugadores.jsp") })
 	public String importarData() {
 		ArrayList<JugadorDTO> data = met.dataCSV(archivo);
-		if (data != null) {
+		if (data.size() > 0) {
 			String confirm = service.importarJugadores(data);
 			if (confirm == "ok") {
 				lista = service.listaJugadores();
-//				mostrar = true;
-//				msg = "Importacion Correcta";
+				mostrar = true;
+				msg = "Importacion Correcta";
 			} else {
 				lista = service.listaJugadores();
 				mostrar = true;
-				msg = "Error en la importación";
+				msg = confirm;
 			}
 		} else {
 			lista = service.listaJugadores();
@@ -106,8 +106,8 @@ public class JugadorAction extends ActionSupport {
 	}
 
 	@Action(value = "/mostrarJugador", results = { 
-			@Result(name = "muestra", location = "/encuentraJugador.jsp"),
-			@Result(name = "nomuestra", location = "/index.jsp") 
+			@Result(name = "muestra", location = "/buscaJugador.jsp"),
+			@Result(name = "nomuestra", location = "/buscaJugador.jsp") 
 			})
 	public String mostrarJugador() {
 		jugador = service.buscarJugador(met.decodificarBase64(dni));
@@ -167,11 +167,11 @@ public class JugadorAction extends ActionSupport {
 	}
 	
 	
-	@Action(value = "/actualizaDatos", results = { 
-			@Result(name = "actualiza", location = "/encuentraJugador.jsp"),
-			@Result(name = "uptError", location = "/encuentraJugador.jsp")
+	@Action(value = "/actualizarDatos", results = { 
+			@Result(name = "actualiza", location = "/buscaJugador.jsp"),
+			@Result(name = "uptError", location = "/buscaJugador.jsp")
 	})
-	public String actualizaDatos() throws IOException {
+	public String actualizarDatos() throws IOException {
 		JugadorDTO obj = jugador;
 		File file = obj.getFoto();
 		int kb = met.getLongfile(file);
@@ -202,7 +202,7 @@ public class JugadorAction extends ActionSupport {
 	
 	@Action(value = "/actualizaUsuario", results = { 
 			@Result(name = "modifica", location = "/listaJugadores.jsp"),
-			@Result(name = "modError", location = "/encuentraJugador.jsp")
+			@Result(name = "modError", location = "/uptJugador.jsp")
 	})
 	public String actualizaUsuario() throws IOException {
 		JugadorDTO obj = jugador;

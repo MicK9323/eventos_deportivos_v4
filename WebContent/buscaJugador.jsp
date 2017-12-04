@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Datos Usuario</title>
+<title>Actualizar Datos</title>
 <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="css/bootstrap-theme.min.css">
 <link rel="stylesheet" type="text/css" href="css/bootstrap-datepicker.min.css">
@@ -32,7 +32,7 @@
 	</div>
 	<!-- DATOS DE JUGADOR -->
 	<div class="container">
-		<form class="form-horizontal" id="formJugador" action="actualizaDatos" method="post" enctype="multipart/form-data">
+		<form class="form-horizontal" id="formJugador" action="actualizarDatos" method="post" enctype="multipart/form-data">
 			<div class="row">
 				<div class="col-md-12">
 					<div class="panel-group">
@@ -52,15 +52,14 @@
 											  <div class="col-md-4">
 											  	<s:textfield name="jugador.dni_jugador" id="dni" cssClass="form-control" placeholder="DNI" readonly="true" />
 											  </div>
-											  <s:hidden name="jugador.estado" /> 
 											</div>
 											<!-- PASSWORD -->
 											<div class="form-group">
 											  <div class="col-md-2">
-											  	<label for="dni" class="control-label">PASSWORD: </label>
+											  	<label for="dni" class="control-label">Contraseña: </label>
 											  </div>
 											  <div class="col-md-4">
-											  	<s:textfield  name="jugador.clave" id="clave" cssClass="form-control" required="true" />
+											  	<s:textfield name="jugador.clave" id="clave" cssClass="form-control" required="true" />
 											  </div>
 											</div>
 											<!-- NOMBRES -->
@@ -78,7 +77,7 @@
 											  	<label for="apellido" class="control-label">Apellidos: </label>
 											  </div>
 											  <div class="col-md-9">
-											  	<s:textfield name="jugador.ape_jugador" id="apellido" cssClass="form-control text-uppercase" placeholder="Apellidos" readonly="true" />
+											  	<s:textfield name="jugador.ape_jugador" id="apellido" cssClass="form-control text-uppercase" placeholder="Apellidos" readonly="true"/>
 											  </div>
 											</div>
 											<!-- FECHA DE NACIMIENTO Y EDAD -->
@@ -107,12 +106,11 @@
 													<label for="sexo" class="control-label">Sexo: </label>
 												</div>
 												<div class="col-md-5">
-													<s:textfield name="jugador.sexo" id="sexo" cssClass="form-control" readonly="true" />
-													<%-- <s:select name="jugador.sexo"
+													<s:select name="jugador.sexo"
 														list="#{'MASCULINO':'MASCULINO','FEMENINO':'FEMENINO'}"
 														headerKey="-1"
 														headerValue="[Seleccione]" id="sexo" cssClass="form-control" readonly="true">
-													</s:select> --%>
+													</s:select >
 												</div>
 											</div>
 											<!-- ESTADO CIVIL -->
@@ -121,13 +119,12 @@
 													<label for="sexo" class="control-label">Est. Civil: </label>
 												</div>
 												<div class="col-md-4">
-													<s:textfield name="jugador.estCivil" id="estCivil" cssClass="form-control" readonly="true" />
-													<%-- <s:select name="jugador.estCivil"
+													<s:select name="jugador.estCivil"
 														list="#{'SOLTERO':'SOLTERO','CASADO':'CASADO',
 																'VIUDO':'VIUDO','DIVORCIADO':'DIVORCIADO'}"
 														headerKey="-1"
-														headerValue="[Seleccione]" id="estCivil" cssClass="form-control">
-													</s:select> --%>
+														headerValue="[Seleccione]" id="estCivil" cssClass="form-control" readonly="true">														
+													</s:select>
 												</div>
 											</div>
 											<!-- TELEFONOS -->
@@ -174,16 +171,9 @@
 											<!-- FOTO -->
 											<div class="row">
 												<div class="col-md-6">
-												<s:if test="foto.empty">
-													<div class="thumbnail">
-														<img class="img-responsive" src="img/imgUser.png" id="imagePreview" alt="">
-													</div>
-												</s:if>
-												<s:else>
 													<div class="thumbnail">
 														<img class="img-responsive" src=" buscarFoto?dni=<s:property value="met.codificarBase64(jugador.dni_jugador)" /> " id="imagePreview" alt="">
 													</div>
-												</s:else>													
 												</div>
 												<div class="col-md-5">
 													<div class="form-group">
@@ -196,24 +186,30 @@
 														<div data-toggle="modal" data-target="#sedesModal" id="btnSede" class="btn btn-primary">Seleccionar Sede</div>
 														<label class="control-label text-info" id="nomSedes"></label>
 													</div> -->
-													<div class="form-group">
+													<s:hidden name="jugador.codSede" />
+													<%-- <div class="form-group">
 														<label class="control-label">Sedes</label>
-														<s:textfield name="jugador.codSede" id="codSede" cssClass="form-control" readonly="true" />
-														<%-- <s:select list="sedes" name="jugador.codSede"
+														<s:select list="sedes" name="jugador.codSede"
 															 listKey="codSede"
 															 listValue="nomSede"
 															 headerKey="-1"
-															 headerValue="[SELECCIONE]" cssClass="form-control text-uppercase" readonly="true"/> --%>
-													</div>
+															 headerValue="[SELECCIONE]" cssClass="form-control text-uppercase" readonly="true" />
+													</div> --%>
+													<s:hidden name="jugador.idRol" />
 													<%-- <div class="form-group">
 														<label class="control-label">Perfil</label>
-														<s:textfield name="jugador.codSede" id="codSede" cssClass="form-control" readonly="true" />
 														<s:select list="roles" name="jugador.idRol"
 															 listKey="idRol"
 															 listValue="nomRol"
 															 headerKey="-1"
 															 headerValue="[SELECCIONE]" cssClass="form-control text-uppercase" readonly="true"/>
-														
+													</div> --%>
+													<s:hidden name="jugador.estado" />
+													<%-- <div class="form-group">
+														<label class="control-label">Estado</label>
+														<s:select name="jugador.estado"
+																list="#{'1':'HABILITADO','0':'DESHABILITADO'}"
+																cssClass="form-control text-uppercase" readonly="true" />
 													</div> --%>
 												</div>
 												<div class="col-md-12">
@@ -226,14 +222,10 @@
 									</div>
 							</div>
 							<div class="panel-footer">
-								<div class="text-right">									
+								<div class="text-right">
+									<a href="listaJugadores" class="btn btn-primary">Volver al listado</a>
 									<input type="submit" class="btn btn-success" name="guardar" id="guardar" value="Aplicar">
-									<s:if test="#session.usuario.idRol != 3">
-										<a href="index.jsp" class="btn btn-warning"  id="cancelar">Volver</a>
-									</s:if>
-									<s:else>
-										<a href="organizadores.jsp" class="btn btn-warning"  id="cancelar">Volver</a>
-									</s:else>									
+									<input type="reset" class="btn btn-warning" name="cancelar" id="cancelar" value="Cancelar">
 								</div>
 							</div>
 						</div>
@@ -242,6 +234,7 @@
 			</div>
 		</form>
 	</div>
+
 
 
 	<script type="text/javascript" src="js/jquery.js"></script>

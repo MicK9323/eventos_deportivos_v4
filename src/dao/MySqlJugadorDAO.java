@@ -157,7 +157,7 @@ public class MySqlJugadorDAO implements JugadorDAO {
 				cstm.setString(12, obj.getDomicilio());
 				cstm.setString(13, obj.getEmail());
 				cstm.setString(14, obj.getCodSede());
-				estado += cstm.executeUpdate();
+				estado = cstm.executeUpdate();
 				System.out.println(""+estado);
 			}
 			if(estado != -1) {

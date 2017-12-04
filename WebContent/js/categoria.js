@@ -13,7 +13,6 @@ if(opcion == "registrar"){
 }
 
 
-
 //Maximo valor del input
 $("#descripcion").attr("maxlength", 30);
 $("#minimo").attr("maxlength", 2);
@@ -76,7 +75,7 @@ $('#formCategoria').bootstrapValidator({
             invalid: 'glyphicon glyphicon-remove',
             validating: 'glyphicon glyphicon-refresh'
   },
-  submitButtons:'#btnGuardar',
+  //submitButtons:'#btnGuardar',
   fields:{
     descripcion:{
     	selector:'#descripcion',
